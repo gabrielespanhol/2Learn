@@ -15,7 +15,7 @@ class WebLoginScreen extends StatelessWidget {
         const Expanded(
           child: LoginScreenTopImage() 
         ),
-        Expanded(child: Row(
+        Expanded(child: Column(
           children: const [
             SizedBox(
               width: 450,

@@ -3,33 +3,46 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class WelcomeImage extends StatelessWidget {
+  
   const WelcomeImage({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
-      children: [
-        const Text(
-          "WELCOME TO EDU",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: defaultPadding * 2),
-        Row(
           children: [
-            const Spacer(),
-            Expanded(
-              flex: 8,
-              child: SvgPicture.asset(
-                "assets/icons/chat.svg",
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+               Container(
+                height: (size.height+size.width)/4.7,
+                width: (size.height+size.width)/4.7,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/gif_inicial.gif"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                
+                  child: Center(
+                    child: Text(
+                      "Seu\naprendizado,\nsua escolha!",
+                      style: TextStyle(
+                        fontSize: (size.height+size.width)/30,
+                        color: KTextcolor,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
+                  ),
+               ),    
+                ],
               ),
             ),
-            const Spacer(),
           ],
-        ),
-        const SizedBox(height: defaultPadding * 2),
-      ],
-    );
+        );
   }
 }
