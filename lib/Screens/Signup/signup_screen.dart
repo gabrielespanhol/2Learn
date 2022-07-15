@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/background.dart';
-import 'package:flutter_web_1/Screens/Signup/MobileSignUpScreen.dart';
-import 'package:flutter_web_1/Screens/Signup/WebSignUpScreen.dart';
+import 'package:flutter_web_1/Screens/Signup/mobileSignUpScreen.dart';
+import 'package:flutter_web_1/Screens/Signup/webSignUpScreen.dart';
 import 'package:flutter_web_1/responsive.dart';
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/customMenuBar.dart';
 import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
 
@@ -9,20 +10,34 @@ class WebLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    Size size = MediaQuery.of(context).size;
+    return Column(
       children: [
-        const Expanded(
-          child: LoginScreenTopImage() 
-        ),
-        Expanded(child: Column(
-          children: const [
-            SizedBox(
-              width: 450,
-              child: LoginForm(),
-              ),
+         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const[
+             CustomMenuBar(),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+                SizedBox(
+          height: size.height/1.2,
+        ),
+            const Expanded(
+              child: LoginScreenTopImage() 
+            ),
+            Expanded(child: Column(
+              children: const [
+                SizedBox(
+                  width: 450,
+                  child: LoginForm(),
+                  ),
+              ],
+            ),
+            ),
+          ],
         ),
       ],
     );

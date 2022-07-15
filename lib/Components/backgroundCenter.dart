@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Background extends StatelessWidget {
+class BackgroundCenter extends StatelessWidget {
   final Widget child;
-  const Background({
+  const BackgroundCenter({
     Key? key,
     required this.child,
     this.topImage = "assets/images/main_top.png",
@@ -19,6 +19,7 @@ class Background extends StatelessWidget {
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
         child: Stack(
+          alignment: Alignment.center,
           children: <Widget>[
             Positioned(
               top: 0,

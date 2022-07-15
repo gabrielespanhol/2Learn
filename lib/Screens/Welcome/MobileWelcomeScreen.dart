@@ -9,10 +9,18 @@ class MobileWelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+          SizedBox(
+          height: size.height/4.5,
+        ),
         const WelcomeImage(),
+        const SizedBox(
+          height: 30,
+        ),
         Row(
           children: const [
             Spacer(),

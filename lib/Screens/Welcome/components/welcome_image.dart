@@ -21,7 +21,7 @@ class WelcomeImage extends StatelessWidget {
                Container(
                 height: (size.height+size.width)/4.7,
                 width: (size.height+size.width)/4.7,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/gif_inicial.gif"),
                     fit: BoxFit.cover,
