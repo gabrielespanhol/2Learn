@@ -53,15 +53,11 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return SignUpScreen();
-                  },
-                ),
-              );
+            press: () => {
+                Navigator.pushNamed(
+            context,
+            "/cadastro",
+          ),
             },
           ),
         ],

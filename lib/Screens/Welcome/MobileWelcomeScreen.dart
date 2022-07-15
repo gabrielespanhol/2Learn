@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_web_1/Screens/Welcome/components/about_us_student.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/login_signup_btn.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/welcome_image.dart';
 
@@ -31,6 +32,7 @@ class MobileWelcomeScreen extends StatelessWidget {
             Spacer(),
           ],
         ),
+        
       ],
     );
   }

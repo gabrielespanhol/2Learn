@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Screens/Login/login_screen.dart';
+import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -11,6 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => WelcomeScreen(),
+        '/login': (context) => LoginScreen(),
+        '/cadastro': (context) => SignUpScreen(),
+        //'/senha': (context) => PasswordScreen(),
+        //'/rank': (context) => CoursesScreen(),
+        //'/inscricao': (context) =>SubscribeScreen(),
+        //'/detalhes': (context) => Detalhes(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
       theme: ThemeData(
@@ -36,8 +48,7 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(30)),
               borderSide: BorderSide.none,
             ),
-          )),
-      home: WelcomeScreen(),
+          )),   
     );
   }
 }

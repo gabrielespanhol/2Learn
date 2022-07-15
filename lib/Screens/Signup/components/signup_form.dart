@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/already_have_an_account_acheck.dart';
 import 'package:flutter_web_1/constant.dart';
-import '../../Login/login_screen.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
@@ -49,15 +48,11 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
             login: false,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return LoginScreen();
-                  },
-                ),
-              );
+            press: () => {
+               Navigator.pushNamed(
+            context,
+            "/login",
+          ),
             },
           ),
         ],

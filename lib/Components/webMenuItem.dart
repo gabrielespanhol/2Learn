@@ -3,7 +3,7 @@ import 'package:flutter_web_1/constant.dart';
 
 class MenuItemCuston extends StatelessWidget {
   final String title;
-  final Function press;
+  final String press;
   
   const MenuItemCuston({
      Key? key,   
@@ -16,7 +16,12 @@ class MenuItemCuston extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: press(),
+        onTap: () => {
+                Navigator.pushNamed(
+            context,
+            press,
+          ),
+            },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
           child: Text(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
-import '../../Login/login_screen.dart';
-import '../../Signup/signup_screen.dart';
+
 
 class LoginAndSignupBtn extends StatelessWidget {
   const LoginAndSignupBtn({
@@ -10,20 +9,30 @@ class LoginAndSignupBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 40),
+          child: Container(
+            decoration: BoxDecoration(
+              
+            ),
+            child: Text('Venha ter a liberdade de construir seu próprio conhecimento!',
+              style: TextStyle(
+                    fontSize: (size.height+size.width)/130,
+                    color: KTextcolor,
+                ),),
+          ),
+        ),
         Hero(
           tag: "login_btn",
           child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return LoginScreen();
-                  },
-                ),
-              );
+            onPressed: () => {
+                Navigator.pushNamed(
+            context,
+            "/login",
+          ),
             },
             child: Text(
               "Login".toUpperCase(),
@@ -32,15 +41,11 @@ class LoginAndSignupBtn extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SignUpScreen();
-                },
-              ),
-            );
+          onPressed: () => {
+                Navigator.pushNamed(
+            context,
+            "/cadastro",
+          ),
           },
           style: ElevatedButton.styleFrom(
               primary: kPrimaryLightColor, elevation: 0),
