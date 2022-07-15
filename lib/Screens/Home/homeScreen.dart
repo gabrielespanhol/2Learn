@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/customMenuBar.dart';
+import 'package:flutter_web_1/Components/WebMenuBar.dart';
 import 'package:flutter_web_1/Screens/Home/Components/body.dart';
 
 class HomeScreen extends StatelessWidget {

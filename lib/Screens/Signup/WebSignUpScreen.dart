@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/customMenuBar.dart';
+import 'package:flutter_web_1/Components/WebMenuBar.dart';
 import 'components/sign_up_top_image.dart';
 import 'components/signup_form.dart';
 import 'components/socal_sign_up.dart';
