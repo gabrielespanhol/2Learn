@@ -37,42 +37,8 @@ class WebWellcomeScreen extends StatelessWidget {
                   child: LoginAndSignupBtn(),
                 )
               ],
-            ),),
-          ],
-        ),
-         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-          height: size.height/1.2,
-        ),
-            const Expanded(child: WelcomeImage()),
-            Expanded(child: Row(
-              children: const [
-                SizedBox(
-                  width: 450,
-                  child: LoginAndSignupBtn(),
-                )
-              ],
-            ),),
-          ],
-        ),
-         Row(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-          height: size.height/1.2,
-        ),
-            const Expanded(child: WelcomeImage()),
-            Expanded(child: Row(
-              children: const [
-                SizedBox(
-                  width: 450,
-                  child: LoginAndSignupBtn(),
-                )
-              ],
-            ),),
+            ),
+            ),
           ],
         ),
       ],
