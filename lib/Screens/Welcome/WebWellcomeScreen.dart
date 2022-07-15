@@ -6,6 +6,8 @@ import 'components/welcome_image.dart';
 
 
 class WebWellcomeScreen extends StatelessWidget {
+  
+
   const WebWellcomeScreen({
     Key? key,
   }) : super(key: key);
@@ -22,6 +24,41 @@ class WebWellcomeScreen extends StatelessWidget {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+          height: size.height/1.2,
+        ),
+            const Expanded(child: WelcomeImage()),
+            Expanded(child: Row(
+              children: const [
+                SizedBox(
+                  width: 450,
+                  child: LoginAndSignupBtn(),
+                )
+              ],
+            ),),
+          ],
+        ),
+         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+          height: size.height/1.2,
+        ),
+            const Expanded(child: WelcomeImage()),
+            Expanded(child: Row(
+              children: const [
+                SizedBox(
+                  width: 450,
+                  child: LoginAndSignupBtn(),
+                )
+              ],
+            ),),
+          ],
+        ),
+         Row(
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(

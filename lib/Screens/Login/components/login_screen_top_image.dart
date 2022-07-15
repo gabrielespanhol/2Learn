@@ -9,19 +9,16 @@ class LoginScreenTopImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        const Text(
-          "LOGIN",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
         const SizedBox(height: defaultPadding * 2),
         Row(
           children: [
             const Spacer(),
             Expanded(
               flex: 8,
-              child: SvgPicture.asset("assets/icons/login.svg"),
+              child: SvgPicture.asset("assets/icons/people1.svg", width: (size.height+size.width)/4,),
             ),
             const Spacer(),
           ],

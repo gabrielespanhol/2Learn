@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Screens/Home/homeScreen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 

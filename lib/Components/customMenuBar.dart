@@ -20,7 +20,7 @@ class CustomMenuBar extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-          MenuItemCuston(title: "Home", press: (){},),
+          MenuItemCuston(title: "Home", press: (){}),
           MenuItemCuston(title: "Sobre nos", press: (){},),
           MenuItemCuston(title: "Beneficios", press: (){},),
           MenuItemCuston(title: "Entrar", press: (){},),
