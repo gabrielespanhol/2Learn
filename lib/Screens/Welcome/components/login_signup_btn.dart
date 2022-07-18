@@ -15,7 +15,7 @@ class LoginAndSignupBtn extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 40),
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               
             ),
             child: Text('Venha ter a liberdade de construir seu próprio conhecimento!',
@@ -51,7 +51,7 @@ class LoginAndSignupBtn extends StatelessWidget {
               primary: kPrimaryLightColor, elevation: 0),
           child: Text(
             "Cadastre-se".toUpperCase(),
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
           ),
         ),
       ],

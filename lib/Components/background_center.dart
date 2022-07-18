@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+class BackgroundCenter extends StatelessWidget {
+  final Widget child;
+  const BackgroundCenter({
+    Key? key,
+    required this.child,
+    this.topImage = "assets/images/main_top.png",
+    this.bottomImage = "assets/images/login_bottom.png",
+  }) : super(key: key);
+
+  final String topImage, bottomImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SizedBox(
+        child: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Positioned(
+                top: 0,
+                left: 0,
+                child: Image.asset(
+                  topImage,
+                  width: 120,
+                ),
+              ),
+              SafeArea(child: child),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

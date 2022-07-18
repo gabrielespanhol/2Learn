@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class WelcomeImage extends StatelessWidget {
@@ -24,7 +23,7 @@ class WelcomeImage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/gif_inicial.gif"),
-                    fit: BoxFit.cover,
+                    
                   ),
                 ),
                 
