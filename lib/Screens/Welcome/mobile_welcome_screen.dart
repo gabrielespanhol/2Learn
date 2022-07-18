@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_web_1/Screens/Welcome/components/about_us_student.dart';
+import 'package:flutter_web_1/Screens/Welcome/components/about_student.dart';
+import 'package:flutter_web_1/Screens/Welcome/components/about_teacher.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/login_signup_btn.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/welcome_image.dart';
 
@@ -20,18 +21,35 @@ class MobileWelcomeScreen extends StatelessWidget {
         ),
         const WelcomeImage(),
         const SizedBox(
-          height: 30,
+          height: 0,
         ),
         Row(
           children: const [
-            Spacer(),
             Expanded(
               flex: 8,
               child: LoginAndSignupBtn(),
             ),
-            Spacer(),
+            
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(top: 70),
+              child: AboutStudent(),
+            )
+        ],),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: AboutTeacher(),
+              )
+          ],
+        ),
+        
         
       ],
     );

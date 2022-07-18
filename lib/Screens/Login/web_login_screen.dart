@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/WebMenuBar.dart';
-import 'components/sign_up_top_image.dart';
-import 'components/signup_form.dart';
-import 'components/socal_sign_up.dart';
+import 'package:flutter_web_1/Components/web_menu_bar.dart';
+import 'components/login_form.dart';
+import 'components/login_screen_top_image.dart';
 
-class WebSignUpScreen extends StatelessWidget {
-  const WebSignUpScreen({
+class WebLoginScreen extends StatelessWidget {
+  const WebLoginScreen({
     Key? key,
   }) : super(key: key);
 
@@ -23,22 +22,18 @@ class WebSignUpScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             SizedBox(
+                SizedBox(
           height: size.height/1.2,
         ),
             const Expanded(
-              child: SignUpScreenTopImage() 
+              child: LoginScreenTopImage() 
             ),
             Expanded(child: Column(
               children: const [
                 SizedBox(
                   width: 450,
-                  child: SignUpForm(),
+                  child: LoginForm(),
                   ),
-                SizedBox(
-                  width: 450,
-                  child: SocalSignUp(),
-                ),
               ],
             ),
             ),
@@ -48,4 +43,3 @@ class WebSignUpScreen extends StatelessWidget {
     );
   }
 }
-

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/default_button.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/webMenuItem.dart';
 
 
@@ -13,7 +12,6 @@ class CustomMenuBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(20),
