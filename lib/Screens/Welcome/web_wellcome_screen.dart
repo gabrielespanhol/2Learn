@@ -97,8 +97,11 @@ class WebWellcomeScreen extends StatelessWidget {
         ),
 
        Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
-          CardBenefits()
+          CardBenefits(image: "assets/icons/clock.svg", textDescripiton: "Os dias, horários\n       e o tempo\nque você precisa.",),
+          CardBenefits(image: "assets/icons/money.svg", textDescripiton: "Os dias, horários\n       e o tempo\nque você precisa.",),
+          CardBenefits(image: "assets/icons/idea.svg", textDescripiton: "Os dias, horários\n       e o tempo\nque você precisa.",)
         ],
        )
         
