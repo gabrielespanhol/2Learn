@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class CardBenefits extends StatelessWidget {
@@ -30,9 +29,14 @@ const CardBenefits({ Key? key, required this.image, required this.textDescripito
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(
-                flex: 8,
-                child: SvgPicture.asset(image, width: (size.height+size.width)/20),
+                Container(
+                  width: (size.height+size.width)/20,
+                  height: (size.height+size.width)/20,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(image),
+                  ),
+                ),
               ),
               ],
             ),
@@ -41,6 +45,7 @@ const CardBenefits({ Key? key, required this.image, required this.textDescripito
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                  Text(textDescripiton,
+                  textAlign: TextAlign.center,
             style: TextStyle(
                fontSize: (size.height+size.width)/120,
                color: KPrimaryColor,

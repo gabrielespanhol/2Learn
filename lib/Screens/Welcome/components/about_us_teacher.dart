@@ -23,6 +23,7 @@ const AboutUsTeacher({ Key? key }) : super(key: key);
        Row(
         children:  [
            Text('A oportunidade de ajudar o próximo fazendo uma\nrenda extra com isso, chegou!\n\nVocê agora poderá ajudar as pessoas com seus\nconhecimentos e fazer um orçamento que vá de\nacordo com a visão de valor do seu trabalho.\n\nPodendo escolher seus melhores momentos para\nestar colocando em prática as aulas com os\ntutorados, tendo uma plataforma única que te ajuda\nem toda a organização e segurança que precisa.\n\nAqui você encontra a liberdade de escolher\nexatamente o assunto que se sinta mais capacitado\npara compartilhar, de modo que possa criar aulas\ncom assuntos de sua expertise.\n\n',
+           textAlign: TextAlign.justify,
            style: TextStyle(
                 fontSize: (size.height+size.width)/140,
                 color: KTextcolorLight,

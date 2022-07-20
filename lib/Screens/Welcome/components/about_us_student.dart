@@ -12,6 +12,7 @@ const AboutUsStudent({ Key? key }) : super(key: key);
        Row(
         children: [
           Text('PARA ALUNOS\n',
+          textAlign: TextAlign.justify,
           style: TextStyle(
                 fontSize: (size.height+size.width)/45,
                 color: KPrimaryColor,
@@ -22,7 +23,7 @@ const AboutUsStudent({ Key? key }) : super(key: key);
        ),
        Row(
         children: [
-           Text('A facilidade e poder de escolha que nós, estudantes,\nprecisamos, de acordo com nossas necessidades,\nassuntos de interesse e capacidade de orçamento.\n\nAqui você escolhe o tutor que melhor atende o que\nvocê precisa, nos dias, horários e com o valor que\ncabe no seu bolso e que ficam igualmente bom para\nele, de acordo com o definido.\n\nVocê pode agora ter o ensino voltado somente para\nvocê e suas necessidades, em aulas particulares,\nonde o tutor estará focado no seu desenvolvimento\ne saberá em primeira mão seu estágio atual para que\n haja progresso.\n\n',
+           Text('A facilidade e poder de escolha que nós, estudantes,\nprecisamos   de   acordo   com  nossas necessidades,\nassuntos de interesse  e  capacidade  de  orçamento.\n\nAqui você escolhe  o tutor que  melhor  atende o que\nvocê precisa,  nos dias, horários e com  o valor que\ncabe no seu bolso e  que ficam  igualmente bom  para\nele, de acordo com o definido.\n\nVocê pode agora ter o  ensino  voltado somente  para\nvocê e suas  necessidades,  em  aulas  particulares,\nonde o tutor estará focado  no  seu  desenvolvimento\ne saberá em primeira  mão seu estágio atual para que\nhaja progresso.\n\n',
            style: TextStyle(
                 fontSize: (size.height+size.width)/140,
                 color: KTextcolorLight,
