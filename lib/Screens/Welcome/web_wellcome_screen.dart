@@ -123,7 +123,7 @@ class WebWellcomeScreen extends StatelessWidget {
       
        // sobre nós
        Padding(
-         padding: const EdgeInsets.only(top: 150 , bottom: 150),
+         padding: const EdgeInsets.only(top: 150 , bottom: 200),
          child: Row(
          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: <Widget>[
@@ -146,6 +146,7 @@ class WebWellcomeScreen extends StatelessWidget {
        ),
 
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: const <Widget>[
           CopyRightBottom()
         ],
