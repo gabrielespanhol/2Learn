@@ -48,6 +48,9 @@ class LoginForm extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 "Login".toUpperCase(),
+                style: const TextStyle(
+                  color: KTextcolor
+                ),
               ),
             ),
           ),

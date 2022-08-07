@@ -43,7 +43,10 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () {},
-            child: Text("Cadastre-se".toUpperCase()),
+            child: Text("Cadastre-se".toUpperCase(),
+            style: const TextStyle(
+                  color: KTextcolor
+                ),),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(

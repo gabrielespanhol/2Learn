@@ -27,8 +27,8 @@ class DefaultButton extends StatelessWidget {
         },
         child: Text(text.toUpperCase(),
         style: const TextStyle(
-                        color: KTextButtoncolor,
-                        fontWeight: FontWeight.bold
+                        color: KTextcolor,
+                        
       ),
       ),
     ),)

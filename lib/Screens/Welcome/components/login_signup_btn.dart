@@ -43,6 +43,9 @@ class LoginAndSignupBtn extends StatelessWidget {
             },
             child: Text(
               "Login".toUpperCase(),
+              style: const TextStyle(
+                  color: KTextcolor
+                ),
             ),
           ),
         ),

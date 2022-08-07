@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
 
+import '../../../Components/default_button.dart';
 class AboutUsText extends StatelessWidget {
 const AboutUsText({ Key? key }) : super(key: key);
 
@@ -72,9 +72,19 @@ const AboutUsText({ Key? key }) : super(key: key);
                 color: KTextcolorLight,
                 fontFamily:'OpenSans',
             ),),
+
+           
         ],
-       )
+       ),
        
+       Row(
+         children: const <Widget>[
+           Padding(
+              padding: EdgeInsets.only(top: 30),
+              child: DefaultButton(text: "Cadastre-se", press: "/cadastro"),
+            ),
+         ],
+       )
      ],
     );
   }

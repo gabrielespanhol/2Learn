@@ -45,6 +45,8 @@ const AboutStudent({ Key? key }) : super(key: key);
                 color: KTextcolorLight,
                 fontFamily:'OpenSans',
             ),),
+
+            
         ],
        )
      ],

@@ -44,7 +44,7 @@ class MobileWelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 20, ),
                 child: AboutTeacher(),
               )
           ],
