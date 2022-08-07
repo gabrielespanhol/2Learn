@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PeoplesImage extends StatelessWidget {
+class PeopleImage extends StatelessWidget {
   final double height, width;
-  const PeoplesImage({
+  const PeopleImage({
     Key? key, required this.height, required this.width,
   }) : super(key: key);
 

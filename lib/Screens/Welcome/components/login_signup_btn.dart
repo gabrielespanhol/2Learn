@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
 
@@ -12,6 +13,12 @@ class LoginAndSignupBtn extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+            LogoImage(width: 150)
+          ],
+        ),
         Padding(
           padding: const EdgeInsets.only(bottom: 40),
           child: Container(
