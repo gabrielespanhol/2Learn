@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_web_1/Components/copyright_bottom.dart';
 import 'package:flutter_web_1/Components/web_menu_bar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_us_text.dart';
@@ -142,7 +143,13 @@ class WebWellcomeScreen extends StatelessWidget {
             )
            ],
          ),
-       )
+       ),
+
+      Row(
+        children: const <Widget>[
+          CopyRightBottom()
+        ],
+      )
         
       ],
     );
