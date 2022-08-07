@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_1/Components/web_menu_bar.dart';
@@ -8,8 +7,7 @@ import 'package:flutter_web_1/Screens/Welcome/components/benefits/about_benefits
 import 'package:flutter_web_1/Screens/Welcome/components/about_student.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_teacher.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/benefits/card_benefits.dart';
-import 'package:flutter_web_1/Screens/Welcome/components/people_image.dart';
-import 'package:flutter_web_1/constant.dart';
+import '../../Components/default_button.dart';
 import 'components/login_signup_btn.dart';
 import 'components/welcome_image.dart';
 
@@ -72,16 +70,27 @@ class WebWellcomeScreen extends StatelessWidget {
        Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: const [
-          CardBenefits(image: "assets/images/alarme.png", textDescripiton: "Os dias, horários\ne o tempo\nque você precisa.",),
-          CardBenefits(image: "assets/images/dinheiro2.png", textDescripiton: "O preço que encaixa nas\nsuas necessidades e\nescolhas.",),
+          CardBenefits(image: "assets/images/clock.png", textDescripiton: "Os dias, horários\ne o tempo\nque você precisa.",),
+          CardBenefits(image: "assets/images/money.png", textDescripiton: "O preço que encaixa nas\nsuas necessidades e\nescolhas.",),
           CardBenefits(image: "assets/images/idea.png", textDescripiton: "O aprendizado que é\ncentrado exatamente\nno que você precisa.",)
         ],
        ),
 
+       Padding(
+        padding: EdgeInsets.only(top: 70,left: 100, right: (size.height+size.width)/18),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const <Widget>[
+            LogoImage(width: 100),
+
+            DefaultButton(text: "Cadastre-se", press: "/cadastro")
+          ],
+        ),
+      ),   
         
         // descrição para cada tipo de usuario
         Padding(
-          padding: const EdgeInsets.only(top: 350, bottom: 150),
+          padding: const EdgeInsets.only(top: 250, bottom: 150),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -93,6 +102,11 @@ class WebWellcomeScreen extends StatelessWidget {
               Column(
                 children: [
                   SvgPicture.asset("assets/icons/teacheStudent.svg", width: (size.height+size.width)/7,),
+
+                  Padding(
+                    padding: EdgeInsets.only(top: (size.height+size.width)/25),
+                    child: const DefaultButton(text: "Cadastre-se", press: "/cadastro"),
+                  )
                 ],
               ),
               Column(
@@ -102,22 +116,9 @@ class WebWellcomeScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ),  
 
-      
-                //  Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //    children: [
-                //      Container(
-                //           width: (size.height+size.width)/2,
-                //           height: 3,
-                //           decoration: const BoxDecoration(
-                //             color: KPrimaryColor
-                //           ),
-                //         ),
-                //    ],
-                //  ),
-                
+         
       
        // sobre nós
        Padding(
