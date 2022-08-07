@@ -8,35 +8,42 @@ const AboutUsText({ Key? key }) : super(key: key);
   Widget build(BuildContext context){
     Size size = MediaQuery.of(context).size;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      
      children: [
-       Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children:  [
-          Text('Sobre nós\n',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-                fontSize: (size.height+size.width)/50,
-                color: KTextcolor,
-                fontWeight: FontWeight.bold
-            )
-          ),
-        ],
-       ),
-       
-     
-
+       SizedBox(
+        width: (size.height+size.width)/5,
+         child: Align(
+          alignment: Alignment.topRight,
+           child: Row(
+           mainAxisAlignment: MainAxisAlignment.start,
+            children:  [
+              
+              Text('Sobre nós\n',
+              style: TextStyle(
+                    fontSize: (size.height+size.width)/60,
+                    color: KTextcolor,
+                    fontWeight: FontWeight.bold,
+                    fontFamily:'OpenSans',
+                )
+              ),     
+            ],
+           ),
+         ),
+       ),     
         Row(
           children:  [
-             Text('Somos uma empresa formada por um grupo de\nestudantes e amigos que viram uma necessidade no\nmeio em que vivemos.\n\nCom dificuldade em encontrar um serviço centrado\nem nossas necessidades de aprendizados\nparticulares.\n\nCom isso, formamos a 2Learn afim de ajudar\naqueles que, como nós, gostariam de ter a liberdade\nde escolher o que considera melhor e mais\nconfortável para si em um local seguro e confiável,\ncom a transparência de serviço que precisamos.\n\nBuscamos atender não somente os estudantes, mas\ntambém aqueles que com seu conhecimento\ndesejam ajudar o próximo e com isso ganhar uma\nrenda extra.',
+            SizedBox(
+            width: (size.height+size.width)/5,
+               child: Text('Somos uma empresa formada por um grupo de estudantes e amigos que viram uma necessidade no meio em que vivemos.\n\nCom dificuldade em encontrar um serviço centrado em nossas necessidades de aprendizados particulares.\n\nCom isso, formamos a 2Learn afim de ajudar aqueles que, como nós, gostariam de ter a liberdade de escolher o que considera melhor e mais confortável para si em um local seguro e confiável, com a transparência de serviço que precisamos.\n\nBuscamos atender não somente os estudantes, mas também aqueles que com seu conhecimento desejam ajudar o próximo e com isso ganhar uma renda extra.',
             textAlign: TextAlign.justify,
             maxLines: 20,
-             style: TextStyle(
-                  fontSize: (size.height+size.width)/140,
-                  color: KTextcolorLight,
-                  fontWeight: FontWeight.bold
-              )
+               style: TextStyle(
+                    fontSize: (size.height+size.width)/140,
+                    color: KTextcolorLight,  
+                     fontFamily:'OpenSans',
+                )
             ),
+             ),
           ],
          ),
 
@@ -46,7 +53,7 @@ const AboutUsText({ Key? key }) : super(key: key);
           style: TextStyle(
                 fontSize: (size.height+size.width)/140,
                 color: KTextcolorLight,
-                fontWeight: FontWeight.bold
+                fontFamily:'OpenSans',
             ),),
         ],
        )

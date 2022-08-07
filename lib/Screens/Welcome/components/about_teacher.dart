@@ -13,22 +13,27 @@ const AboutTeacher({ Key? key }) : super(key: key);
         children:  [
           Text('PARA TUTORES\n',
           style: TextStyle(
-                fontSize: (size.height+size.width)/45,
+                fontSize: (size.height+size.width)/50,
                 color: KPrimaryColor,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
+                fontFamily:'OpenSans',
             )
           ),
         ],
        ),
        Row(
         children:  [
-           Text('A oportunidade de ajudar o próximo fazendo uma\nrenda extra com isso, chegou!\n\nVocê agora poderá ajudar as pessoas com seus\nconhecimentos e fazer um orçamento que vá de\nacordo com a visão de valor do seu trabalho.\n\nPodendo escolher seus melhores momentos para\nestar colocando em prática as aulas com os\ntutorados, tendo uma plataforma única que te ajuda\nem toda a organização e segurança que precisa.\n\nAqui você encontra a liberdade de escolher\nexatamente o assunto que se sinta mais capacitado\npara compartilhar, de modo que possa criar aulas\ncom assuntos de sua expertise.\n\n',
-           style: TextStyle(
-                fontSize: (size.height+size.width)/140,
-                color: KTextcolorLight,
-                fontWeight: FontWeight.bold
-            )
+           SizedBox(
+            width: (size.height+size.width)/5,
+             child: Text('A oportunidade de ajudar o próximo fazendo uma renda extra com isso, chegou!\n\nVocê agora poderá ajudar as pessoas com seus conhecimentos e fazer um orçamento que vá de acordo com a visão de valor do seu trabalho.\n\nPodendo escolher seus melhores momentos para estar colocando em prática as aulas com os tutorados, tendo uma plataforma única que te ajuda em toda a organização e segurança que precisa.\n\nAqui você encontra a liberdade de escolher exatamente o assunto que se sinta mais capacitado para compartilhar, de modo que possa criar aulas com assuntos de sua expertise.\n\n',
+              textAlign: TextAlign.justify,
+             style: TextStyle(
+                  fontSize: (size.height+size.width)/140,
+                  color: KTextcolorLight, 
+                  fontFamily:'OpenSans',
+              )
           ),
+           ),
     
         ],
        ),
@@ -38,7 +43,7 @@ const AboutTeacher({ Key? key }) : super(key: key);
           style: TextStyle(
                 fontSize: (size.height+size.width)/140,
                 color: KTextcolorLight,
-                fontWeight: FontWeight.bold
+                fontFamily:'OpenSans',
             ))
         ],
        )

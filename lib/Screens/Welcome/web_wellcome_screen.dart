@@ -6,7 +6,7 @@ import 'package:flutter_web_1/Screens/Welcome/components/benefits/about_benefits
 import 'package:flutter_web_1/Screens/Welcome/components/about_student.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_teacher.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/benefits/card_benefits.dart';
-import 'package:flutter_web_1/Screens/Welcome/components/peoples_image.dart';
+import 'package:flutter_web_1/Screens/Welcome/components/people_image.dart';
 import 'components/login_signup_btn.dart';
 import 'components/welcome_image.dart';
 
@@ -26,9 +26,8 @@ class WebWellcomeScreen extends StatelessWidget {
     return Column(
       children: [
         Row(
-          children: const [    
-                 LogoImage(height: 100, width: 100),
-                 Spacer(),
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [                  
                  CustomMenuBar(),
           ],
         ),
@@ -60,18 +59,9 @@ class WebWellcomeScreen extends StatelessWidget {
           
           Padding(
             padding: const EdgeInsets.only(top: 150, left: 100, bottom: 50),
-            child: Column(
-              children: [
-                Row(
-                  children: const <Widget>[
-                    Aboutbenefits()
-                  ],
-                ),
-                 Row(             
-                  children: const <Widget>[
-                    Aboutbenefits2()
-                  ],
-                ),
+            child: Row(
+              children: const <Widget>[
+                Aboutbenefits()
               ],
             ),
           ),
@@ -125,7 +115,7 @@ class WebWellcomeScreen extends StatelessWidget {
        Padding(
          padding: const EdgeInsets.only(top: 350),
          child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: <Widget>[
             Column(
               children: <Widget>[

@@ -27,7 +27,7 @@ class MenuItemCuston extends StatelessWidget {
           child: Text(
             title.toUpperCase(),
             style: TextStyle(
-              color: KTextcolor.withOpacity(0.3),
+              color: KTextcolor.withOpacity(0.7),
               fontWeight: FontWeight.bold
             ),
           ),

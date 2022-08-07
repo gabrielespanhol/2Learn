@@ -13,23 +13,27 @@ const AboutStudent({ Key? key }) : super(key: key);
         children: [
           Text('PARA ALUNOS\n',
           style: TextStyle(
-                fontSize: (size.height+size.width)/45,
+                fontSize: (size.height+size.width)/50,
                 color: KPrimaryColor,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
+                fontFamily:'OpenSans',
             )
           )
         ],
        ),
        Row(
         children: [
-           Text('A facilidade e poder de  escolha  que nós, estudantes,\nprecisamos, de  acordo  com  nossas  necessidades,\nassuntos  de  interesse  e  capacidade  de  orçamento.\n\nAqui você escolhe o tutor que melhor atende o que\nvocê precisa, nos dias, horários e com o valor que\ncabe no seu bolso e que ficam igualmente bom para\nele, de acordo com o definido.\n\nVocê pode agora ter o ensino voltado somente para\nvocê e suas necessidades, em aulas particulares,\nonde o tutor estará focado no seu desenvolvimento\ne saberá em primeira mão seu estágio atual para que\nhaja progresso.\n\n',
-           textAlign: TextAlign.justify,
-            textDirection: TextDirection.ltr,
-           style: TextStyle(
-                fontSize: (size.height+size.width)/140,
-                color: KTextcolorLight,
-                fontWeight: FontWeight.bold
-            ),
+           SizedBox(
+            width: (size.height+size.width)/5,
+             child: Text('A facilidade e poder de  escolha  que nós, estudantes, precisamos, de  acordo  com  nossas  necessidades, assuntos  de  interesse  e  capacidade  de  orçamento.\n\nAqui você escolhe o tutor que melhor atende o que você precisa, nos dias, horários e com o valor que cabe no seu bolso e que ficam igualmente bom para ele, de acordo com o definido.\n\nVocê pode agora ter o ensino voltado somente para você e suas necessidades, em aulas particulares, onde o tutor estará focado no seu desenvolvimento e saberá em primeira mão seu estágio atual para que haja progresso.\n\n',
+             textAlign: TextAlign.justify,
+              textDirection: TextDirection.ltr,
+             style: TextStyle(
+                  fontSize: (size.height+size.width)/140,
+                  color: KTextcolorLight,
+                  fontFamily:'OpenSans',
+              ),
+             ),
            ),
         ],
        ),
@@ -39,7 +43,7 @@ const AboutStudent({ Key? key }) : super(key: key);
           style: TextStyle(
                 fontSize: (size.height+size.width)/140,
                 color: KTextcolorLight,
-                fontWeight: FontWeight.bold
+                fontFamily:'OpenSans',
             ),),
         ],
        )

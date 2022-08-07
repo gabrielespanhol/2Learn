@@ -49,6 +49,8 @@ const CardBenefits({ Key? key, required this.image, required this.textDescripito
             style: TextStyle(
                fontSize: (size.height+size.width)/120,
                color: KPrimaryColor,
+               fontFamily:'OpenSans',
+               fontWeight: FontWeight.bold
                
            ),
           ),
