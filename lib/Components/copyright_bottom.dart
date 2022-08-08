@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Components/social_icon.dart';
+
 
 import '../constant.dart';
 
@@ -12,7 +14,7 @@ class CopyRightBottom extends StatelessWidget {
     return Column(
       children: <Widget>[
 
-        Row(
+      Row(
        children: <Widget>[
            
                 Padding(
@@ -28,6 +30,7 @@ class CopyRightBottom extends StatelessWidget {
              
        ],
      ),
+
      Row(
       mainAxisAlignment: MainAxisAlignment.start,
        children: [
@@ -45,11 +48,39 @@ class CopyRightBottom extends StatelessWidget {
        ],
      ), 
 
+    SizedBox(
+      width: (size.height+size.width)/2,
+     child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+        children: const <Widget>[
+          SocalIconCopyright(
+              iconSrc: "assets/icons/facebook-icon.svg",
+              press: "a",
+            ),
+            SocalIconCopyright(
+              iconSrc: "assets/icons/twitter-icon.svg",
+              press: "a",
+            ),
+            SocalIconCopyright(
+              iconSrc: "assets/icons/linkedin-icon.svg",
+              press: "a",
+            ),
+            SocalIconCopyright(
+              iconSrc: "assets/icons/youtube-icon.svg",
+              press: "a",
+            ),
+            SocalIconCopyright(
+              iconSrc: "assets/icons/instagram-icon.svg",
+              press: "a",
+            ),
+        ],
+      )
+      ),
+
      SizedBox(
       width: (size.height+size.width)/2,
        child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
          children: <Widget>[
            LogoImage(width: (size.height+size.width)/25),
          ],
@@ -57,37 +88,15 @@ class CopyRightBottom extends StatelessWidget {
      ),
 
      Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
        children: <Widget>[
-        Column(
-          children: [
-            Container(
-                    height: (size.height+size.width)/120,
-                    width: (size.height+size.width)/100,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/copyright.png"),
-                        
-                      ))),
-          ],
-        ),
-        Column(
-          
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 5, top: (size.height+size.width)/130),
-              child: Text('2Learn, all rights reserved\n',
-                   style: TextStyle(
-                         fontSize: (size.height+size.width)/150,
-                         color: KTextcolor,
-                         fontWeight: FontWeight.bold,
-                         fontFamily:'OpenSans',
-                     )
-                   ),
-            ),
-          ],
-        )
+        Text('© 2Learn, all rights reserved\n',
+             style: TextStyle(
+                   fontSize: (size.height+size.width)/150,
+                   color: KTextcolor,
+                   fontWeight: FontWeight.bold,
+                   fontFamily:'OpenSans',
+               )
+             )
        ],
      )
       ],

@@ -15,18 +15,18 @@ class SocalSignUp extends StatelessWidget {
         const OrDivider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             SocalIcon(
               iconSrc: "assets/icons/facebook.svg",
-              press: () {},
+              press: "a",
             ),
             SocalIcon(
               iconSrc: "assets/icons/twitter.svg",
-              press: () {},
+              press: "a",
             ),
             SocalIcon(
               iconSrc: "assets/icons/google-plus.svg",
-              press: () {},
+              press: "a",
             ),
           ],
         ),
