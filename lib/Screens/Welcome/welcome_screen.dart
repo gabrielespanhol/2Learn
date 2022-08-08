@@ -11,6 +11,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Background(
+    
       child: SingleChildScrollView(
         child: SafeArea(
           child: Responsive(

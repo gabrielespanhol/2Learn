@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
+
   const Background({
     Key? key,
     required this.child,
-    this.topImage = "assets/images/main_top.png",
-    this.bottomImage = "assets/images/login_bottom.png",
   }) : super(key: key);
 
-  final String topImage, bottomImage;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +19,6 @@ class Background extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Image.asset(
-                topImage,
-                width: 120,
-              ),
-            ),
             SafeArea(child: child),
           ],
         ),
