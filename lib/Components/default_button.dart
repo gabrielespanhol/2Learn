@@ -5,34 +5,32 @@ class DefaultButton extends StatelessWidget {
   final String text;
   final String press;
 
-
   const DefaultButton({
-    Key? key, required this.text, required this.press,
+    Key? key,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
       decoration: BoxDecoration(
-        color: KPrimaryColor,
-        borderRadius: BorderRadius.circular(15)
-      ),
+          color: KPrimaryColor, borderRadius: BorderRadius.circular(15)),
       child: TextButton(
-         onPressed: () => {
-                Navigator.pushNamed(
+        onPressed: () => {
+          Navigator.pushNamed(
             context,
             press,
           ),
         },
-        child: Text(text.toUpperCase(),
-        style: const TextStyle(
-                        color: KTextcolor,
-                        
+        child: Text(
+          text.toUpperCase(),
+          style: const TextStyle(
+            color: KTextcolor,
+          ),
+        ),
       ),
-      ),
-    ),)
-    ;
+    );
   }
 }
-

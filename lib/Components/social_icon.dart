@@ -15,17 +15,17 @@ class SocalIconCopyright extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => {
-                Navigator.pushNamed(
-            context,
-            press,
-          ),
-            },
-      child:  Padding(
+        Navigator.pushNamed(
+          context,
+          press,
+        ),
+      },
+      child: Padding(
         padding: const EdgeInsets.only(right: 15),
         child: SvgPicture.asset(
-            iconSrc!,
-            height: (size.height+size.width)/47,
-            width: (size.height+size.width)/47,
+          iconSrc!,
+          height: (size.height + size.width) / 47,
+          width: (size.height + size.width) / 47,
         ),
       ),
     );

@@ -4,11 +4,11 @@ import 'package:flutter_web_1/constant.dart';
 class MenuItemCuston extends StatelessWidget {
   final String title;
   final String press;
-  
+
   const MenuItemCuston({
-     Key? key,   
-     required this.title,   
-     required this.press,
+    Key? key,
+    required this.title,
+    required this.press,
   }) : super(key: key);
 
   @override
@@ -17,19 +17,18 @@ class MenuItemCuston extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () => {
-                Navigator.pushNamed(
+          Navigator.pushNamed(
             context,
             press,
           ),
-            },
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
           child: Text(
             title.toUpperCase(),
             style: TextStyle(
-              color: KTextcolor.withOpacity(0.7),
-              fontWeight: FontWeight.bold
-            ),
+                color: KTextcolor.withOpacity(0.7),
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),

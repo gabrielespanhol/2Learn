@@ -12,12 +12,10 @@ class LoginScreen extends StatelessWidget {
     return const Background(
       child: SingleChildScrollView(
         child: Responsive(
-          mobile: MobileLoginScreen(), 
+          mobile: MobileLoginScreen(),
           desktop: WebLoginScreen(),
-          ),
+        ),
       ),
     );
   }
 }
-
-

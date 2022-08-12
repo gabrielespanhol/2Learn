@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Screens/Signup/components/socal_sign_up.dart';
 import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
 
@@ -23,6 +24,7 @@ class MobileLoginScreen extends StatelessWidget {
             Spacer(),
           ],
         ),
+        const SocalSignUp(),
       ],
     );
   }

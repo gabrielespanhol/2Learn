@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(30)),
               borderSide: BorderSide.none,
             ),
-          )),   
+          )),
     );
   }
 }

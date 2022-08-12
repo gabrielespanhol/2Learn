@@ -8,8 +8,6 @@ class Background extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

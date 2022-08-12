@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/already_have_an_account_acheck.dart';
 import 'package:flutter_web_1/constant.dart';
 
-
 class LoginForm extends StatelessWidget {
   const LoginForm({
     Key? key,
@@ -48,19 +47,17 @@ class LoginForm extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 "Login".toUpperCase(),
-                style: const TextStyle(
-                  color: KTextcolor
-                ),
+                style: const TextStyle(color: KTextcolor),
               ),
             ),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () => {
-                Navigator.pushNamed(
-            context,
-            "/cadastro",
-          ),
+              Navigator.pushNamed(
+                context,
+                "/cadastro",
+              ),
             },
           ),
         ],

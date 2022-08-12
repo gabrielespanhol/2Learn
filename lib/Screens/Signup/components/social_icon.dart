@@ -15,11 +15,11 @@ class SocalIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-                Navigator.pushNamed(
-            context,
-            press,
-          ),
-            },
+        Navigator.pushNamed(
+          context,
+          press,
+        ),
+      },
       child: Container(
         margin: const EdgeInsets.only(left: 15),
         padding: const EdgeInsets.all(20),

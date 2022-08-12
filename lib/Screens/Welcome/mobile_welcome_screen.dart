@@ -12,12 +12,12 @@ class MobileWelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-          SizedBox(
-          height: size.height/4.5,
+        SizedBox(
+          height: size.height / 4.5,
         ),
         const WelcomeImage(),
         const SizedBox(
@@ -29,7 +29,6 @@ class MobileWelcomeScreen extends StatelessWidget {
               flex: 8,
               child: LoginAndSignupBtn(),
             ),
-            
           ],
         ),
         Row(
@@ -39,18 +38,19 @@ class MobileWelcomeScreen extends StatelessWidget {
               padding: EdgeInsets.only(top: 70),
               child: AboutStudent(),
             )
-        ],),
+          ],
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 20, ),
-                child: AboutTeacher(),
-              )
+            Padding(
+              padding: EdgeInsets.only(
+                top: 20,
+              ),
+              child: AboutTeacher(),
+            )
           ],
         ),
-        
-        
       ],
     );
   }
