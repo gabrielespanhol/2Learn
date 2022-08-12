@@ -32,14 +32,16 @@ class _SignUpFormState extends State<SignUpForm> {
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 120,
                   color: KTextcolorLight,
-                  fontFamily: 'OpenSans',
+                  // fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(
+                top: (size.height + size.width) / 100,
+                bottom: (size.height + size.width) / 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
