@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/contracted_courses_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
         '/cadastro': (context) => SignUpScreen(),
-        //'/senha': (context) => PasswordScreen(),
+        '/cursosContratados': (context) => ContractedCourses(),
         //'/rank': (context) => CoursesScreen(),
         //'/inscricao': (context) =>SubscribeScreen(),
         //'/detalhes': (context) => Detalhes(),

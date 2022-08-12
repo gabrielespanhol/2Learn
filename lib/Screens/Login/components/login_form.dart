@@ -44,7 +44,12 @@ class LoginForm extends StatelessWidget {
           Hero(
             tag: "login_btn",
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  "/cursosContratados",
+                );
+              },
               child: Text(
                 "Login".toUpperCase(),
                 style: const TextStyle(color: KTextcolor),
