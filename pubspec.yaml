@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/tutores/
     - assets/fonts/
     - assets/
 
@@ -81,6 +82,12 @@ flutter:
     - family: OpenSans
       fonts:
         - asset: assets/fonts/OpenSans-Light.ttf
+    - family: OpenSans-regular
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+    - family: OpenSans-bold
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
 
   #
   # For details regarding fonts from package dependencies,

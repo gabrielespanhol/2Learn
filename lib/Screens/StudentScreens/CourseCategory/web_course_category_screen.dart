@@ -67,7 +67,7 @@ class WebCoursesCategory extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 50),
+          padding: const EdgeInsets.only(right: 70, bottom: 50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: const <Widget>[

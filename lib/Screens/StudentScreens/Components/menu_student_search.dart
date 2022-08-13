@@ -17,13 +17,16 @@ class MenuStudentSearch extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text(
-                title!.toUpperCase(),
-                style: TextStyle(
-                  fontSize: (size.height + size.width) / 60,
-                  color: KPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                  //fontFamily:'OpenSans',
+              Padding(
+                padding: const EdgeInsets.only(left: 50),
+                child: Text(
+                  title!.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: (size.height + size.width) / 60,
+                    color: KPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'OpenSans-bold',
+                  ),
                 ),
               ),
             ],

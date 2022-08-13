@@ -23,7 +23,7 @@ class AboutUsText extends StatelessWidget {
                       fontSize: (size.height + size.width) / 60,
                       color: KTextcolor,
                       fontWeight: FontWeight.bold,
-                      //fontFamily:'OpenSans',
+                      fontFamily: 'OpenSans-bold',
                     )),
               ],
             ),

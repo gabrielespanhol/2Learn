@@ -19,7 +19,7 @@ class Aboutbenefits extends StatelessWidget {
                       fontSize: (size.height + size.width) / 60,
                       color: KPrimaryColor,
                       fontWeight: FontWeight.bold,
-                      //fontFamily:'OpenSans',
+                      fontFamily: 'OpenSans-bold',
                     ))
               ],
             ),
