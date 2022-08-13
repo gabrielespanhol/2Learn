@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
 
-class MobileCourseSearch extends StatelessWidget {
-  const MobileCourseSearch({
+class MobileCoursesCategory extends StatelessWidget {
+  const MobileCoursesCategory({
     Key? key,
   }) : super(key: key);
 

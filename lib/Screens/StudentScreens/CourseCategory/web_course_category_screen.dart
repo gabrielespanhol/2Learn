@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Models/course_category.dart';
-import 'package:flutter_web_1/Models/courses.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/Components/menu_student_search.dart';
-import 'package:flutter_web_1/Screens/StudentScreens/CourseSearch/components/course_card_category.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/components/course_card_category.dart';
+import 'package:flutter_web_1/constant.dart';
 
-class WebCourseSearch extends StatelessWidget {
-  const WebCourseSearch({
+class WebCoursesCategory extends StatelessWidget {
+  const WebCoursesCategory({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     CourseCategory tecnologia = CourseCategory(nomeCategoria: "tecnologia");
     CourseCategory matematica = CourseCategory(nomeCategoria: "matemática");
@@ -23,12 +23,17 @@ class WebCourseSearch extends StatelessWidget {
     CourseCategory moda = CourseCategory(nomeCategoria: "moda");
     CourseCategory maquiagem = CourseCategory(nomeCategoria: "maquiagem");
     CourseCategory idiomas = CourseCategory(nomeCategoria: "idiomas");
+    CourseCategory outros = CourseCategory(nomeCategoria: "outros");
 
     return Column(
       children: [
-        const MenuStudentSearch(title: "Categorias"),
+        MenuStudentSearch(title: "Categorias"),
         Padding(
-          padding: const EdgeInsets.all(50),
+          padding: EdgeInsets.only(
+            top: (size.height + size.width) / 30,
+            right: (size.height + size.width) / 60,
+            left: (size.height + size.width) / 60,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -41,7 +46,12 @@ class WebCourseSearch extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(50),
+          padding: EdgeInsets.only(
+            top: (size.height + size.width) / 35,
+            bottom: (size.height + size.width) / 40,
+            right: (size.height + size.width) / 60,
+            left: (size.height + size.width) / 60,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -49,7 +59,10 @@ class WebCourseSearch extends StatelessWidget {
               CourseCardcategory(course: moda),
               CourseCardcategory(course: maquiagem),
               CourseCardcategory(course: idiomas),
-              CourseCardcategory(course: tecnologia),
+              CourseCardcategory(
+                course: outros,
+                color: KPrimaryColor,
+              ),
             ],
           ),
         ),

@@ -3,8 +3,9 @@ import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class MenuStudentSearch extends StatelessWidget {
-  final String title;
-  const MenuStudentSearch({Key? key, required this.title}) : super(key: key);
+  String? title;
+
+  MenuStudentSearch({Key? key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MenuStudentSearch extends StatelessWidget {
           Column(
             children: [
               Text(
-                title.toUpperCase(),
+                title!.toUpperCase(),
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,

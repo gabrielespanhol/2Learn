@@ -4,16 +4,25 @@ import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/mobile_view_cou
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/web_view_courses_screen.dart';
 import 'package:flutter_web_1/responsive.dart';
 
-class ViewCourses extends StatelessWidget {
-  const ViewCourses({Key? key}) : super(key: key);
+class ViewCourses extends StatefulWidget {
+  String? category;
+  ViewCourses({Key? key, this.category}) : super(key: key);
 
   @override
+  State<ViewCourses> createState() => _ViewCoursesState();
+}
+
+class _ViewCoursesState extends State<ViewCourses> {
+  @override
   Widget build(BuildContext context) {
-    return const Background(
+    var courseCategory = ModalRoute.of(context)?.settings.arguments;
+    return Background(
       child: SingleChildScrollView(
         child: Responsive(
-          mobile: MobileViewCourses(),
-          desktop: WebViewCourses(),
+          mobile: const MobileViewCourses(),
+          desktop: WebViewCourses(
+            category: courseCategory.toString(),
+          ),
         ),
       ),
     );

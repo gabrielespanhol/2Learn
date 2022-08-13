@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/contracted_courses_screen.dart';
-import 'package:flutter_web_1/Screens/StudentScreens/CourseSearch/course_search_screen.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/course_category_screen.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/course_details_screen.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/view_courses_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -23,9 +25,9 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/cadastro': (context) => SignUpScreen(),
         '/cursosContratados': (context) => ContractedCourses(),
-        '/pesquisaCursos': (context) => CourseSearch(),
-        //'/inscricao': (context) =>SubscribeScreen(),
-        //'/detalhes': (context) => Detalhes(),
+        '/pesquisaCursosCategoria': (context) => CoursesCategory(),
+        '/visualizarCursos': (context) => ViewCourses(),
+        '/detalhesCursos': (context) => CourseDetails(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
