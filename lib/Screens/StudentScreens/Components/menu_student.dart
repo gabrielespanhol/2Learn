@@ -16,7 +16,7 @@ class MenuStudent extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Suas aulas',
+                'Suas aulas'.toUpperCase(),
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,

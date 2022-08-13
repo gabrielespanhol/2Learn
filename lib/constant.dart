@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 const KPrimaryColor = Color.fromARGB(255, 255, 189, 89);
+const KPrimaryColorLight = Color.fromARGB(255, 255, 237, 207);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 const KPrimaryGrey = Color.fromARGB(255, 84, 84, 84);
 const KTextcolor = Color.fromRGBO(51, 47, 47, 1);
