@@ -18,42 +18,47 @@ class WebViewCourses extends StatelessWidget {
     Teachers isabella = Teachers(
       nomeTutor: "Isabella",
       caminhoFoto: "Bella",
-      nomecurso: "MACHINE LEARNING",
+      nomeCurso: "MACHINE LEARNING",
       descricaoCursoResumida:
           "Aqui vou te ensinar sobre os principais algoritmos.",
       valorCurso: 150.00,
+      categoria: category,
     );
     Teachers gabriel = Teachers(
       nomeTutor: "Gabriel",
       caminhoFoto: "Gabe",
-      nomecurso: "ARQUITETURA DE DADOS",
+      nomeCurso: "ARQUITETURA DE DADOS",
       descricaoCursoResumida:
           "Vou ensinar sobre as arquiteturas mais utilizadas.",
       valorCurso: 125.00,
+      categoria: category,
     );
     Teachers leonardo = Teachers(
       nomeTutor: "Leonado",
       caminhoFoto: "leo1",
-      nomecurso: "ERP",
+      nomeCurso: "ERP",
       descricaoCursoResumida:
           "Olá, você vai aprender os principais benefícios.",
       valorCurso: 100.00,
+      categoria: category,
     );
     Teachers leonardo1 = Teachers(
       nomeTutor: "Leonardo",
       caminhoFoto: "leo2",
-      nomecurso: "PYTHON BÁSICO",
+      nomeCurso: "PYTHON BÁSICO",
       descricaoCursoResumida:
           "onsigo te mostrar o quão fácil é aprender esse tema",
       valorCurso: 50.00,
+      categoria: category,
     );
     Teachers patrick = Teachers(
       nomeTutor: "Patrick",
       caminhoFoto: "patrick",
-      nomecurso: "TRATAMENTO DE DADOS",
+      nomeCurso: "TRATAMENTO DE DADOS",
       descricaoCursoResumida:
           "A ementa segue a linha das principais técnicas utilizadas.",
       valorCurso: 50.00,
+      categoria: category,
     );
 
     return Column(

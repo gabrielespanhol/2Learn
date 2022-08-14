@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
+// ignore: must_be_immutable
 class MenuStudentSearch extends StatelessWidget {
   String? title;
 

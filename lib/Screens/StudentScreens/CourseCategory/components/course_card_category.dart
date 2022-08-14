@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Models/course_category.dart';
 import 'package:flutter_web_1/constant.dart';
 
+// ignore: must_be_immutable
 class CourseCardcategory extends StatelessWidget {
   final CourseCategory course;
   Color? color;
