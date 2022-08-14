@@ -26,7 +26,7 @@ class WebViewCourses extends StatelessWidget {
     );
     Teachers gabriel = Teachers(
       nomeTutor: "Gabriel",
-      caminhoFoto: "Gabe",
+      caminhoFoto: "gabriel",
       nomeCurso: "ARQUITETURA DE DADOS",
       descricaoCursoResumida:
           "Vou ensinar sobre as arquiteturas mais utilizadas.",
