@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/already_have_an_account_acheck.dart';
+import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -14,9 +15,9 @@ class SignUpForm extends StatefulWidget {
 enum SingingCharacter { aluno, tutor }
 
 class _SignUpFormState extends State<SignUpForm> {
-  SingingCharacter? _character = SingingCharacter.aluno;
-
-  int val = -1;
+  SingingCharacter? userTipo = SingingCharacter.aluno;
+  late String userEmail;
+  late String userSenha;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +52,11 @@ class _SignUpFormState extends State<SignUpForm> {
                     children: [
                       RadioListTile<SingingCharacter>(
                         value: SingingCharacter.aluno,
-                        groupValue: _character,
+                        groupValue: userTipo,
                         onChanged: (SingingCharacter? value) {
                           setState(
                             () {
-                              _character = value;
+                              userTipo = value;
                             },
                           );
                         },
@@ -81,10 +82,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     children: [
                       RadioListTile<SingingCharacter>(
                         value: SingingCharacter.tutor,
-                        groupValue: _character,
+                        groupValue: userTipo,
                         onChanged: (SingingCharacter? value) {
                           setState(() {
-                            _character = value;
+                            userTipo = value;
                           });
                         },
                       ),
@@ -107,7 +108,11 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: KPrimaryColor,
-            onSaved: (email) {},
+            onChanged: (value) => setState(
+              () {
+                userEmail = value;
+              },
+            ),
             decoration: const InputDecoration(
               hintText: "E-mail",
               prefixIcon: Padding(
@@ -122,6 +127,11 @@ class _SignUpFormState extends State<SignUpForm> {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: KPrimaryColor,
+              onChanged: (value) => setState(
+                () {
+                  userSenha = value;
+                },
+              ),
               decoration: const InputDecoration(
                 hintText: "Senha",
                 prefixIcon: Padding(
@@ -133,7 +143,20 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: const Duration(seconds: 1),
+                  content: CustomSnackbar(
+                    textoMensagem:
+                        "Não foi possivel se cadastrar. Tente Novamente",
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+              );
+            },
             child: Text(
               "Cadastre-se".toUpperCase(),
               style: const TextStyle(color: KTextcolor),
