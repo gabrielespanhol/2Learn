@@ -1,4 +1,5 @@
 class Teachers {
+  int? id;
   String? nomeTutor;
   String? sobrenomeTutor;
   String? categoria;
@@ -7,12 +8,14 @@ class Teachers {
   String? descricaoCurso;
   String? descricaoCursoResumida;
   String? nomeCurso;
-  double? valorCurso;
+  int? valorCurso;
   int? numeroAulas;
   String? caminhoFoto;
+  String? formacaoAcademica;
 
   Teachers(
-      {this.nomeTutor,
+      {this.id,
+      this.nomeTutor,
       this.sobrenomeTutor,
       this.categoria,
       this.profissaoTutor,
@@ -22,9 +25,11 @@ class Teachers {
       this.nomeCurso,
       this.valorCurso,
       this.numeroAulas,
-      this.caminhoFoto});
+      this.caminhoFoto,
+      this.formacaoAcademica});
 
   Teachers.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     nomeTutor = json['nomeTutor'];
     sobrenomeTutor = json['sobrenomeTutor'];
     categoria = json['categoria'];
@@ -36,10 +41,12 @@ class Teachers {
     valorCurso = json['valorCurso'];
     numeroAulas = json['numeroAulas'];
     caminhoFoto = json['caminhoFoto'];
+    formacaoAcademica = json['FormacaoAcademica'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['nomeTutor'] = nomeTutor;
     data['sobrenomeTutor'] = sobrenomeTutor;
     data['categoria'] = categoria;
@@ -51,6 +58,7 @@ class Teachers {
     data['valorCurso'] = valorCurso;
     data['numeroAulas'] = numeroAulas;
     data['caminhoFoto'] = caminhoFoto;
+    data['FormacaoAcademica'] = formacaoAcademica;
     return data;
   }
 }

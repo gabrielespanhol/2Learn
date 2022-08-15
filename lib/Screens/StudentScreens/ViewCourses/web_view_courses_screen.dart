@@ -17,47 +17,63 @@ class WebViewCourses extends StatelessWidget {
 
     Teachers isabella = Teachers(
       nomeTutor: "Isabella",
+      sobrenomeTutor: "Oliveira Espanhol",
+      profissaoTutor: "Cientista de Dados - Itaú",
+      formacaoAcademica: "Sistemas de informações - FIAP",
       caminhoFoto: "Bella",
       nomeCurso: "MACHINE LEARNING",
       descricaoCursoResumida:
           "Aqui vou te ensinar sobre os principais algoritmos.",
-      valorCurso: 150.00,
+      valorCurso: 150,
       categoria: category,
     );
     Teachers gabriel = Teachers(
-      nomeTutor: "Gabriel",
-      caminhoFoto: "gabriel",
-      nomeCurso: "ARQUITETURA DE DADOS",
-      descricaoCursoResumida:
-          "Vou ensinar sobre as arquiteturas mais utilizadas.",
-      valorCurso: 125.00,
-      categoria: category,
-    );
+        nomeTutor: "Gabriel",
+        sobrenomeTutor: "Espanhol",
+        profissaoTutor: "Arquiteto de Dados - Itaú",
+        formacaoAcademica: "Sistemas de informações - FIAP",
+        caminhoFoto: "gabriel",
+        nomeCurso: "ARQUITETURA DE DADOS",
+        descricaoCursoResumida:
+            "Vou ensinar sobre as arquiteturas mais utilizadas.",
+        valorCurso: 125,
+        categoria: category,
+        descricaoTutor:
+            "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários.");
     Teachers leonardo = Teachers(
       nomeTutor: "Leonado",
+      sobrenomeTutor: "Mesquita",
+      profissaoTutor: "Desenvolvedor - Loggi",
+      formacaoAcademica: "Sistemas de informações - FIAP",
       caminhoFoto: "leo1",
       nomeCurso: "ERP",
       descricaoCursoResumida:
           "Olá, você vai aprender os principais benefícios.",
-      valorCurso: 100.00,
+      valorCurso: 100,
       categoria: category,
     );
     Teachers leonardo1 = Teachers(
       nomeTutor: "Leonardo",
+      sobrenomeTutor: "Jordão",
+      profissaoTutor: "Desenvolvedor - FIAP",
+      formacaoAcademica: "Sistemas de informações - FIAP",
       caminhoFoto: "leo2",
       nomeCurso: "PYTHON BÁSICO",
       descricaoCursoResumida:
           "onsigo te mostrar o quão fácil é aprender esse tema",
-      valorCurso: 50.00,
+      valorCurso: 50,
       categoria: category,
     );
     Teachers patrick = Teachers(
       nomeTutor: "Patrick",
+      sobrenomeTutor: "Aruda",
+      profissaoTutor: "Desenvolvedor - Pupily",
+      formacaoAcademica: "Sistemas de informações - FIAP",
       caminhoFoto: "patrick",
       nomeCurso: "TRATAMENTO DE DADOS",
       descricaoCursoResumida:
           "A ementa segue a linha das principais técnicas utilizadas.",
-      valorCurso: 50.00,
+      valorCurso: 50,
       categoria: category,
     );
 

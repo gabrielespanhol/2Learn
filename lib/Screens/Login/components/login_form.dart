@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_web_1/Components/already_have_an_account_acheck.dart';
 import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -83,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
                     SnackBar(
                       duration: const Duration(seconds: 1),
                       content: CustomSnackbar(
-                        textoMensagem: "Email invalido, Tente novamente",
+                        textoMensagem: "Email invalido. Tente novamente",
                       ),
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.transparent,
