@@ -32,31 +32,125 @@ class WebContractedCourses extends StatelessWidget {
         totalAulas: 6,
         proximoEncontro: "Amanhã");
 
+    List<Courses> CourseCategoryList = [
+      Courses(
+          id: 1,
+          nomeCurso: "Porcentagem Basica",
+          aulaRealizada: 2,
+          nomeTutor: "Douglas",
+          tipoCurso: "math",
+          totalAulas: 3,
+          proximoEncontro: "2° Feira"),
+      Courses(
+          id: 1,
+          nomeCurso: "NUMPY P/MACHINE LEARNING",
+          aulaRealizada: 5,
+          nomeTutor: "Carmen",
+          tipoCurso: "machinelearning",
+          totalAulas: 6,
+          proximoEncontro: "Amanhã"),
+      Courses(
+          id: 1,
+          nomeCurso: "Python basico",
+          aulaRealizada: 5,
+          nomeTutor: "Leonardo",
+          tipoCurso: "machinelearning",
+          totalAulas: 6,
+          proximoEncontro: "3° Feira"),
+      Courses(
+          id: 1,
+          nomeCurso: "Arquitetura de dados",
+          aulaRealizada: 1,
+          nomeTutor: "Gabriel",
+          tipoCurso: "machinelearning",
+          totalAulas: 5,
+          proximoEncontro: "6° Feira"),
+
+      ///
+      ///
+      ///
+
+      Courses(
+          id: 1,
+          nomeCurso: "Porcentagem Basica",
+          aulaRealizada: 2,
+          nomeTutor: "Douglas",
+          tipoCurso: "math",
+          totalAulas: 3,
+          proximoEncontro: "2° Feira"),
+      Courses(
+          id: 1,
+          nomeCurso: "NUMPY P/MACHINE LEARNING",
+          aulaRealizada: 5,
+          nomeTutor: "Carmen",
+          tipoCurso: "machinelearning",
+          totalAulas: 6,
+          proximoEncontro: "Amanhã"),
+      Courses(
+          id: 1,
+          nomeCurso: "Python basico",
+          aulaRealizada: 5,
+          nomeTutor: "Leonardo",
+          tipoCurso: "machinelearning",
+          totalAulas: 6,
+          proximoEncontro: "3° Feira"),
+      Courses(
+          id: 1,
+          nomeCurso: "Arquitetura de dados",
+          aulaRealizada: 1,
+          nomeTutor: "Gabriel",
+          tipoCurso: "machinelearning",
+          totalAulas: 5,
+          proximoEncontro: "6° Feira"),
+    ];
+
     return Column(
       children: [
         const MenuStudent(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CourseCardStudent(
-              course: matematica,
+
+        SizedBox(
+          width: (size.height + size.width) / 1.7,
+          height: (size.height + size.width) / 4,
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              mainAxisExtent: (size.height + size.width) / 5,
             ),
-            CourseCardStudent(
-              course: machinelearning,
-            ),
-            CourseCardStudent(
-              course: matematica,
-            ),
-            CourseCardStudent(
-              course: machinelearning,
-            ),
-          ],
+            itemCount: CourseCategoryList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: (size.height + size.width) / 60,
+                ),
+                child: CourseCardStudent(course: CourseCategoryList[index]),
+              );
+            },
+          ),
         ),
+
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //   children: <Widget>[
+        //     CourseCardStudent(
+        //       course: matematica,
+        //     ),
+        //     CourseCardStudent(
+        //       course: machinelearning,
+        //     ),
+        //     CourseCardStudent(
+        //       course: matematica,
+        //     ),
+        //     CourseCardStudent(
+        //       course: machinelearning,
+        //     ),
+        //   ],
+        // ),
+
         Padding(
           padding: EdgeInsets.only(
             left: (size.height + size.width) / 30,
             right: (size.height + size.width) / 50,
-            top: (size.height + size.width) / 15,
+            top: (size.height + size.width) / 140,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
