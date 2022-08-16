@@ -80,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      duration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 2),
                       content: CustomSnackbar(
                         textoMensagem: "Email invalido. Tente novamente",
                       ),

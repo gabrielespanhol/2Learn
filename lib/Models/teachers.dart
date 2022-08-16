@@ -12,6 +12,7 @@ class Teachers {
   int? numeroAulas;
   String? caminhoFoto;
   String? formacaoAcademica;
+  int? tempoAula;
 
   Teachers(
       {this.id,
@@ -26,7 +27,8 @@ class Teachers {
       this.valorCurso,
       this.numeroAulas,
       this.caminhoFoto,
-      this.formacaoAcademica});
+      this.formacaoAcademica,
+      this.tempoAula});
 
   Teachers.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -42,6 +44,7 @@ class Teachers {
     numeroAulas = json['numeroAulas'];
     caminhoFoto = json['caminhoFoto'];
     formacaoAcademica = json['FormacaoAcademica'];
+    tempoAula = json['tempoAula'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +62,7 @@ class Teachers {
     data['numeroAulas'] = numeroAulas;
     data['caminhoFoto'] = caminhoFoto;
     data['FormacaoAcademica'] = formacaoAcademica;
+    data['tempoAula'] = tempoAula;
     return data;
   }
 }

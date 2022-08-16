@@ -146,7 +146,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  duration: const Duration(seconds: 1),
+                  duration: const Duration(seconds: 2),
                   content: CustomSnackbar(
                     textoMensagem:
                         "Não foi possivel se cadastrar. Tente Novamente",

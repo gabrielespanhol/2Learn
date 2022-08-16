@@ -21,12 +21,16 @@ class DetailsIcon extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: (size.height + size.width) / 140,
-            color: KTextcolor,
-            fontFamily: 'OpenSans',
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: (size.height + size.width) / 140,
+              color: KTextcolor,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'OpenSans',
+            ),
           ),
         )
       ],

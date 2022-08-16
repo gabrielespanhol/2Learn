@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/default_button.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Models/teachers.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/details_icon.dart';
+import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/request_course_botton.dart';
 import 'package:flutter_web_1/constant.dart';
 
 import '../Components/menu_student_search.dart';
@@ -19,6 +22,8 @@ class WebCourseDetails extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     var caminhoFoto = teachers.caminhoFoto;
     var valorCurso = teachers.valorCurso.toString();
+    var numeroAulas = teachers.numeroAulas.toString();
+    var tempoAula = teachers.tempoAula.toString();
 
     return Column(
       children: [
@@ -243,6 +248,37 @@ class WebCourseDetails extends StatelessWidget {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(25),
                               )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  DetailsIcon(
+                                      image: "assets/images/book.png",
+                                      text:
+                                          "$numeroAulas Aulas                 "),
+                                  DetailsIcon(
+                                      image: "assets/images/money.png",
+                                      text: "R\$ $valorCurso (Completo)"),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  const DetailsIcon(
+                                      image: "assets/images/idea.png",
+                                      text: "Conteúdos adicionais         "),
+                                  DetailsIcon(
+                                      image: "assets/images/clock.png",
+                                      text:
+                                          "$tempoAula min - Horário à combinar"),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -251,11 +287,7 @@ class WebCourseDetails extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        DefaultButton(
-                          text: "Solicitar",
-                          press: "/visualizarCursos",
-                          fontSize: 20,
-                        ),
+                        const RequestCourseBotton(),
                         LogoImage(width: (size.height + size.width) / 25),
                       ],
                     ),

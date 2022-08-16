@@ -9,7 +9,7 @@ class MenuStudent extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

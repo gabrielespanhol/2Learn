@@ -26,6 +26,8 @@ class WebViewCourses extends StatelessWidget {
           "Aqui vou te ensinar sobre os principais algoritmos.",
       valorCurso: 150,
       categoria: category,
+      numeroAulas: 4,
+      tempoAula: 50,
     );
     Teachers gabriel = Teachers(
         nomeTutor: "Gabriel",
@@ -38,6 +40,8 @@ class WebViewCourses extends StatelessWidget {
             "Vou ensinar sobre as arquiteturas mais utilizadas.",
         valorCurso: 125,
         categoria: category,
+        numeroAulas: 5,
+        tempoAula: 40,
         descricaoCurso:
             "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
         descricaoTutor:
@@ -52,7 +56,9 @@ class WebViewCourses extends StatelessWidget {
       descricaoCursoResumida:
           "Olá, você vai aprender os principais benefícios.",
       valorCurso: 100,
+      tempoAula: 35,
       categoria: category,
+      numeroAulas: 7,
     );
     Teachers leonardo1 = Teachers(
       nomeTutor: "Leonardo",
@@ -63,8 +69,10 @@ class WebViewCourses extends StatelessWidget {
       nomeCurso: "PYTHON BÁSICO",
       descricaoCursoResumida:
           "onsigo te mostrar o quão fácil é aprender esse tema",
-      valorCurso: 50,
+      valorCurso: 80,
+      tempoAula: 30,
       categoria: category,
+      numeroAulas: 3,
     );
     Teachers patrick = Teachers(
       nomeTutor: "Patrick",
@@ -77,6 +85,8 @@ class WebViewCourses extends StatelessWidget {
           "A ementa segue a linha das principais técnicas utilizadas.",
       valorCurso: 50,
       categoria: category,
+      numeroAulas: 2,
+      tempoAula: 40,
     );
 
     return Column(
