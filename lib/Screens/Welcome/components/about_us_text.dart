@@ -73,9 +73,9 @@ class AboutUsText extends StatelessWidget {
           ],
         ),
         Row(
-          children: const <Widget>[
+          children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 30),
               child: DefaultButton(text: "Cadastre-se", press: "/cadastro"),
             ),
           ],

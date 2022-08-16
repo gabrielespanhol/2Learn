@@ -12,13 +12,9 @@ class LogoImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            SvgPicture.asset(
-              "assets/icons/logo.svg",
-              width: width,
-            ),
-          ],
+        SvgPicture.asset(
+          "assets/icons/logo.svg",
+          width: width,
         ),
       ],
     );

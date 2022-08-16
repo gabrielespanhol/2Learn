@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/visualizarCursos',
+      initialRoute: '/',
       routes: {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
@@ -32,29 +32,32 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
       theme: ThemeData(
-          primaryColor: KPrimaryColor,
-          scaffoldBackgroundColor: Colors.white,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              primary: KPrimaryColor,
-              shape: StadiumBorder(),
-              maximumSize: Size(double.infinity, 48),
-              minimumSize: Size(double.infinity, 48),
-            ),
+        primaryColor: KPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            primary: KPrimaryColor,
+            shape: StadiumBorder(),
+            maximumSize: Size(double.infinity, 48),
+            minimumSize: Size(double.infinity, 48),
           ),
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: kPrimaryLightColor,
-            iconColor: KPrimaryColor,
-            prefixIconColor: KPrimaryColor,
-            contentPadding: EdgeInsets.symmetric(
-                horizontal: defaultPadding, vertical: defaultPadding),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              borderSide: BorderSide.none,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: kSecondaryLightColor,
+          iconColor: KPrimaryColor,
+          prefixIconColor: KPrimaryColor,
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: defaultPadding, vertical: defaultPadding),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
             ),
-          )),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
     );
   }
 }

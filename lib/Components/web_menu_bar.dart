@@ -16,7 +16,7 @@ class CustomMenuBar extends StatelessWidget {
         color: Colors.white,
       ),
       child: Row(
-        children: const <Widget>[
+        children: <Widget>[
           MenuItemCuston(title: "Home", press: "/"),
           MenuItemCuston(title: "Sobre nos", press: "a"),
           MenuItemCuston(title: "Beneficios", press: "a"),

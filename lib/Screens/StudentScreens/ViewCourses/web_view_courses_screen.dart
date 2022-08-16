@@ -18,7 +18,7 @@ class WebViewCourses extends StatelessWidget {
     Teachers isabella = Teachers(
       nomeTutor: "Isabella",
       sobrenomeTutor: "Oliveira Espanhol",
-      profissaoTutor: "Cientista de Dados - Itaú",
+      profissaoTutor: "Cientista de Dados - Itaú Unibanco",
       formacaoAcademica: "Sistemas de informações - FIAP",
       caminhoFoto: "Bella",
       nomeCurso: "MACHINE LEARNING",
@@ -30,7 +30,7 @@ class WebViewCourses extends StatelessWidget {
     Teachers gabriel = Teachers(
         nomeTutor: "Gabriel",
         sobrenomeTutor: "Espanhol",
-        profissaoTutor: "Arquiteto de Dados - Itaú",
+        profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
         formacaoAcademica: "Sistemas de informações - FIAP",
         caminhoFoto: "gabriel",
         nomeCurso: "ARQUITETURA DE DADOS",
@@ -38,6 +38,8 @@ class WebViewCourses extends StatelessWidget {
             "Vou ensinar sobre as arquiteturas mais utilizadas.",
         valorCurso: 125,
         categoria: category,
+        descricaoCurso:
+            "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
         descricaoTutor:
             "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários.");
     Teachers leonardo = Teachers(

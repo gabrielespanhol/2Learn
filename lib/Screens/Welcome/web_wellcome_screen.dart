@@ -86,8 +86,8 @@ class WebWellcomeScreen extends StatelessWidget {
               top: 70, left: 100, right: (size.height + size.width) / 18),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              LogoImage(width: 100),
+            children: <Widget>[
+              const LogoImage(width: 100),
               DefaultButton(text: "Cadastre-se", press: "/cadastro")
             ],
           ),
@@ -113,8 +113,8 @@ class WebWellcomeScreen extends StatelessWidget {
                   Padding(
                     padding:
                         EdgeInsets.only(top: (size.height + size.width) / 25),
-                    child: const DefaultButton(
-                        text: "Cadastre-se", press: "/cadastro"),
+                    child:
+                        DefaultButton(text: "Cadastre-se", press: "/cadastro"),
                   )
                 ],
               ),

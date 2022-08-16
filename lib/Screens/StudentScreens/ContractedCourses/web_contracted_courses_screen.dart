@@ -60,8 +60,8 @@ class WebContractedCourses extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              LogoImage(width: 90),
+            children: <Widget>[
+              const LogoImage(width: 90),
               DefaultButton(
                 text: "OUTROS TEMAS",
                 press: "/pesquisaCursosCategoria",

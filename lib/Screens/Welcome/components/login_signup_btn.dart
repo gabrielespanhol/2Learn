@@ -53,7 +53,7 @@ class LoginAndSignupBtn extends StatelessWidget {
             ),
           },
           style: ElevatedButton.styleFrom(
-              primary: kPrimaryLightColor, elevation: 0),
+              primary: kSecondaryLightColor, elevation: 0),
           child: Text(
             "Cadastre-se".toUpperCase(),
             style: const TextStyle(color: Colors.black),

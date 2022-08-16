@@ -30,17 +30,20 @@ class WebLoginScreen extends StatelessWidget {
               child: LoginScreenTopImage(),
             ),
             Expanded(
-              child: Column(
-                children: const [
-                  SizedBox(
-                    width: 450,
-                    child: LoginForm(),
-                  ),
-                  SizedBox(
-                    width: 450,
-                    child: SocalSignUp(),
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(top: 150),
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      width: 450,
+                      child: LoginForm(),
+                    ),
+                    SizedBox(
+                      width: 450,
+                      child: SocalSignUp(),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

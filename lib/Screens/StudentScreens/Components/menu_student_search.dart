@@ -12,7 +12,7 @@ class MenuStudentSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(50),
+      padding: const EdgeInsets.all(25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

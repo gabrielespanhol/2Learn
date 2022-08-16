@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/default_button.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Models/teachers.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -21,7 +22,64 @@ class WebCourseDetails extends StatelessWidget {
 
     return Column(
       children: [
-        MenuStudentSearch(title: teachers!.categoria.toString()),
+        MenuStudentSearch(title: teachers.categoria.toString()),
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: (size.height + size.width) / 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Container(
+                    width: (size.height + size.width) / 20,
+                    height: (size.height + size.width) / 64,
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor,
+                      borderRadius: BorderRadius.circular(
+                          (size.height + size.width) / 100),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Tutor'.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: (size.height + size.width) / 100,
+                          color: KTextcolorLight,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans-bold',
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  Container(
+                    width: (size.height + size.width) / 20,
+                    height: (size.height + size.width) / 64,
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor,
+                      borderRadius: BorderRadius.circular(
+                          (size.height + size.width) / 100),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Aulas'.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: (size.height + size.width) / 100,
+                          color: KTextcolorLight,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans-bold',
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
         Padding(
           padding: EdgeInsets.only(top: (size.height + size.width) / 40),
           child: Row(
@@ -31,7 +89,7 @@ class WebCourseDetails extends StatelessWidget {
                 height: (size.height + size.width) / 4,
                 width: (size.height + size.width) / 6,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
                       height: (size.height + size.width) / 15,
@@ -125,17 +183,24 @@ class WebCourseDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              // outra parta da descrição
 
-              SizedBox(
+              // risco do meio
+
+              Container(
                 height: (size.height + size.width) / 4,
-                width: (size.height + size.width) / 11,
+                width: (size.height + size.width) / 1500,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 185, 184, 184),
+                ),
               ),
+
+              // outra parta da descrição
 
               SizedBox(
                 height: (size.height + size.width) / 4,
                 width: (size.height + size.width) / 4,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
                       children: [
@@ -148,52 +213,52 @@ class WebCourseDetails extends StatelessWidget {
                             fontFamily: 'OpenSans-regular',
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: (size.height + size.width) / 4,
                           child: Text(
-                            teachers.valorCurso.toString(),
+                            textAlign: TextAlign.justify,
+                            teachers.descricaoCurso.toString(),
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'OpenSans-regular',
+                              color: KTextcolor,
+                              fontFamily: 'OpenSans',
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: (size.height + size.width) / 40),
-                      child: Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: (size.height + size.width) / 4,
-                            child: Text(
-                              textAlign: TextAlign.justify,
-                              teachers.descricaoTutor.toString(),
-                              style: TextStyle(
-                                fontSize: (size.height + size.width) / 140,
-                                color: KTextcolor,
-                                fontFamily: 'OpenSans',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+
+                    // container cinsa com o numero de aula, valor da aula etc
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          height: (size.height + size.width) / 13,
+                          width: (size.height + size.width) / 4,
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 217, 217, 217),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(25),
+                              )),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: 70,
-                          top: (size.height + size.width) / 11,
-                          bottom: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          LogoImage(width: (size.height + size.width) / 25),
-                        ],
-                      ),
-                    )
+
+                    // logo + botão de solicitar
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        DefaultButton(
+                          text: "Solicitar",
+                          press: "/visualizarCursos",
+                          fontSize: 20,
+                        ),
+                        LogoImage(width: (size.height + size.width) / 25),
+                      ],
+                    ),
                   ],
                 ),
               ),

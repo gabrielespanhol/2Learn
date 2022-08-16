@@ -12,24 +12,27 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          login ? "Não possui uma conta ? " : "Já possui uma conta ? ",
-          style: const TextStyle(color: KPrimaryColor),
-        ),
-        GestureDetector(
-          onTap: press as void Function()?,
-          child: Text(
-            login ? "Cadastre-se" : "Entrar",
-            style: const TextStyle(
-              color: KPrimaryColor,
-              fontWeight: FontWeight.bold,
-            ),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            login ? "Não possui uma conta ? " : "Já possui uma conta ? ",
+            style: const TextStyle(color: KPrimaryColor),
           ),
-        )
-      ],
+          GestureDetector(
+            onTap: press as void Function()?,
+            child: Text(
+              login ? "Cadastre-se" : "Entrar",
+              style: const TextStyle(
+                color: KPrimaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
