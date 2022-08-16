@@ -13,27 +13,30 @@ class SocalIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => {
-        Navigator.pushNamed(
-          context,
-          press,
-        ),
-      },
-      child: Container(
-        margin: const EdgeInsets.only(left: 15),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-            color: kSecondaryLightColor,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => {
+          Navigator.pushNamed(
+            context,
+            press,
           ),
-          shape: BoxShape.circle,
-        ),
-        child: SvgPicture.asset(
-          iconSrc!,
-          height: 20,
-          width: 20,
+        },
+        child: Container(
+          margin: const EdgeInsets.only(left: 15),
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: kSecondaryLightColor,
+            ),
+            shape: BoxShape.circle,
+          ),
+          child: SvgPicture.asset(
+            iconSrc!,
+            height: 20,
+            width: 20,
+          ),
         ),
       ),
     );

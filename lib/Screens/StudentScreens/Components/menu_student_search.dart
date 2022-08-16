@@ -33,15 +33,18 @@ class MenuStudentSearch extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Column(
-              children: <Widget>[
-                PutSvgImage(
-                  image: "assets/icons/search_icon.svg",
-                  width: (size.height + size.width) / 70,
-                ),
-              ],
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Column(
+                children: <Widget>[
+                  PutSvgImage(
+                    image: "assets/icons/search_icon.svg",
+                    width: (size.height + size.width) / 70,
+                  ),
+                ],
+              ),
             ),
           ),
           Padding(
@@ -66,15 +69,18 @@ class MenuStudentSearch extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: (size.height + size.width) / 50),
-            child: Column(
-              children: <Widget>[
-                PutSvgImage(
-                  image: "assets/icons/logonImage.svg",
-                  width: (size.height + size.width) / 60,
-                )
-              ],
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Padding(
+              padding: EdgeInsets.only(left: (size.height + size.width) / 50),
+              child: Column(
+                children: <Widget>[
+                  PutSvgImage(
+                    image: "assets/icons/logonImage.svg",
+                    width: (size.height + size.width) / 60,
+                  )
+                ],
+              ),
             ),
           )
         ],
