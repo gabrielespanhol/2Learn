@@ -14,24 +14,25 @@ class WebContractedCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    Courses matematica = Courses(
-        id: 1,
-        nomeCurso: "Porcentagem Basica",
-        aulaRealizada: 2,
-        nomeTutor: "Douglas",
-        tipoCurso: "math",
-        totalAulas: 3,
-        proximoEncontro: "2° Feira");
+    // Courses matematica = Courses(
+    //     id: 1,
+    //     nomeCurso: "Porcentagem Basica",
+    //     aulaRealizada: 2,
+    //     nomeTutor: "Douglas",
+    //     tipoCurso: "math",
+    //     totalAulas: 3,
+    //     proximoEncontro: "2° Feira");
 
-    Courses machinelearning = Courses(
-        id: 1,
-        nomeCurso: "NUMPY P/MACHINE LEARNING",
-        aulaRealizada: 5,
-        nomeTutor: "Carmen",
-        tipoCurso: "machinelearning",
-        totalAulas: 6,
-        proximoEncontro: "Amanhã");
+    // Courses machinelearning = Courses(
+    //     id: 1,
+    //     nomeCurso: "NUMPY P/MACHINE LEARNING",
+    //     aulaRealizada: 5,
+    //     nomeTutor: "Carmen",
+    //     tipoCurso: "machinelearning",
+    //     totalAulas: 6,
+    //     proximoEncontro: "Amanhã");
 
+    // ignore: non_constant_identifier_names
     List<Courses> CourseCategoryList = [
       Courses(
           id: 1,
@@ -69,7 +70,7 @@ class WebContractedCourses extends StatelessWidget {
       ///
       ///
       ///
-
+      ///
       Courses(
           id: 1,
           nomeCurso: "Porcentagem Basica",
@@ -150,7 +151,7 @@ class WebContractedCourses extends StatelessWidget {
           padding: EdgeInsets.only(
             left: (size.height + size.width) / 30,
             right: (size.height + size.width) / 50,
-            top: (size.height + size.width) / 140,
+            top: (size.height + size.width) / 280,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
 
+// ignore: must_be_immutable
 class DefaultButton extends StatelessWidget {
   final String text;
   final String press;

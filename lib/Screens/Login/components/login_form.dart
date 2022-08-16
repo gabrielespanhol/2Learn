@@ -28,7 +28,7 @@ class _LoginFormState extends State<LoginForm> {
             onChanged: (value) => setState(
               () {
                 userEmail = value;
-                print(userEmail);
+                // print(userEmail);
               },
             ),
             decoration: const InputDecoration(
@@ -48,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
               onChanged: (value) => setState(
                 () {
                   userSenha = value;
-                  print(userSenha);
+                  // print(userSenha);
                 },
               ),
               decoration: const InputDecoration(
