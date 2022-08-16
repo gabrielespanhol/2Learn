@@ -27,6 +27,7 @@ class WebCoursesCategory extends StatelessWidget {
     // ignore: non_constant_identifier_names
     List<CourseCategory> CourseCategoryList = [
       CourseCategory(nomeCategoria: "tecnologia"),
+      CourseCategory(nomeCategoria: "machine learning"),
       CourseCategory(nomeCategoria: "matemática"),
       CourseCategory(nomeCategoria: "artes"),
       CourseCategory(nomeCategoria: "gastronomia"),
@@ -35,20 +36,15 @@ class WebCoursesCategory extends StatelessWidget {
       CourseCategory(nomeCategoria: "moda"),
       CourseCategory(nomeCategoria: "maquiagem"),
       CourseCategory(nomeCategoria: "idiomas"),
-      CourseCategory(nomeCategoria: "outras"),
-
-      ///
-      ///
-      CourseCategory(nomeCategoria: "tecnologia"),
-      CourseCategory(nomeCategoria: "matemática"),
-      CourseCategory(nomeCategoria: "artes"),
-      CourseCategory(nomeCategoria: "gastronomia"),
-      CourseCategory(nomeCategoria: "design"),
-      CourseCategory(nomeCategoria: "robótica"),
-      CourseCategory(nomeCategoria: "moda"),
-      CourseCategory(nomeCategoria: "maquiagem"),
-      CourseCategory(nomeCategoria: "idiomas"),
-      CourseCategory(nomeCategoria: "tecnologia"),
+      CourseCategory(nomeCategoria: "historia"),
+      CourseCategory(nomeCategoria: "química"),
+      CourseCategory(nomeCategoria: "geometria"),
+      CourseCategory(nomeCategoria: "português"),
+      CourseCategory(nomeCategoria: "redação"),
+      CourseCategory(nomeCategoria: "Filosofia"),
+      CourseCategory(nomeCategoria: "Sociologia"),
+      CourseCategory(nomeCategoria: "libras"),
+      CourseCategory(nomeCategoria: "outros"),
     ];
 
     return Column(
@@ -65,7 +61,8 @@ class WebCoursesCategory extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                   padding: const EdgeInsets.all(40),
-                  child: CourseCardcategory(course: CourseCategoryList[index]));
+                  child: CourseCardcategory(
+                      courseCategory: CourseCategoryList[index]));
             },
           ),
         ),

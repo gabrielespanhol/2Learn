@@ -4,14 +4,18 @@ import 'package:flutter_web_1/constant.dart';
 
 // ignore: must_be_immutable
 class CourseCardcategory extends StatelessWidget {
-  final CourseCategory course;
-  Color? color;
+  final CourseCategory courseCategory;
 
-  CourseCardcategory({Key? key, required this.course, this.color})
+  CourseCardcategory({Key? key, required this.courseCategory})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Color? color;
+    if (courseCategory.nomeCategoria.toString() == "outros") {
+      color = KPrimaryColor;
+    }
+
     Size size = MediaQuery.of(context).size;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -28,7 +32,7 @@ class CourseCardcategory extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 child: Text(
-                  course.nomeCategoria.toString().toUpperCase(),
+                  courseCategory.nomeCategoria.toString().toUpperCase(),
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: (size.height + size.width) / 190,
@@ -44,7 +48,7 @@ class CourseCardcategory extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/visualizarCursos",
-            arguments: course.nomeCategoria.toString().toUpperCase(),
+            arguments: courseCategory.nomeCategoria.toString().toUpperCase(),
           ),
         },
       ),
