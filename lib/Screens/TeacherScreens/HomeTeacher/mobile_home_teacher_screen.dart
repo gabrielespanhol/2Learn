@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
 
-class MobilePublishedCourseContent extends StatelessWidget {
-  const MobilePublishedCourseContent({
+class MobileHomeTeacher extends StatelessWidget {
+  const MobileHomeTeacher({
     Key? key,
   }) : super(key: key);
 

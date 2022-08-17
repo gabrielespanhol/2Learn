@@ -111,7 +111,7 @@ class WebContractedCourses extends StatelessWidget {
 
         SizedBox(
           width: (size.height + size.width) / 1.7,
-          height: (size.height + size.width) / 4,
+          height: (size.height + size.width) / 4.0,
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,

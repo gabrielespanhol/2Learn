@@ -6,7 +6,7 @@ import 'package:flutter_web_1/constant.dart';
 class CourseCardcategory extends StatelessWidget {
   final CourseCategory courseCategory;
 
-  CourseCardcategory({Key? key, required this.courseCategory})
+  const CourseCardcategory({Key? key, required this.courseCategory})
       : super(key: key);
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WebPublishedCourseContent extends StatelessWidget {
-  const WebPublishedCourseContent({
+class WebViewClasses extends StatelessWidget {
+  const WebViewClasses({
     Key? key,
   }) : super(key: key);
 
