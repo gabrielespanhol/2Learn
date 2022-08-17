@@ -7,10 +7,19 @@ import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/contracte
 import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/course_category_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/course_details_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/view_courses_screen.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/home_teacher_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -28,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/pesquisaCursosCategoria': (context) => CoursesCategory(),
         '/visualizarCursos': (context) => ViewCourses(),
         '/detalhesCursos': (context) => CourseDetails(),
+        '/homeScreenTeacher': (context) => HomeTeacher(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

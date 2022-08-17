@@ -67,14 +67,17 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {
                 // print("Email: $userEmail");
                 try {
-                  if (userEmail == "aluno") {
+                  if (userEmail == "a") {
                     Navigator.pushNamed(
                       context,
                       "/cursosContratados",
                     );
-                  } else if (userEmail == "tutor") {
-                    // manda pra tela de tutor
-                  } else if (userEmail != "tutor" && userEmail != "aluno") {
+                  } else if (userEmail == "t") {
+                    Navigator.pushNamed(
+                      context,
+                      "/homeScreenTeacher",
+                    );
+                  } else if (userEmail != "t" && userEmail != "a") {
                     throw Exception();
                   }
                 } catch (e) {

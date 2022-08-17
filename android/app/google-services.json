@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "475159751478",
+    "firebase_url": "https://learn-731c0-default-rtdb.firebaseio.com",
+    "project_id": "learn-731c0",
+    "storage_bucket": "learn-731c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475159751478:android:e6529b343e79a91a24e197",
+        "android_client_info": {
+          "package_name": "com.example.flutter_web_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475159751478-85nbm8ut4ebrafqq0vrl48g29cujotv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJIbIeZwTHu_a4yeS5-_JQJe_rscUC-YA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475159751478-85nbm8ut4ebrafqq0vrl48g29cujotv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
