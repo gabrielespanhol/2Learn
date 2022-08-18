@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/Storage.dart';
 import 'package:flutter_web_1/constant.dart';
 
+// ignore: must_be_immutable
 class MenuTeacher extends StatelessWidget {
+  Storage storage = Storage();
   String? nome, caminhofoto;
 
-  MenuTeacher({Key? key}) : super(key: key);
+  MenuTeacher({Key? key, this.nome, this.caminhofoto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(40),
+      padding: EdgeInsets.symmetric(
+        horizontal: (size.height + size.width) / 40,
+        vertical: (size.height + size.width) / 65,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             children: [
               Text(
-                'SEJA BEM-VINDO DE VOLTA, $nome!'.toUpperCase(),
+                'SEJA BEM-VINDA DE VOLTA, $nome!'.toUpperCase(),
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,
@@ -29,8 +36,32 @@ class MenuTeacher extends StatelessWidget {
           ),
           Column(
             children: <Widget>[
-              Image.network(
-                  "https://firebasestorage.googleapis.com/v0/b/learn-731c0.appspot.com/o/gabriel.png?alt=media&token=6f657bfa-c5a2-4d44-9548-e141198eb159")
+              FutureBuilder(
+                  future: storage.downloadURL("$caminhofoto"),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      return Container(
+                        width: (size.height + size.width) / 28,
+                        height: (size.height + size.width) / 28,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
+                          child: Image.network(
+                            snapshot.data!,
+                          ),
+                        ),
+                      );
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting &&
+                        !snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+                    return PutSvgImage(
+                      image: "assets/icons/logonImage.svg",
+                      width: (size.height + size.width) / 50,
+                    );
+                  })
             ],
           )
         ],
