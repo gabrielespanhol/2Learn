@@ -16,7 +16,7 @@ class WebHomeTeacher extends StatelessWidget {
       children: [
         MenuTeacher(
           caminhofoto: "Bella.png",
-          nome: "Isabella",
+          textoMenu: "SEJA BEM-VINDA DE VOLTA,  Isabella!",
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -37,7 +37,7 @@ class WebHomeTeacher extends StatelessWidget {
                 DefaultButtonTeacher(
                     text: "Informações Pessoais", press: "/homeScreenTeacher"),
                 DefaultButtonTeacher(
-                    text: "Cadastrar novas aulas", press: "/homeScreenTeacher"),
+                    text: "Cadastrar novas aulas", press: "/CadastrarCurso"),
                 DefaultButtonTeacher(
                     text: "Visualizar aulas", press: "/homeScreenTeacher"),
                 DefaultButtonTeacher(

@@ -8,6 +8,7 @@ import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/course_categ
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/course_details_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/view_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/home_teacher_screen.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/register_courses_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/visualizarCursos': (context) => ViewCourses(),
         '/detalhesCursos': (context) => CourseDetails(),
         '/homeScreenTeacher': (context) => HomeTeacher(),
+        '/CadastrarCurso': (context) => RegisterCourses(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

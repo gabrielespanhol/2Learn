@@ -6,9 +6,9 @@ import 'package:flutter_web_1/constant.dart';
 // ignore: must_be_immutable
 class MenuTeacher extends StatelessWidget {
   Storage storage = Storage();
-  String? nome, caminhofoto;
+  String? textoMenu, caminhofoto;
 
-  MenuTeacher({Key? key, this.nome, this.caminhofoto}) : super(key: key);
+  MenuTeacher({Key? key, this.textoMenu, this.caminhofoto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MenuTeacher extends StatelessWidget {
           Column(
             children: [
               Text(
-                'SEJA BEM-VINDA DE VOLTA, $nome!'.toUpperCase(),
+                '$textoMenu'.toUpperCase(),
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,
