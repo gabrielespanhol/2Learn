@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/components/menu_teacher.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 
 class WebRegisterCourses extends StatelessWidget {
   const WebRegisterCourses({
@@ -16,7 +16,7 @@ class WebRegisterCourses extends StatelessWidget {
           textoMenu: "CADASTRO DE AULA",
         ),
         Row(
-          children: <Widget>[],
+          children: const <Widget>[],
         )
       ],
     );
