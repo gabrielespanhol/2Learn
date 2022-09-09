@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/components/default_button.dart';
-import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/components/menu_teacher.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class WebHomeTeacher extends StatelessWidget {
@@ -39,9 +39,9 @@ class WebHomeTeacher extends StatelessWidget {
                 DefaultButtonTeacher(
                     text: "Cadastrar novas aulas", press: "/CadastrarCurso"),
                 DefaultButtonTeacher(
-                    text: "Visualizar aulas", press: "/homeScreenTeacher"),
+                    text: "Visualizar aulas", press: "/visualizaraulas"),
                 DefaultButtonTeacher(
-                    text: "Edição de aulas", press: "/homeScreenTeacher")
+                    text: "Edição de aulas", press: "/editarCurso")
               ],
             ),
             Column(

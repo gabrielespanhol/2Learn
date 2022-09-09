@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/background.dart';
-import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/mobile_editing_courses_screen.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/mobile_view_classes_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/web_editing_courses_screen.dart';
 import 'package:flutter_web_1/responsive.dart';
 

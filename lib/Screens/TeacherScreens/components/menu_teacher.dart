@@ -42,7 +42,7 @@ class MenuTeacher extends StatelessWidget {
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
                     if (snapshot.connectionState == ConnectionState.done &&
                         snapshot.hasData) {
-                      return Container(
+                      return SizedBox(
                         width: (size.height + size.width) / 28,
                         height: (size.height + size.width) / 28,
                         child: ClipRRect(
