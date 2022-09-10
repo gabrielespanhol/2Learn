@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/default_button.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/components/create_course_botton.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class RegisterCourseForms extends StatefulWidget {
@@ -79,296 +81,385 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
 
   @override
   Widget build(BuildContext context) {
+    final maxLines = 5;
     Size size = MediaQuery.of(context).size;
+    double textPadding1 = (size.height + size.width) / 130;
+    double textPadding2 = (size.height + size.width) / 120;
+    double textFildHeight = (size.height + size.width) / 110;
 
     return Form(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Column(
-            children: [
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: (size.height + size.width) / 7.5,
-                          child: Text(
-                            "CATEGORIA",
-                            style: TextStyle(
-                              fontSize: (size.height + size.width) / 150,
-                              color: KTextcolorLight,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: (size.height + size.width) / 7.5,
-                          child: DropdownButtonFormField(
-                            hint: const Text("Selecione a categoria da aula"),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: kFormsGray, width: 2),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: kFormsGray),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              fillColor: kFormsGray,
-                            ),
-                            value: selectedValue,
-                            onChanged: (value) => {},
-                            items: dropdownItemsCategorias,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: (size.height + size.width) / 10,
-                          child: Text(
-                            "Quantidade de Aulas".toUpperCase(),
-                            style: TextStyle(
-                              fontSize: (size.height + size.width) / 150,
-                              color: KTextcolorLight,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: (size.height + size.width) / 10,
-                          child: DropdownButtonFormField(
-                            hint: const Text("0"),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: kFormsGray, width: 2),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: kFormsGray),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              fillColor: kFormsGray,
-                            ),
-                            value: selectedValue,
-                            onChanged: (value) => {},
-                            items: dropdownItemsAulas,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: (size.height + size.width) / 10,
-                          child: Text(
-                            "Duração de Aulas".toUpperCase(),
-                            style: TextStyle(
-                              fontSize: (size.height + size.width) / 150,
-                              color: KTextcolorLight,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: (size.height + size.width) / 10,
-                          child: DropdownButtonFormField(
-                            hint: const Text("0 Minutos"),
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: kFormsGray, width: 2),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: kFormsGray),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              fillColor: kFormsGray,
-                            ),
-                            value: selectedValue,
-                            onChanged: (value) => {},
-                            items: dropdownItemsTempoAula,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              // Titulo
-
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: Text(
-                  "Titulo".toUpperCase(),
-                  style: TextStyle(
-                    fontSize: (size.height + size.width) / 150,
-                    color: KTextcolorLight,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: TextFormField(
-                  textInputAction: TextInputAction.next,
-                  cursorColor: KPrimaryColor,
-                  onChanged: (value) => setState(
-                    () {},
-                  ),
-                  decoration: InputDecoration(
-                    hintText: "Descreva aqui o título da sua aula",
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kFormsGray, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kFormsGray),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    fillColor: kFormsGray,
-                  ),
-                ),
-              ),
-
-              //decrição
-
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: Text(
-                  "Descrição".toUpperCase(),
-                  style: TextStyle(
-                    fontSize: (size.height + size.width) / 150,
-                    color: KTextcolorLight,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: TextFormField(
-                  textInputAction: TextInputAction.next,
-                  cursorColor: KPrimaryColor,
-                  onChanged: (value) => setState(
-                    () {},
-                  ),
-                  decoration: InputDecoration(
-                    hintText: "Coloque aqui a descrição da aula...",
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kFormsGray, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kFormsGray),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    fillColor: kFormsGray,
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                width: (size.height + size.width) / 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      // descrição resumida
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: (size.height + size.width) / 40,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: (size.height + size.width) / 2,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        SizedBox(
-                          width: (size.height + size.width) / 3,
-                          child: Text(
-                            "Descrição resumida".toUpperCase(),
-                            style: TextStyle(
-                              fontSize: (size.height + size.width) / 150,
-                              color: KTextcolorLight,
-                              fontWeight: FontWeight.bold,
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: (size.height + size.width) / 7.2,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: textPadding1),
+                                child: Text(
+                                  "CATEGORIA",
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: KTextcolorLight,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: (size.height + size.width) / 7.2,
+                              child: DropdownButtonFormField(
+                                hint:
+                                    const Text("Selecione a categoria da aula"),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: textFildHeight,
+                                      horizontal:
+                                          (size.height + size.width) / 150),
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: kFormsGray, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: kFormsGray),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  fillColor: kFormsGray,
+                                ),
+                                value: selectedValue,
+                                onChanged: (value) => {},
+                                items: dropdownItemsCategorias,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: (size.height + size.width) / 3,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.next,
-                            cursorColor: KPrimaryColor,
-                            onChanged: (value) => setState(
-                              () {},
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "Coloque aqui a descrição da aula...",
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: kFormsGray, width: 2),
-                                borderRadius: BorderRadius.circular(10),
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: (size.height + size.width) / 10,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: textPadding1),
+                                child: Text(
+                                  "Quantidade de Aulas".toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: KTextcolorLight,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: kFormsGray),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              fillColor: kFormsGray,
                             ),
-                          ),
+                            SizedBox(
+                              width: (size.height + size.width) / 10,
+                              child: DropdownButtonFormField(
+                                hint: const Text("0"),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: textFildHeight,
+                                      horizontal:
+                                          (size.height + size.width) / 150),
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: kFormsGray, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: kFormsGray),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  fillColor: kFormsGray,
+                                ),
+                                value: selectedValue,
+                                onChanged: (value) => {},
+                                items: dropdownItemsAulas,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: (size.height + size.width) / 10,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: textPadding1),
+                                child: Text(
+                                  "Duração de Aulas".toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: KTextcolorLight,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: (size.height + size.width) / 10,
+                              child: DropdownButtonFormField(
+                                hint: const Text("0 Minutos"),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: textFildHeight,
+                                      horizontal:
+                                          (size.height + size.width) / 150),
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: kFormsGray, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: kFormsGray),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  fillColor: kFormsGray,
+                                ),
+                                value: selectedValue,
+                                onChanged: (value) => {},
+                                items: dropdownItemsTempoAula,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    Column(
-                      // Valor Total
-                      children: <Widget>[
-                        SizedBox(
-                          width: (size.height + size.width) / 8,
-                          child: Text(
-                            "Valor Total".toUpperCase(),
-                            style: TextStyle(
-                              fontSize: (size.height + size.width) / 150,
-                              color: KTextcolorLight,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                  ),
+
+                  // Titulo
+
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: textPadding2),
+                      child: Text(
+                        "Titulo".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: (size.height + size.width) / 150,
+                          color: KTextcolorLight,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(
-                          width: (size.height + size.width) / 8,
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            cursorColor: KPrimaryColor,
-                            onChanged: (value) => setState(
-                              () {},
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "R\$00,00",
-                              border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: kFormsGray, width: 2),
-                                borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: TextFormField(
+                      textInputAction: TextInputAction.next,
+                      cursorColor: KPrimaryColor,
+                      onChanged: (value) => setState(
+                        () {},
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: textFildHeight,
+                            horizontal: (size.height + size.width) / 150),
+                        hintText: "Título da sua aula",
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: kFormsGray, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: kFormsGray),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        fillColor: kFormsGray,
+                      ),
+                    ),
+                  ),
+
+                  //decrição
+
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: textPadding2),
+                      child: Text(
+                        "Descrição".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: (size.height + size.width) / 150,
+                          color: KTextcolorLight,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: TextFormField(
+                      maxLines: maxLines,
+                      textInputAction: TextInputAction.next,
+                      cursorColor: KPrimaryColor,
+                      onChanged: (value) => setState(
+                        () {},
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: (size.height + size.width) / 160,
+                          horizontal: (size.height + size.width) / 150,
+                        ),
+                        hintText: "Coloque aqui a descrição da aula...",
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: kFormsGray, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: kFormsGray),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        fillColor: kFormsGray,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: (size.height + size.width) / 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          // descrição resumida
+                          children: <Widget>[
+                            SizedBox(
+                              width: (size.height + size.width) / 2.6,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: textPadding2),
+                                child: Text(
+                                  "Descrição resumida".toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: KTextcolorLight,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: kFormsGray),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              fillColor: kFormsGray,
                             ),
-                          ),
+                            SizedBox(
+                              width: (size.height + size.width) / 2.6,
+                              child: TextFormField(
+                                textInputAction: TextInputAction.next,
+                                cursorColor: KPrimaryColor,
+                                onChanged: (value) => setState(
+                                  () {},
+                                ),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: textFildHeight,
+                                      horizontal:
+                                          (size.height + size.width) / 150),
+                                  hintText:
+                                      "Coloque aqui uma breve descrição da aula...",
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: kFormsGray, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: kFormsGray),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  fillColor: kFormsGray,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          // Valor Total
+                          children: <Widget>[
+                            SizedBox(
+                              width: (size.height + size.width) / 14,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: textPadding2),
+                                child: Text(
+                                  "Valor Total".toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: KTextcolorLight,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: (size.height + size.width) / 14,
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                cursorColor: KPrimaryColor,
+                                onChanged: (value) => setState(
+                                  () {},
+                                ),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: textFildHeight,
+                                      horizontal:
+                                          (size.height + size.width) / 150),
+                                  hintText: "R\$10,00",
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: kFormsGray, width: 2),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: kFormsGray),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  fillColor: kFormsGray,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Column(
-            children: const <Widget>[LogoImage(width: 100)],
-          )
-        ],
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: size.height + size.width) / 120,
+                    child: SizedBox(
+                      width: (size.height + size.width) / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: const <Widget>[CreateCourseBotton()],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: (size.height + size.width) / 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  LogoImage(width: (size.height + size.width) / 28)
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
