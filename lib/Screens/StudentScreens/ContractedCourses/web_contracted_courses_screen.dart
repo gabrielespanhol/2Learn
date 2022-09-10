@@ -14,24 +14,6 @@ class WebContractedCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // Courses matematica = Courses(
-    //     id: 1,
-    //     nomeCurso: "Porcentagem Basica",
-    //     aulaRealizada: 2,
-    //     nomeTutor: "Douglas",
-    //     tipoCurso: "math",
-    //     totalAulas: 3,
-    //     proximoEncontro: "2° Feira");
-
-    // Courses machinelearning = Courses(
-    //     id: 1,
-    //     nomeCurso: "NUMPY P/MACHINE LEARNING",
-    //     aulaRealizada: 5,
-    //     nomeTutor: "Carmen",
-    //     tipoCurso: "machinelearning",
-    //     totalAulas: 6,
-    //     proximoEncontro: "Amanhã");
-
     // ignore: non_constant_identifier_names
     List<Courses> CourseCategoryList = [
       Courses(
@@ -39,6 +21,9 @@ class WebContractedCourses extends StatelessWidget {
         nomeCurso: "Porcentagem Basica",
         aulaRealizada: 2,
         nomeTutor: "Douglas",
+        nomeAluno: "Thiago",
+        sexoAluno: "M",
+        sexoTutor: "M",
         tipoCurso: "math",
         totalAulas: 3,
         proximoEncontro: "2° Feira",
@@ -47,7 +32,10 @@ class WebContractedCourses extends StatelessWidget {
         id: 1,
         nomeCurso: "NUMPY P/MACHINE LEARNING",
         aulaRealizada: 5,
-        nomeTutor: "Carmen",
+        nomeTutor: "Isabella",
+        nomeAluno: "Isadora",
+        sexoAluno: "F",
+        sexoTutor: "F",
         tipoCurso: "machinelearning",
         totalAulas: 6,
         proximoEncontro: "Amanhã",
@@ -57,6 +45,9 @@ class WebContractedCourses extends StatelessWidget {
         nomeCurso: "Python basico",
         aulaRealizada: 5,
         nomeTutor: "Leonardo",
+        nomeAluno: "Pedro",
+        sexoAluno: "M",
+        sexoTutor: "M",
         tipoCurso: "machinelearning",
         totalAulas: 6,
         proximoEncontro: "3° Feira",
@@ -66,47 +57,9 @@ class WebContractedCourses extends StatelessWidget {
         nomeCurso: "Arquitetura de dados",
         aulaRealizada: 1,
         nomeTutor: "Gabriel",
-        tipoCurso: "machinelearning",
-        totalAulas: 5,
-        proximoEncontro: "6° Feira",
-      ),
-
-      ///
-      ///
-      ///
-      ///
-      Courses(
-        id: 1,
-        nomeCurso: "Porcentagem Basica",
-        aulaRealizada: 2,
-        nomeTutor: "Douglas",
-        tipoCurso: "math",
-        totalAulas: 3,
-        proximoEncontro: "2° Feira",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "NUMPY P/MACHINE LEARNING",
-        aulaRealizada: 5,
-        nomeTutor: "Carmen",
-        tipoCurso: "machinelearning",
-        totalAulas: 6,
-        proximoEncontro: "Amanhã",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "Python basico",
-        aulaRealizada: 5,
-        nomeTutor: "Leonardo",
-        tipoCurso: "machinelearning",
-        totalAulas: 6,
-        proximoEncontro: "3° Feira",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "Arquitetura de dados",
-        aulaRealizada: 1,
-        nomeTutor: "Gabriel",
+        nomeAluno: "Felipe",
+        sexoAluno: "M",
+        sexoTutor: "M",
         tipoCurso: "machinelearning",
         totalAulas: 5,
         proximoEncontro: "6° Feira",
@@ -116,7 +69,6 @@ class WebContractedCourses extends StatelessWidget {
     return Column(
       children: [
         const MenuStudent(),
-
         SizedBox(
           width: (size.height + size.width) / 1.7,
           height: (size.height + size.width) / 4.0,
@@ -136,25 +88,6 @@ class WebContractedCourses extends StatelessWidget {
             },
           ),
         ),
-
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   children: <Widget>[
-        //     CourseCardStudent(
-        //       course: matematica,
-        //     ),
-        //     CourseCardStudent(
-        //       course: machinelearning,
-        //     ),
-        //     CourseCardStudent(
-        //       course: matematica,
-        //     ),
-        //     CourseCardStudent(
-        //       course: machinelearning,
-        //     ),
-        //   ],
-        // ),
-
         Padding(
           padding: EdgeInsets.only(
             left: (size.height + size.width) / 30,

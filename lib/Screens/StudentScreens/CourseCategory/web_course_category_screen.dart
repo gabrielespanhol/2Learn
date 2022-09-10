@@ -13,17 +13,6 @@ class WebCoursesCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // CourseCategory tecnologia = CourseCategory(nomeCategoria: "tecnologia");
-    // CourseCategory matematica = CourseCategory(nomeCategoria: "matemática");
-    // CourseCategory artes = CourseCategory(nomeCategoria: "artes");
-    // CourseCategory gastronomia = CourseCategory(nomeCategoria: "gastronomia");
-    // CourseCategory design = CourseCategory(nomeCategoria: "design");
-    // CourseCategory robotica = CourseCategory(nomeCategoria: "robótica");
-    // CourseCategory moda = CourseCategory(nomeCategoria: "moda");
-    // CourseCategory maquiagem = CourseCategory(nomeCategoria: "maquiagem");
-    // CourseCategory idiomas = CourseCategory(nomeCategoria: "idiomas");
-    // CourseCategory outros = CourseCategory(nomeCategoria: "outros");
-
     // ignore: non_constant_identifier_names
     List<CourseCategory> CourseCategoryList = [
       CourseCategory(nomeCategoria: "tecnologia"),
@@ -66,45 +55,6 @@ class WebCoursesCategory extends StatelessWidget {
             },
           ),
         ),
-
-        // Padding(
-        //   padding: EdgeInsets.only(
-        //     top: (size.height + size.width) / 30,
-        //     right: (size.height + size.width) / 60,
-        //     left: (size.height + size.width) / 60,
-        //   ),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //     children: [
-        //       CourseCardcategory(course: tecnologia),
-        //       CourseCardcategory(course: matematica),
-        //       CourseCardcategory(course: artes),
-        //       CourseCardcategory(course: gastronomia),
-        //       CourseCardcategory(course: design),
-        //     ],
-        //   ),
-        // ),
-        // Padding(
-        //   padding: EdgeInsets.only(
-        //     top: (size.height + size.width) / 35,
-        //     bottom: (size.height + size.width) / 40,
-        //     right: (size.height + size.width) / 60,
-        //     left: (size.height + size.width) / 60,
-        //   ),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //     children: [
-        //       CourseCardcategory(course: robotica),
-        //       CourseCardcategory(course: moda),
-        //       CourseCardcategory(course: maquiagem),
-        //       CourseCardcategory(course: idiomas),
-        //       CourseCardcategory(
-        //         course: outros,
-        //         color: KPrimaryColor,
-        //       ),
-        //     ],
-        //   ),
-        // ),
         Padding(
           padding: EdgeInsets.only(
             right: 70,

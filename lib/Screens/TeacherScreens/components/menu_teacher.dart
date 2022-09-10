@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
-import 'package:flutter_web_1/Controlers/Storage.dart';
+import 'package:flutter_web_1/Controlers/storage.dart';
 import 'package:flutter_web_1/constant.dart';
 
 // ignore: must_be_immutable
@@ -26,6 +26,7 @@ class MenuTeacher extends StatelessWidget {
               Text(
                 '$textoMenu'.toUpperCase(),
                 style: TextStyle(
+                  decoration: TextDecoration.none,
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,
                   fontWeight: FontWeight.bold,

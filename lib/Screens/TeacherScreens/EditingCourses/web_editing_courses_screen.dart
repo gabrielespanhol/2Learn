@@ -61,7 +61,7 @@ class WebEditingCourses extends StatelessWidget {
       children: [
         MenuTeacher(
           caminhofoto: "Bella.png",
-          textoMenu: "VISUALIZAÇÃO DE AULAS",
+          textoMenu: "EDIÇÃO DE AULA",
         ),
         SizedBox(
           width: (size.height + size.width) / 1.7,

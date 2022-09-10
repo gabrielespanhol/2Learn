@@ -17,6 +17,15 @@ class CourseCardStudent extends StatelessWidget {
     var tipoCurso = course.tipoCurso!;
     var totalAulas = course.totalAulas!;
     var proximoEncontro = course.proximoEncontro!;
+    var sexo = course.sexoTutor.toString();
+    if (sexo == "M") {
+      sexo = "Tutor: ";
+    } else if (sexo == "F") {
+      sexo = "Tutora: ";
+    } else {
+      sexo = "Tutur(a): ";
+    }
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -109,8 +118,15 @@ class CourseCardStudent extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
+                              sexo,
+                              style: TextStyle(
+                                fontSize: (size.height + size.width) / 150,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
                               course.nomeTutor.toString(),
-                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: (size.height + size.width) / 150,
                                 color: Colors.white,

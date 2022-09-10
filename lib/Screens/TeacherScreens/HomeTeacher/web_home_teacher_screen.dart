@@ -39,7 +39,7 @@ class WebHomeTeacher extends StatelessWidget {
                 DefaultButtonTeacher(
                     text: "Cadastrar novas aulas", press: "/CadastrarCurso"),
                 DefaultButtonTeacher(
-                    text: "Visualizar aulas", press: "/visualizaraulas"),
+                    text: "Aulas Contratadas", press: "/visualizaraulas"),
                 DefaultButtonTeacher(
                     text: "Edição de aulas", press: "/editarCurso")
               ],

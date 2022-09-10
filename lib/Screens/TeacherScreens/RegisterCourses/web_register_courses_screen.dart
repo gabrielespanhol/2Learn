@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/components/register_course_forms.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 
 class WebRegisterCourses extends StatelessWidget {
@@ -15,9 +16,7 @@ class WebRegisterCourses extends StatelessWidget {
           caminhofoto: "Bella.png",
           textoMenu: "CADASTRO DE AULA",
         ),
-        Row(
-          children: const <Widget>[],
-        )
+        const RegisterCourseForms(),
       ],
     );
   }

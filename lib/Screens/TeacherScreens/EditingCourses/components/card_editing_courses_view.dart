@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Models/courses.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/components/pencil.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class CardEditingCourses extends StatelessWidget {
@@ -11,12 +12,8 @@ class CardEditingCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var porcentagemCursoAndamento = course.aulaRealizada! / course.totalAulas!;
-    var porcentagemCursoAndamentoToString =
-        (porcentagemCursoAndamento * 100).round();
     var tipoCurso = course.tipoCurso!;
     var totalAulas = course.totalAulas!;
-    var proximoEncontro = course.proximoEncontro!;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -62,6 +59,7 @@ class CardEditingCourses extends StatelessWidget {
                                 course.nomeCurso.toString().toUpperCase(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  decoration: TextDecoration.none,
                                   fontSize: (size.height + size.width) / 150,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -70,55 +68,6 @@ class CardEditingCourses extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: SizedBox(
-                                  width: (size.height + size.width) / 15,
-                                  height: (size.height + size.width) / 120,
-                                  child: LinearProgressIndicator(
-                                    backgroundColor: KPrimaryColorLight,
-                                    value: porcentagemCursoAndamento,
-                                    valueColor: const AlwaysStoppedAnimation(
-                                        KPrimaryColor),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              ("$porcentagemCursoAndamentoToString%"),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: (size.height + size.width) / 150,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              course.nomeTutor.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: (size.height + size.width) / 150,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -126,11 +75,18 @@ class CardEditingCourses extends StatelessWidget {
                               "$totalAulas AULAS".toUpperCase(),
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                decoration: TextDecoration.none,
                                 fontSize: (size.height + size.width) / 150,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            PencilImage(width: (size.height + size.width) / 50)
                           ],
                         )
                       ],
@@ -138,22 +94,6 @@ class CardEditingCourses extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: (size.height + size.width) / 280),
-                    child: Text(
-                      'Próximo encontro: $proximoEncontro',
-                      style: TextStyle(
-                        fontSize: (size.height + size.width) / 160,
-                        color: KTextcolorLight,
-                        fontFamily: 'OpenSans',
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
