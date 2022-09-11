@@ -107,7 +107,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                         Column(
                           children: [
                             SizedBox(
-                              width: (size.height + size.width) / 7.2,
+                              width: (size.height + size.width) / 6.2,
                               child: Padding(
                                 padding: EdgeInsets.only(bottom: textPadding1),
                                 child: Text(
@@ -121,7 +121,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                               ),
                             ),
                             SizedBox(
-                              width: (size.height + size.width) / 7.2,
+                              width: (size.height + size.width) / 6.2,
                               child: DropdownButtonFormField(
                                 hint:
                                     const Text("Selecione a categoria da aula"),
