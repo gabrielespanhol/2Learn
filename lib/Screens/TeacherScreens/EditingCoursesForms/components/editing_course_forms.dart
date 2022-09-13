@@ -3,11 +3,11 @@ import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
-class RegisterCourseForms extends StatefulWidget {
-  const RegisterCourseForms({Key? key}) : super(key: key);
+class EditingCoursesForms extends StatefulWidget {
+  const EditingCoursesForms({Key? key}) : super(key: key);
 
   @override
-  State<RegisterCourseForms> createState() => _RegisterCourseFormsState();
+  State<EditingCoursesForms> createState() => _EditingCoursesFormsState();
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsCategorias {
@@ -75,7 +75,7 @@ List<DropdownMenuItem<String>> get dropdownItemsTempoAula {
   return menuItemsTempoAula;
 }
 
-class _RegisterCourseFormsState extends State<RegisterCourseForms> {
+class _EditingCoursesFormsState extends State<EditingCoursesForms> {
   final GlobalKey<FormState>? formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

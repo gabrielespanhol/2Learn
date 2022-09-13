@@ -17,6 +17,12 @@ class CardEditingCourses extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            "editaraulas",
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: Column(

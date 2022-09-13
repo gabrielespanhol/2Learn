@@ -8,6 +8,7 @@ import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/course_categ
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/course_details_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/view_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/web_editing_courses_screen.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/editing_courses_forms_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/home_teacher_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/register_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/view_classes_screen.dart';
@@ -41,9 +42,10 @@ class MyApp extends StatelessWidget {
         '/visualizarCursos': (context) => ViewCourses(),
         '/detalhesCursos': (context) => CourseDetails(),
         '/homeScreenTeacher': (context) => HomeTeacher(),
-        '/CadastrarCurso': (context) => RegisterCourses(),
-        '/editarCurso': (context) => WebEditingCourses(),
         '/visualizaraulas': (context) => ViewClasses(),
+        '/CadastrarCurso': (context) => RegisterCourses(),
+        '/visualizaraulasedicao': (context) => WebEditingCourses(),
+        '/editaraulas': (context) => EditingCoursesForms(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
