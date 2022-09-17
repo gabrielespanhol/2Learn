@@ -491,12 +491,38 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: size.height + size.width) / 120,
+                        EdgeInsets.only(top: size.height + size.width) / 60,
                     child: SizedBox(
                       width: (size.height + size.width) / 2,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 15),
+                                decoration: BoxDecoration(
+                                    color: KPrimaryColor,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Text(
+                                  "Voltar".toUpperCase(),
+                                  style: const TextStyle(
+                                      color: KTextcolorLight,
+                                      fontSize: 20,
+                                      fontFamily: 'OpenSans-bold',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  "/homeScreenTeacher",
+                                );
+                              },
+                            ),
+                          ),
                           //CreateCourseBotton(),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
@@ -530,7 +556,7 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                   SnackBar(
                                     duration: const Duration(seconds: 2),
                                     content: CustomSnackbar(
-                                        textoMensagem: "Aula cadastrada",
+                                        textoMensagem: "Aula salva",
                                         corPrimaria: Colors.lightGreen,
                                         corSecundaria: const Color.fromARGB(
                                             255, 112, 158, 60)),
@@ -545,7 +571,7 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

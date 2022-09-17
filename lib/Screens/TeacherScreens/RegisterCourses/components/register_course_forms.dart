@@ -491,12 +491,38 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: size.height + size.width) / 120,
+                        EdgeInsets.only(top: size.height + size.width) / 60,
                     child: SizedBox(
                       width: (size.height + size.width) / 2,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 15),
+                                decoration: BoxDecoration(
+                                    color: KPrimaryColor,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Text(
+                                  "Voltar".toUpperCase(),
+                                  style: const TextStyle(
+                                      color: KTextcolorLight,
+                                      fontSize: 20,
+                                      fontFamily: 'OpenSans-bold',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  "/homeScreenTeacher",
+                                );
+                              },
+                            ),
+                          ),
                           //CreateCourseBotton(),
                           MouseRegion(
                             cursor: SystemMouseCursors.click,
