@@ -173,6 +173,12 @@ class CourseCardTeacher extends StatelessWidget {
             ],
           ),
         ),
+        onTap: () => {
+          Navigator.pushNamed(
+            context,
+            "/aula",
+          ),
+        },
       ),
     );
   }

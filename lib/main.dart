@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Screens/ClassRoom/class_room.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/contracted_courses_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/aula',
       routes: {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/CadastrarCurso': (context) => RegisterCourses(),
         '/visualizaraulasedicao': (context) => WebEditingCourses(),
         '/editaraulas': (context) => EditingCoursesForms(),
+        '/aula': (context) => ClassRoom()
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

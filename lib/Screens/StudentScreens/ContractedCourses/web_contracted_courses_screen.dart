@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/default_button.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Models/courses.dart';
-import 'package:flutter_web_1/Screens/StudentScreens/Components/menu_student.dart';
+import 'package:flutter_web_1/Components/information_bar.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/components/course_card_studente_view.dart';
 
 class WebContractedCourses extends StatelessWidget {
@@ -68,7 +68,7 @@ class WebContractedCourses extends StatelessWidget {
 
     return Column(
       children: [
-        const MenuStudent(),
+        const informationBar(title: "Suas Aulas"),
         SizedBox(
           width: (size.height + size.width) / 1.7,
           height: (size.height + size.width) / 4.0,

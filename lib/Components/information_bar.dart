@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
-class MenuStudent extends StatelessWidget {
-  const MenuStudent({Key? key}) : super(key: key);
+class informationBar extends StatelessWidget {
+  final String title;
+  const informationBar({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class MenuStudent extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Suas aulas'.toUpperCase(),
+                title.toUpperCase(),
                 style: TextStyle(
                   fontSize: (size.height + size.width) / 60,
                   color: KPrimaryColor,
