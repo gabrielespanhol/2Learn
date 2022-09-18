@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Models/teste/user_model.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/class_room.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
@@ -14,9 +15,16 @@ import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/home_teacher_sc
 import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/register_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/view_classes_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_web_1/Screens/ClassRoom/components/chat_widget.dart';
 import 'package:flutter_web_1/constant.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+final User james = User(
+  id: 2,
+  name: 'James',
+  imageUrl: 'assets/images/james.jpg',
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/aula',
+      initialRoute: '/',
       routes: {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
@@ -47,7 +55,8 @@ class MyApp extends StatelessWidget {
         '/CadastrarCurso': (context) => RegisterCourses(),
         '/visualizaraulasedicao': (context) => WebEditingCourses(),
         '/editaraulas': (context) => EditingCoursesForms(),
-        '/aula': (context) => ClassRoom()
+        '/aula': (context) => ClassRoom(),
+        '/teste': (context) => ChatScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
