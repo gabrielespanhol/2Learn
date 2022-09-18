@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/information_bar.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/constant.dart';
+import 'package:file_picker/file_picker.dart';
 
 class WebClassRoom extends StatelessWidget {
   const WebClassRoom({
@@ -32,9 +35,10 @@ class WebClassRoom extends StatelessWidget {
                       top: (size.height + size.width) / 200,
                       bottom: (size.height + size.width) / 200,
                     ),
+                    // aula aqui
                     child: Container(
-                      width: (size.height + size.width) / 2.3,
-                      height: (size.height + size.width) / 4.2,
+                      width: (size.height + size.width) / 2.25,
+                      height: (size.height + size.width) / 4.17,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         color: const Color.fromARGB(255, 255, 255, 255),
@@ -43,8 +47,112 @@ class WebClassRoom extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
-                children: <Widget>[],
+              SizedBox(
+                width: (size.height + size.width) / 9.5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: (size.height + size.width) / 55),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            child: Column(
+                              children: [
+                                PutSvgImage(
+                                    width: (size.height + size.width) / 40,
+                                    image: "assets/icons/file.svg"),
+                                Text(
+                                  'Arquivos',
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 120,
+                                    color: KTextcolor,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'OpenSans-Regular',
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top: (size.height + size.width) / 340),
+                                    child: Container(
+                                      width: (size.height + size.width) / 30,
+                                      height: (size.height + size.width) / 110,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.white,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          '+',
+                                          style: TextStyle(
+                                            fontSize:
+                                                (size.height + size.width) /
+                                                    120,
+                                            color: KTextcolor,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'OpenSans-Regular',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () async {
+                                    final result =
+                                        await FilePicker.platform.pickFiles();
+                                  },
+                                ),
+                              ],
+                            ),
+                            onTap: () => {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: (size.height + size.width) / 16),
+                              child: PutSvgImage(
+                                  width: (size.height + size.width) / 60,
+                                  image: "assets/icons/chatIcon.svg"),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                bottom: (size.height + size.width) / 200,
+                              ),
+                              child: Container(
+                                width: (size.height + size.width) / 10.5,
+                                height: (size.height + size.width) / 70,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: (size.height + size.width) / 12,
+                                    height: (size.height + size.width) / 700,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

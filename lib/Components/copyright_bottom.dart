@@ -30,13 +30,15 @@ class CopyRightBottom extends StatelessWidget {
           children: [
             SizedBox(
               width: (size.height + size.width) / 2,
-              child: Text('SIGA-NOS\n',
-                  style: TextStyle(
-                    fontSize: (size.height + size.width) / 60,
-                    color: KPrimaryColor,
-                    fontWeight: FontWeight.bold,
-                    //fontFamily:'OpenSans',
-                  )),
+              child: Text(
+                'SIGA-NOS\n',
+                style: TextStyle(
+                  fontSize: (size.height + size.width) / 60,
+                  color: KPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                  //fontFamily:'OpenSans',
+                ),
+              ),
             ),
           ],
         ),
