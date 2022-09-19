@@ -5,15 +5,20 @@ import 'package:flutter_web_1/Screens/ClassRoom/web_class_room.dart';
 import 'package:flutter_web_1/responsive.dart';
 
 class ClassRoom extends StatelessWidget {
-  const ClassRoom({Key? key}) : super(key: key);
+  const ClassRoom({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Background(
+    var nomeAula = ModalRoute.of(context)?.settings.arguments;
+    return Background(
       child: SingleChildScrollView(
         child: Responsive(
-          mobile: MobileClassRoom(),
-          desktop: WebClassRoom(),
+          mobile: const MobileClassRoom(),
+          desktop: WebClassRoom(
+            nomeAula: nomeAula.toString(),
+          ),
         ),
       ),
     );

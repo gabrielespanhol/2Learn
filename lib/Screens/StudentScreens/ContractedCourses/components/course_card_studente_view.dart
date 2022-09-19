@@ -177,6 +177,7 @@ class CourseCardStudent extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/aula",
+            arguments: course.nomeCurso.toString(),
           ),
         },
       ),

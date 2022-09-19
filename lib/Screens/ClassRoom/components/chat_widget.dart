@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Models/teste/message_model.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -16,13 +17,14 @@ final TextEditingController controladorMensagemEnvio = TextEditingController();
 List<Message> messages = [
   Message(
     sender: james,
-    text: 'Hey, how\'s it going? What did you do today?',
+    text: 'Conseguiu fazer a atividade que te passei?',
     isLiked: true,
     unread: true,
   ),
   Message(
     sender: currentUser,
-    text: 'Just walked my doge. She was super duper cute. The best pupper!!',
+    text:
+        'Ainda falta uma parte, preciso tirar algumas duvidas na proxima aula',
     isLiked: false,
     unread: true,
   ),
@@ -69,9 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
       width: (size.height + size.width) / 12,
       decoration: BoxDecoration(
-        color: isMe
-            ? const Color.fromARGB(255, 217, 217, 217)
-            : const Color.fromARGB(255, 160, 160, 160),
+        color: isMe ? KPrimaryColor : kSecondaryColor,
         borderRadius: isMe
             ? const BorderRadius.only(
                 topLeft: Radius.circular(15.0),
@@ -88,9 +88,8 @@ class _ChatScreenState extends State<ChatScreen> {
           Text(
             message.text,
             style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w600,
+              color: KTextcolor,
+              fontSize: 15,
             ),
           ),
         ],
@@ -109,7 +108,7 @@ class _ChatScreenState extends State<ChatScreen> {
   _buildMessageComposer() {
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: kChatcolor,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25),
           bottomRight: Radius.circular(25),
@@ -121,10 +120,12 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Row(
         children: <Widget>[
           IconButton(
-            icon: const Icon(Icons.photo),
+            icon: const Icon(Icons.file_upload_outlined),
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
-            onPressed: () {},
+            onPressed: () async {
+              final result = await FilePicker.platform.pickFiles();
+            },
           ),
           Expanded(
             child: TextField(
@@ -141,7 +142,6 @@ class _ChatScreenState extends State<ChatScreen> {
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () {
-              print(controladorMensagemEnvio.text);
               if (controladorMensagemEnvio.text != "") {
                 messages.add(
                   Message(
@@ -152,9 +152,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 );
               }
-              print(messages[0].text);
-              print(messages[1].text);
-              print(messages[2].text);
               controladorMensagemEnvio.text = "";
               setState(() {});
             },
@@ -175,7 +172,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: kChatcolor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25),
@@ -187,7 +184,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     topRight: Radius.circular(25),
                   ),
                   child: ListView.builder(
-                    reverse: true,
+                    reverse: false,
                     padding: const EdgeInsets.only(top: 15.0),
                     itemCount: messages.length,
                     itemBuilder: (BuildContext context, int index) {

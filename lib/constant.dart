@@ -13,5 +13,6 @@ const KTextButtoncolor = Color.fromARGB(255, 255, 255, 255);
 const kFormsGray = Color.fromARGB(255, 217, 217, 217);
 const KDarkButton = Color(0xFF372930);
 const kaccentColor = Color(0xFFFEF9EB);
+const kChatcolor = Color.fromARGB(255, 255, 255, 255);
 
 const double defaultPadding = 16.0;

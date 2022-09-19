@@ -19,7 +19,7 @@ class WebViewCourses extends StatelessWidget {
     List<Teachers> TeachersList = [
       Teachers(
         nomeTutor: "Isabella",
-        sobrenomeTutor: "Oliveira Espanhol",
+        sobrenomeTutor: "Oliveira Queiroz Espanhol",
         profissaoTutor: "Cientista de Dados - Itaú Unibanco",
         formacaoAcademica: "Sistemas de informações - FIAP",
         caminhoFoto: "Bella",
@@ -96,7 +96,7 @@ class WebViewCourses extends StatelessWidget {
       ///
       Teachers(
         nomeTutor: "Isabella",
-        sobrenomeTutor: "Oliveira Espanhol",
+        sobrenomeTutor: "Oliveira Queiroz Espanhol",
         profissaoTutor: "Cientista de Dados - Itaú Unibanco",
         formacaoAcademica: "Sistemas de informações - FIAP",
         caminhoFoto: "Bella",

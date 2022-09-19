@@ -6,8 +6,8 @@ import 'package:flutter_web_1/responsive.dart';
 
 // ignore: must_be_immutable
 class ViewCourses extends StatefulWidget {
-  String? category;
-  ViewCourses({Key? key, this.category}) : super(key: key);
+  String? categorys;
+  ViewCourses({Key? key, this.categorys}) : super(key: key);
 
   @override
   State<ViewCourses> createState() => _ViewCoursesState();
