@@ -10,17 +10,9 @@ class PutSvgImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            SvgPicture.asset(
-              image,
-              width: width,
-            ),
-          ],
-        ),
-      ],
+    return SvgPicture.asset(
+      image,
+      width: width,
     );
   }
 }

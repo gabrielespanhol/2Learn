@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/components/chat_widget.dart';
+import 'package:flutter_web_1/constant.dart';
 
 class WebClassRoom extends StatelessWidget {
   final String nomeAula;
@@ -20,15 +22,15 @@ class WebClassRoom extends StatelessWidget {
             height: size.height - 20,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              //color: kSecondaryColor,
-              color: const Color.fromARGB(255, 217, 217, 217),
-              //color: Color.fromRGBO(97, 95, 163, 1),
+              //color: KTextcolor,
+              //color: const Color.fromARGB(255, 217, 217, 217),
+              color: const Color.fromARGB(255, 100, 100, 100),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -42,6 +44,16 @@ class WebClassRoom extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
                           color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: PutSvgImage(
+                                width: (size.height + size.width) / 8,
+                                image: "assets/icons/camera2.svg",
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

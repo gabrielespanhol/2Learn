@@ -120,6 +120,14 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Row(
         children: <Widget>[
           IconButton(
+            icon: const Icon(Icons.file_present),
+            iconSize: 25.0,
+            color: Theme.of(context).primaryColor,
+            onPressed: () async {
+              final result = await FilePicker.platform.pickFiles();
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.file_upload_outlined),
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
@@ -133,7 +141,7 @@ class _ChatScreenState extends State<ChatScreen> {
               textCapitalization: TextCapitalization.sentences,
               onChanged: (value) {},
               decoration: const InputDecoration.collapsed(
-                hintText: 'Envie uma mensagem...',
+                hintText: 'mensagem...',
               ),
             ),
           ),
