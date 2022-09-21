@@ -63,29 +63,71 @@ class _testeCameraState extends State<testeCamera> {
 // }
 
   bool mostraCamera = false;
+  bool abremicro = false;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          if (mostraCamera)
-            if (cameraController.value.isInitialized)
-              SizedBox(
-                height: 600,
-                width: 600,
-                child: CameraPreview(cameraController),
-              ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              onPressed: () {
-                mostraCamera = true;
-                setState(() {});
-              },
-              child: const Text('Launch Camera'),
-            ),
-          ),
-        ],
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Container(
+        width: size.width,
+        height: size.height,
+        child: Column(
+          children: <Widget>[
+            if (mostraCamera)
+              if (cameraController.value.isInitialized)
+                SizedBox(
+                  height: 600,
+                  width: 600,
+                  child: CameraPreview(cameraController),
+                ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                if (mostraCamera == false)
+                  IconButton(
+                    icon: const Icon(Icons.videocam),
+                    iconSize: 50,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () async {
+                      mostraCamera = true;
+                      setState(() {});
+                    },
+                  ),
+                if (mostraCamera)
+                  IconButton(
+                    icon: const Icon(Icons.videocam_off),
+                    iconSize: 50,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () async {
+                      mostraCamera = false;
+                      setState(() {});
+                    },
+                  ),
+                // teste microfone
+                if (abremicro == false)
+                  IconButton(
+                    icon: const Icon(Icons.mic),
+                    iconSize: 50,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () async {
+                      abremicro = true;
+                      setState(() {});
+                    },
+                  ),
+                if (abremicro)
+                  IconButton(
+                    icon: const Icon(Icons.mic_off),
+                    iconSize: 50,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () async {
+                      abremicro = false;
+                      setState(() {});
+                    },
+                  ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
