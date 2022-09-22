@@ -464,6 +464,11 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                 //     //print(value);
                                 //   },
                                 // ),
+                                validator: (val) {
+                                  return RegExp(r"^[0-9]").hasMatch(val!)
+                                      ? null
+                                      : "";
+                                },
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: textFildHeight,

@@ -16,12 +16,16 @@ class _LoginFormState extends State<LoginForm> {
   late String userEmail;
   late String userSenha;
 
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
           TextFormField(
+            controller: email,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: KPrimaryColor,
@@ -42,6 +46,7 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              controller: password,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: KPrimaryColor,
