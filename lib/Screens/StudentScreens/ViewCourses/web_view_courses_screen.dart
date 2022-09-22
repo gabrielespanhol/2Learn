@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Models/teachers.dart';
-import 'package:flutter_web_1/Screens/StudentScreens/Components/menu_student_search.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/components/course_card_view.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -106,6 +104,7 @@ class _WebViewCoursesState extends State<WebViewCourses> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   List<Teachers> TeachersList = [
     Teachers(
       nomeTutor: "Isabella",

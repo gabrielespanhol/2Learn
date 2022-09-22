@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';

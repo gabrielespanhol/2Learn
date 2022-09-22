@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/constant.dart';
 
-class informationBar extends StatelessWidget {
+class InformationBar extends StatelessWidget {
   final String title;
-  const informationBar({
+  const InformationBar({
     Key? key,
     required this.title,
   }) : super(key: key);

@@ -4,11 +4,12 @@ import 'package:flutter_web_1/Models/teste/message_model.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({
+  const ChatScreen({
     Key? key,
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatScreenState createState() => _ChatScreenState();
 }
 
@@ -124,6 +125,7 @@ class _ChatScreenState extends State<ChatScreen> {
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () async {
+              // ignore: unused_local_variable
               final result = await FilePicker.platform.pickFiles();
             },
           ),
@@ -132,6 +134,7 @@ class _ChatScreenState extends State<ChatScreen> {
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () async {
+              // ignore: unused_local_variable
               final result = await FilePicker.platform.pickFiles();
             },
           ),
@@ -171,6 +174,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),

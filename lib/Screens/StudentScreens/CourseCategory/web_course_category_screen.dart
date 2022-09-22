@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Models/course_category.dart';
-import 'package:flutter_web_1/Screens/StudentScreens/Components/menu_student_search.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseCategory/components/course_card_category.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -16,7 +15,7 @@ class WebCoursesCategory extends StatefulWidget {
 }
 
 class _WebCoursesCategoryState extends State<WebCoursesCategory> {
-  var searchview = new TextEditingController();
+  var searchview = TextEditingController();
 
   bool firstSearch = true;
   late String query = "";

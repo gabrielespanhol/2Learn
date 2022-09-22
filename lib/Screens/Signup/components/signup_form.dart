@@ -1,8 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/already_have_an_account_acheck.dart';
 import 'package:flutter_web_1/Components/custom_snackbar.dart';
+import 'package:flutter_web_1/Controlers/auth_service.dart';
+import 'package:flutter_web_1/Controlers/helper_function.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -14,23 +14,24 @@ class SignUpForm extends StatefulWidget {
   State<SignUpForm> createState() => _SignUpFormState();
 }
 
-enum SingingCharacter { aluno, tutor }
+// ignore: constant_identifier_names
+enum UserType { Aluno, Tutor }
 
-enum SingingSex { M, F, O }
+enum UserSex { M, F, O }
 
 class _SignUpFormState extends State<SignUpForm> {
-  SingingCharacter? userType = SingingCharacter.aluno;
-  SingingSex? sex = SingingSex.O;
-  late String userEmail;
-  late String userSenha;
-
   final formKey = GlobalKey<FormState>();
-  bool isloading = false;
 
   String email = "";
   String password = "";
   String name = "";
   String cpf = "";
+  UserType? userType = UserType.Aluno;
+  UserSex? userSex = UserSex.O;
+
+  bool isloading = false;
+
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +71,10 @@ class _SignUpFormState extends State<SignUpForm> {
                         width: 70,
                         child: Column(
                           children: [
-                            RadioListTile<SingingCharacter>(
-                              value: SingingCharacter.aluno,
+                            RadioListTile<UserType>(
+                              value: UserType.Aluno,
                               groupValue: userType,
-                              onChanged: (SingingCharacter? value) {
+                              onChanged: (UserType? value) {
                                 setState(
                                   () {
                                     userType = value;
@@ -100,10 +101,10 @@ class _SignUpFormState extends State<SignUpForm> {
                         width: 72,
                         child: Column(
                           children: [
-                            RadioListTile<SingingCharacter>(
-                              value: SingingCharacter.tutor,
+                            RadioListTile<UserType>(
+                              value: UserType.Tutor,
                               groupValue: userType,
-                              onChanged: (SingingCharacter? value) {
+                              onChanged: (UserType? value) {
                                 setState(() {
                                   userType = value;
                                 });
@@ -137,7 +138,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     if (val!.isNotEmpty) {
                       return null;
                     } else {
-                      return "Name cannot be empty";
+                      return "Campo precisa ser preenchido";
                     }
                   },
                   decoration: const InputDecoration(
@@ -167,7 +168,9 @@ class _SignUpFormState extends State<SignUpForm> {
                       });
                     },
                     validator: (val) {
-                      return RegExp(r"^[0-9]").hasMatch(val!) ? null : "";
+                      return RegExp(r"^[0-9]").hasMatch(val!)
+                          ? null
+                          : "Apenas numeros do CPF";
                     },
                   ),
                 ),
@@ -184,7 +187,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                 r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(val!)
                         ? null
-                        : "Please enter a valid email";
+                        : "Por favor digite um email válido";
                   },
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
@@ -212,7 +215,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                     validator: (val) {
                       if (val!.length < 6) {
-                        return "Password must be at least 6 characters";
+                        return "A senha deve ter pelo menos 6 caracteres";
                       } else {
                         return null;
                       }
@@ -249,13 +252,13 @@ class _SignUpFormState extends State<SignUpForm> {
                         width: 70,
                         child: Column(
                           children: [
-                            RadioListTile<SingingSex>(
-                              value: SingingSex.M,
-                              groupValue: sex,
-                              onChanged: (SingingSex? value) {
+                            RadioListTile<UserSex>(
+                              value: UserSex.M,
+                              groupValue: userSex,
+                              onChanged: (UserSex? value) {
                                 setState(
                                   () {
-                                    sex = value;
+                                    userSex = value;
                                   },
                                 );
                               },
@@ -279,12 +282,12 @@ class _SignUpFormState extends State<SignUpForm> {
                         width: 72,
                         child: Column(
                           children: [
-                            RadioListTile<SingingSex>(
-                              value: SingingSex.F,
-                              groupValue: sex,
-                              onChanged: (SingingSex? value) {
+                            RadioListTile<UserSex>(
+                              value: UserSex.F,
+                              groupValue: userSex,
+                              onChanged: (UserSex? value) {
                                 setState(() {
-                                  sex = value;
+                                  userSex = value;
                                 });
                               },
                             ),
@@ -307,12 +310,12 @@ class _SignUpFormState extends State<SignUpForm> {
                         width: 100,
                         child: Column(
                           children: [
-                            RadioListTile<SingingSex>(
-                              value: SingingSex.O,
-                              groupValue: sex,
-                              onChanged: (SingingSex? value) {
+                            RadioListTile<UserSex>(
+                              value: UserSex.O,
+                              groupValue: userSex,
+                              onChanged: (UserSex? value) {
                                 setState(() {
-                                  sex = value;
+                                  userSex = value;
                                 });
                               },
                             ),
@@ -334,26 +337,14 @@ class _SignUpFormState extends State<SignUpForm> {
                 const SizedBox(height: defaultPadding / 2),
                 ElevatedButton(
                   onPressed: () {
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(
-                    //     duration: const Duration(seconds: 2),
-                    //     content: CustomSnackbar(
-                    //       textoMensagem:
-                    //           "Não foi possivel se cadastrar. Tente Novamente",
-                    //     ),
-                    //     behavior: SnackBarBehavior.floating,
-                    //     backgroundColor: Colors.transparent,
-                    //     elevation: 0,
-                    //   ),
-                    // );
-                    print(name);
-                    print(cpf);
-                    print(email);
-                    print(password);
-                    print(userType);
-                    print(sex);
+                    // print(name);
+                    // print(cpf);
+                    // print(email);
+                    // print(password);
+                    //print(userType.toString());
+                    //print(userSex.toString());
 
-                    // register();
+                    register();
                   },
                   child: Text(
                     "Cadastre-se".toUpperCase(),
@@ -376,6 +367,63 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   register() async {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      setState(() {
+        isloading = true;
+      });
+      await authService
+          .registerUserWithEmailandPassword(
+              name, email, password, userType.toString(), userSex.toString())
+          .then((value) async {
+        if (value == true) {
+          // saving the preference state
+
+          await HelperFunctions.saveUserLoggedInStatus(true);
+          await HelperFunctions.saveUserEmailSF(email);
+          await HelperFunctions.saveUserNameSF(name);
+          await HelperFunctions.saveuserTypeKey(userType.toString());
+          await HelperFunctions.saveSexlKey(userSex.toString());
+          setState(() {
+            isloading = false;
+          });
+          snackBarSuccess();
+        } else {
+          snackBarError();
+          setState(() {
+            isloading = false;
+          });
+        }
+      });
+    }
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackBarError() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: CustomSnackbar(
+          textoMensagem: "Não foi possivel se cadastrar. Tente Novamente",
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackBarSuccess() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: CustomSnackbar(
+          textoMensagem: "Cadastro realizado",
+          corPrimaria: Colors.green,
+          corSecundaria: const Color.fromARGB(255, 64, 148, 67),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
   }
 }

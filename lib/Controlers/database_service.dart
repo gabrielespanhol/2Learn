@@ -12,13 +12,24 @@ class DatabaseServices {
       FirebaseFirestore.instance.collection("groups");
 
   // updating the userdate
-  Future updateUserData(String fullname, String email) async {
+  Future savingUserData(
+      String fullname, String email, String userType, String userSex) async {
     return await userCollection.doc(uid).set({
-      "fullname": fullname,
+      "fullName": fullname,
       "email": email,
+      "userType": userType,
+      "userSex": userSex,
       "groups": [],
       "profilePic": "",
       "uid": uid
     });
+  }
+
+  // getting user data
+
+  Future gettingUserData(String email) async {
+    QuerySnapshot snapshot =
+        await userCollection.where("email", isEqualTo: email).get();
+    return snapshot;
   }
 }

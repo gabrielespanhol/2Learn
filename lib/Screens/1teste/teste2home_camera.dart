@@ -1,13 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class testeCamera extends StatefulWidget {
-  testeCamera({Key? key}) : super(key: key);
+  const testeCamera({Key? key}) : super(key: key);
 
   @override
   State<testeCamera> createState() => _testeCameraState();
 }
 
+// ignore: camel_case_types
 class _testeCameraState extends State<testeCamera> {
   late List<CameraDescription> cameras;
   late CameraController cameraController;
@@ -68,7 +72,7 @@ class _testeCameraState extends State<testeCamera> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: size.width,
         height: size.height,
         child: Column(

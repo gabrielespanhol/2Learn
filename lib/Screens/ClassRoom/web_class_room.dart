@@ -1,4 +1,4 @@
-import 'dart:async';
+// ignore_for_file: avoid_print
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -251,7 +251,7 @@ class _WebClassRoomState extends State<WebClassRoom> {
                                 height: size.height -
                                     50 -
                                     (size.height + size.width) / 45,
-                                child: ChatScreen(),
+                                child: const ChatScreen(),
                               )
                             ],
                           ),

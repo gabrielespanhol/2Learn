@@ -68,7 +68,7 @@ class WebContractedCourses extends StatelessWidget {
 
     return Column(
       children: [
-        const informationBar(title: "Suas Aulas"),
+        const InformationBar(title: "Suas Aulas"),
         SizedBox(
           width: (size.height + size.width) / 1.7,
           height: (size.height + size.width) / 4.0,

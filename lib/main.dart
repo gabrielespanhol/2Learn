@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Models/teste/user_model.dart';
-import 'package:flutter_web_1/Screens/1teste/teste2homeCamera.dart';
-import 'package:flutter_web_1/Screens/1teste/testehomecopy.dart';
-import 'package:flutter_web_1/Screens/1teste/testehome.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/class_room.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
@@ -58,8 +55,6 @@ class MyApp extends StatelessWidget {
         '/visualizaraulasedicao': (context) => WebEditingCourses(),
         '/editaraulas': (context) => EditingCoursesForms(),
         '/aula': (context) => ClassRoom(),
-        '/teste1': (context) => testeCamera(),
-        '/teste': (context) => HomeTesteLista3()
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
