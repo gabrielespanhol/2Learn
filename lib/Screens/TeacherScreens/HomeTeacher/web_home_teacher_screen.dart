@@ -28,19 +28,20 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
   }
 
   gettingUserData() async {
-    await HelperFunctions.getUserEmailFromSF().then((value) {
+    await HelperFunctions.getUserEmailFromSF().then((valueEmail) {
       setState(() {
-        email = value!;
+        email = valueEmail!;
       });
     });
-    await HelperFunctions.getUserNameFromSF().then((val) {
+    await HelperFunctions.getUserNameFromSF().then((valueName) {
       setState(() {
-        userName = val!;
+        userName = valueName!;
       });
     });
-    // await HelperFunctions.getUserSexFromSF().then((vall) {
+    // await HelperFunctions.getUserSexFromSF().then((valueSex) {
     //   setState(() {
-    //     userSex = vall!;
+    //     //userSex = valueSex!;
+    //     print(valueSex);
     //   });
     // });
   }

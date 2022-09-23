@@ -19,12 +19,6 @@ import 'package:flutter_web_1/constant.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-final User james = User(
-  id: 2,
-  name: 'James',
-  imageUrl: 'assets/images/james.jpg',
-);
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
