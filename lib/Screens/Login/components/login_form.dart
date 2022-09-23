@@ -26,6 +26,8 @@ class _LoginFormState extends State<LoginForm> {
   bool isloading = false;
   AuthService authService = AuthService();
 
+  late QueryDocumentSnapshot<Object?> userteste;
+
   @override
   Widget build(BuildContext context) {
     return isloading

@@ -87,14 +87,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
     double textPadding2 = (size.height + size.width) / 120;
     double textFildHeight = (size.height + size.width) / 110;
 
-    String? categoria;
-    String? quantidadeAulas, duracaoAulas;
-
-    final TextEditingController controladorIitulo = TextEditingController();
-    final TextEditingController controladorDescricao = TextEditingController();
-    final TextEditingController controladorDescricaoResumida =
-        TextEditingController();
-    final TextEditingController controladorValorTotal = TextEditingController();
+    String? categoria,
+        quantidadeAulas,
+        duracaoAulas,
+        titulo,
+        descricao,
+        descricaoResumida,
+        valorTotal;
 
     return Form(
       key: formKey,
@@ -161,6 +160,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                     categoria = value;
                                   })
                                 },
+                                validator: (value) {
+                                  if (value == null) {
+                                    return "Selecione a categoria";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 items: dropdownItemsCategorias,
                               ),
                             ),
@@ -218,6 +224,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                       quantidadeAulas = value;
                                     })
                                   },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Selecione o numero de aulas";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                   items: dropdownItemsAulas,
                                 ),
                               ),
@@ -270,6 +283,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                     duracaoAulas = value;
                                   })
                                 },
+                                validator: (value) {
+                                  if (value == null) {
+                                    return "Selecione a duração da aula";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 items: dropdownItemsTempoAula,
                               ),
                             ),
@@ -298,16 +318,22 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                   SizedBox(
                     width: (size.height + size.width) / 2,
                     child: TextFormField(
-                      controller: controladorIitulo,
+                      // controller: controladorIitulo,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       cursorColor: KPrimaryColor,
-                      // onChanged: (titulo) => setState(
-                      //   () {
-                      //     titulo = titulo.toString();
-                      //     //print(value);
-                      //   },
-                      // ),
+                      onChanged: (val) {
+                        setState(() {
+                          titulo = val;
+                        });
+                      },
+                      validator: (val) {
+                        if (val!.length < 6) {
+                          return "O Titulo deve ser preenchido";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             vertical: textFildHeight,
@@ -346,16 +372,22 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                   SizedBox(
                     width: (size.height + size.width) / 2,
                     child: TextFormField(
-                      controller: controladorDescricao,
+                      // controller: controladorDescricao,
                       maxLines: maxLines,
                       textInputAction: TextInputAction.next,
                       cursorColor: KPrimaryColor,
-                      // onChanged: (descricao) => setState(
-                      //   () {
-                      //     descricao = descricao.toString();
-                      //     //print(value);
-                      //   },
-                      // ),
+                      onChanged: (val) {
+                        setState(() {
+                          descricao = val;
+                        });
+                      },
+                      validator: (val) {
+                        if (val!.length < 10) {
+                          return "Descrição muito pequena";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                           vertical: (size.height + size.width) / 160,
@@ -402,16 +434,20 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                             SizedBox(
                               width: (size.height + size.width) / 2.6,
                               child: TextFormField(
-                                controller: controladorDescricaoResumida,
                                 textInputAction: TextInputAction.next,
                                 cursorColor: KPrimaryColor,
-                                // onChanged: (descricaoResumida) => setState(
-                                //   () {
-                                //     descricaoResumida =
-                                //         descricaoResumida.toString();
-                                //     //print(value);
-                                //   },
-                                // ),
+                                onChanged: (val) {
+                                  setState(() {
+                                    descricaoResumida = val;
+                                  });
+                                },
+                                validator: (val) {
+                                  if (val!.length < 10) {
+                                    return "Descrição resumida muito pequena";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: textFildHeight,
@@ -456,16 +492,19 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                             SizedBox(
                               width: (size.height + size.width) / 14,
                               child: TextFormField(
-                                controller: controladorValorTotal,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 cursorColor: KPrimaryColor,
-                                // onChanged: (valortotal) => setState(
-                                //   () {
-                                //     valortotal = valortotal.toString();
-                                //     //print(value);
-                                //   },
-                                // ),
+                                onChanged: (val) {
+                                  setState(() {
+                                    valorTotal = val;
+                                  });
+                                },
+                                validator: (val) {
+                                  return RegExp(r"^[0-9]").hasMatch(val!)
+                                      ? null
+                                      : "Valor deve ser numerico";
+                                },
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: textFildHeight,
@@ -546,34 +585,31 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                               ),
                               onTap: () {
                                 formKey?.currentState!.save();
+                                formKey?.currentState!.validate();
                                 print(categoria);
                                 print(quantidadeAulas);
                                 print(duracaoAulas);
-                                print(controladorIitulo.text);
-                                print(controladorDescricao.text);
-                                print(controladorDescricaoResumida.text);
-                                print(controladorValorTotal.text);
 
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    duration: const Duration(seconds: 2),
-                                    content: CustomSnackbar(
-                                        textoMensagem: "Aula salva",
-                                        corPrimaria: Colors.lightGreen,
-                                        corSecundaria: const Color.fromARGB(
-                                            255, 112, 158, 60)),
-                                    behavior: SnackBarBehavior.floating,
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 0,
-                                  ),
-                                );
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //   SnackBar(
+                                //     duration: const Duration(seconds: 2),
+                                //     content: CustomSnackbar(
+                                //         textoMensagem: "Aula cadastrada",
+                                //         corPrimaria: Colors.lightGreen,
+                                //         corSecundaria: const Color.fromARGB(
+                                //             255, 112, 158, 60)),
+                                //     behavior: SnackBarBehavior.floating,
+                                //     backgroundColor: Colors.transparent,
+                                //     elevation: 0,
+                                //   ),
+                                // );
                               },
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
