@@ -1,13 +1,51 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Controlers/auth_service.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Controlers/helper_function.dart';
 import 'package:flutter_web_1/Models/courses.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/components/course_card_teacher_view.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 
-class WebViewClasses extends StatelessWidget {
+class WebViewClasses extends StatefulWidget {
   const WebViewClasses({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<WebViewClasses> createState() => _WebViewClassesState();
+}
+
+class _WebViewClassesState extends State<WebViewClasses> {
+  String userName = "";
+  Stream? classes;
+  AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    gettingUserData();
+  }
+
+  gettingUserData() async {
+    await HelperFunctions.getUserNameFromSF().then((valueName) {
+      setState(() {
+        userName = valueName!;
+      });
+    });
+    // pegar as aulas do tutor aqui
+
+    await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+        .getUserClass()
+        .then((snapshot) {
+      setState(() {
+        classes = snapshot;
+      });
+    });
+  }
+
+  groupList() {}
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +107,7 @@ class WebViewClasses extends StatelessWidget {
       children: [
         MenuTeacher(
           caminhofoto: "Bella.png",
-          textoMenu: "VISUALIZAÇÃO DE AULAS",
+          textoMenu: "VISUALIZAÇÃO DE AULAS, $userName",
         ),
         SizedBox(
           width: (size.height + size.width) / 1.7,
