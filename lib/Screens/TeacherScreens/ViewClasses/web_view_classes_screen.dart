@@ -45,7 +45,35 @@ class _WebViewClassesState extends State<WebViewClasses> {
     });
   }
 
-  groupList() {}
+  groupList() {
+    return StreamBuilder(
+      stream: classes,
+      builder: (context, AsyncSnapshot snapshot) {
+        // make some checks
+        if (snapshot.hasData) {
+          if (snapshot.data['classes'] != null) {
+            if (snapshot.data['classes'].length != 0) {
+              return ListView.builder(
+                itemCount: snapshot.data['classes'].length,
+                itemBuilder: (context, index) {
+                  return Text("heloo");
+                },
+              );
+            } else {
+              return noGroupWidget();
+            }
+          } else {
+            return noGroupWidget();
+          }
+        } else {
+          return Center(
+            child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor),
+          );
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,43 +133,71 @@ class _WebViewClassesState extends State<WebViewClasses> {
 
     return Column(
       children: [
-        MenuTeacher(
-          caminhofoto: "Bella.png",
-          textoMenu: "VISUALIZAÇÃO DE AULAS, $userName",
-        ),
-        SizedBox(
-          width: (size.height + size.width) / 1.7,
-          height: (size.height + size.width) / 4.3,
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisExtent: (size.height + size.width) / 5,
-            ),
-            itemCount: CourseCategoryList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: (size.height + size.width) / 60,
-                ),
-                child: CourseCardTeacher(course: CourseCategoryList[index]),
-              );
-            },
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: (size.height + size.width) / 30,
-            right: (size.height + size.width) / 50,
-            top: (size.height + size.width) / 280,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const <Widget>[
-              LogoImage(width: 90),
-            ],
-          ),
-        ),
+        // MenuTeacher(
+        //   caminhofoto: "Bella.png",
+        //   textoMenu: "VISUALIZAÇÃO DE AULAS, $userName",
+        // ),
+        // SizedBox(
+        //   width: (size.height + size.width) / 1.7,
+        //   height: (size.height + size.width) / 4.3,
+        //   child: GridView.builder(
+        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //       crossAxisCount: 4,
+        //       mainAxisExtent: (size.height + size.width) / 5,
+        //     ),
+        //     itemCount: CourseCategoryList.length,
+        //     itemBuilder: (BuildContext context, int index) {
+        //       return Padding(
+        //         padding: EdgeInsets.symmetric(
+        //           horizontal: (size.height + size.width) / 60,
+        //         ),
+        //         child: CourseCardTeacher(course: CourseCategoryList[index]),
+        //       );
+        //     },
+        //   ),
+        // ),
+        // Padding(
+        //   padding: EdgeInsets.only(
+        //     left: (size.height + size.width) / 30,
+        //     right: (size.height + size.width) / 50,
+        //     top: (size.height + size.width) / 280,
+        //   ),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     children: const <Widget>[
+        //       LogoImage(width: 90),
+        //     ],
+        //   ),
+        // ),
+        groupList()
       ],
+    );
+  }
+
+  noGroupWidget() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(
+            onTap: () {},
+            child: Icon(
+              Icons.add_circle,
+              color: Colors.grey[700],
+              size: 75,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            "You've not joined any groups, tap on the add icon to create a group or also search from top search button.",
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }
