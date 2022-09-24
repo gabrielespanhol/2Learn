@@ -1,16 +1,34 @@
 // ignore_for_file: avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class EditingCoursesForms extends StatefulWidget {
-  const EditingCoursesForms({Key? key}) : super(key: key);
+  final Classes classes;
+  const EditingCoursesForms({Key? key, required this.classes})
+      : super(key: key);
 
   @override
   State<EditingCoursesForms> createState() => _EditingCoursesFormsState();
 }
+
+@override
+void initState() {
+  initState();
+}
+
+String? categoria,
+    quantidadeAulas,
+    duracaoAulas,
+    titulo,
+    descricao,
+    descricaoResumida,
+    valorTotal;
 
 List<DropdownMenuItem<String>> get dropdownItemsCategorias {
   List<DropdownMenuItem<String>> menuItemsCategorias = [
@@ -77,553 +95,638 @@ List<DropdownMenuItem<String>> get dropdownItemsTempoAula {
   return menuItemsTempoAula;
 }
 
+bool isloading = false;
+
 class _EditingCoursesFormsState extends State<EditingCoursesForms> {
   final GlobalKey<FormState>? formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    categoria = widget.classes.category;
+    quantidadeAulas = widget.classes.numberClasses;
+    duracaoAulas = widget.classes.durationClasses;
+
+    TextEditingController controllerTitulo =
+        TextEditingController(text: '${widget.classes.className}');
+    TextEditingController controllerDescricao =
+        TextEditingController(text: '${widget.classes.description}');
+    TextEditingController controllerResumida =
+        TextEditingController(text: '${widget.classes.shortDescription}');
+    TextEditingController controllerValorTotal =
+        TextEditingController(text: '${widget.classes.valueClasses}');
+
     const maxLines = 5;
     Size size = MediaQuery.of(context).size;
     double textPadding1 = (size.height + size.width) / 130;
     double textPadding2 = (size.height + size.width) / 120;
     double textFildHeight = (size.height + size.width) / 110;
 
-    String? categoria,
-        quantidadeAulas,
-        duracaoAulas,
-        titulo,
-        descricao,
-        descricaoResumida,
-        valorTotal;
-
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: (size.height + size.width) / 40,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: (size.height + size.width) / 2,
-              child: Column(
+    return isloading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: KPrimaryColor,
+            ),
+          )
+        : Form(
+            key: formKey,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: (size.height + size.width) / 40,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     width: (size.height + size.width) / 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Column(
-                          children: [
-                            SizedBox(
-                              width: (size.height + size.width) / 6.2,
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: textPadding1),
-                                child: Text(
-                                  "CATEGORIA",
-                                  style: TextStyle(
-                                    fontSize: (size.height + size.width) / 150,
-                                    color: KTextcolorLight,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: (size.height + size.width) / 6.2,
-                              child: DropdownButtonFormField<String>(
-                                hint:
-                                    const Text("Selecione a categoria da aula"),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: textFildHeight,
-                                      horizontal:
-                                          (size.height + size.width) / 150),
-                                  border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: kFormsGray, width: 2),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: kFormsGray),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  fillColor: kFormsGray,
-                                ),
-                                value: categoria,
-                                onSaved: (value) {
-                                  categoria = value;
-                                },
-                                onChanged: (String? value) => {
-                                  setState(() {
-                                    categoria = value;
-                                  })
-                                },
-                                validator: (value) {
-                                  if (value == null) {
-                                    return "Selecione a categoria";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                items: dropdownItemsCategorias,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: (size.height + size.width) / 17,
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: (size.height + size.width) / 10,
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.only(bottom: textPadding1),
-                                  child: Text(
-                                    "Quantidade de Aulas".toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize:
-                                          (size.height + size.width) / 150,
-                                      color: KTextcolorLight,
-                                      fontWeight: FontWeight.bold,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: (size.height + size.width) / 6.2,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(bottom: textPadding1),
+                                      child: Text(
+                                        "CATEGORIA",
+                                        style: TextStyle(
+                                          fontSize:
+                                              (size.height + size.width) / 150,
+                                          color: KTextcolorLight,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    width: (size.height + size.width) / 6.2,
+                                    child: DropdownButtonFormField<String>(
+                                      hint: const Text(
+                                          "Selecione a categoria da aula"),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: textFildHeight,
+                                            horizontal:
+                                                (size.height + size.width) /
+                                                    150),
+                                        border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        fillColor: kFormsGray,
+                                      ),
+                                      value: categoria,
+                                      onSaved: (value) {
+                                        categoria = value;
+                                      },
+                                      onChanged: (String? value) => {
+                                        setState(() {
+                                          categoria = value;
+                                        })
+                                      },
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Selecione a categoria";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      items: dropdownItemsCategorias,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: (size.height + size.width) / 17,
+                                ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      width: (size.height + size.width) / 10,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: textPadding1),
+                                        child: Text(
+                                          "Quantidade de Aulas".toUpperCase(),
+                                          style: TextStyle(
+                                            fontSize:
+                                                (size.height + size.width) /
+                                                    150,
+                                            color: KTextcolorLight,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: (size.height + size.width) / 10,
+                                      child: DropdownButtonFormField<String>(
+                                        hint: const Text("0"),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: textFildHeight,
+                                              horizontal:
+                                                  (size.height + size.width) /
+                                                      150),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: kFormsGray, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: kFormsGray),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          fillColor: kFormsGray,
+                                        ),
+                                        value: quantidadeAulas,
+                                        onSaved: (value) {
+                                          quantidadeAulas = value;
+                                        },
+                                        onChanged: (String? value) => {
+                                          setState(() {
+                                            quantidadeAulas = value;
+                                          })
+                                        },
+                                        validator: (value) {
+                                          if (value == null) {
+                                            return "Selecione o numero de aulas";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        items: dropdownItemsAulas,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                width: (size.height + size.width) / 10,
-                                child: DropdownButtonFormField<String>(
-                                  hint: const Text("0"),
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: textFildHeight,
-                                        horizontal:
-                                            (size.height + size.width) / 150),
-                                    border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: kFormsGray, width: 2),
-                                      borderRadius: BorderRadius.circular(10),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: (size.height + size.width) / 10,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(bottom: textPadding1),
+                                      child: Text(
+                                        "Duração da Aula".toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize:
+                                              (size.height + size.width) / 150,
+                                          color: KTextcolorLight,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                          const BorderSide(color: kFormsGray),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    fillColor: kFormsGray,
                                   ),
-                                  value: quantidadeAulas,
-                                  onSaved: (value) {
-                                    quantidadeAulas = value;
-                                  },
-                                  onChanged: (String? value) => {
-                                    setState(() {
-                                      quantidadeAulas = value;
-                                    })
-                                  },
-                                  validator: (value) {
-                                    if (value == null) {
-                                      return "Selecione o numero de aulas";
-                                    } else {
-                                      return null;
-                                    }
-                                  },
-                                  items: dropdownItemsAulas,
-                                ),
+                                  SizedBox(
+                                    width: (size.height + size.width) / 10,
+                                    child: DropdownButtonFormField<String>(
+                                      hint: const Text("0 Minutos"),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: textFildHeight,
+                                            horizontal:
+                                                (size.height + size.width) /
+                                                    150),
+                                        border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        fillColor: kFormsGray,
+                                      ),
+                                      value: duracaoAulas,
+                                      onSaved: (value) {
+                                        duracaoAulas = value;
+                                      },
+                                      onChanged: (String? value) => {
+                                        setState(() {
+                                          duracaoAulas = value;
+                                        })
+                                      },
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Selecione a duração da aula";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      items: dropdownItemsTempoAula,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              width: (size.height + size.width) / 10,
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: textPadding1),
-                                child: Text(
-                                  "Duração da Aula".toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: (size.height + size.width) / 150,
-                                    color: KTextcolorLight,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+
+                        // Titulo
+
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(vertical: textPadding2),
+                            child: Text(
+                              "Título".toUpperCase(),
+                              style: TextStyle(
+                                fontSize: (size.height + size.width) / 150,
+                                color: KTextcolorLight,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
-                              width: (size.height + size.width) / 10,
-                              child: DropdownButtonFormField<String>(
-                                hint: const Text("0 Minutos"),
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: textFildHeight,
-                                      horizontal:
-                                          (size.height + size.width) / 150),
-                                  border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: kFormsGray, width: 2),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: kFormsGray),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  fillColor: kFormsGray,
-                                ),
-                                value: duracaoAulas,
-                                onSaved: (value) {
-                                  duracaoAulas = value;
-                                },
-                                onChanged: (String? value) => {
-                                  setState(() {
-                                    duracaoAulas = value;
-                                  })
-                                },
-                                validator: (value) {
-                                  if (value == null) {
-                                    return "Selecione a duração da aula";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                items: dropdownItemsTempoAula,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: TextFormField(
+                            controller: controllerTitulo,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            cursorColor: KPrimaryColor,
+                            onChanged: (val) {
+                              setState(() {
+                                titulo = val;
+                              });
+                            },
+                            validator: (val) {
+                              if (val!.length < 6) {
+                                return "O Titulo deve ser preenchido";
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: textFildHeight,
+                                  horizontal: (size.height + size.width) / 150),
+                              hintText: "Título da sua aula",
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: kFormsGray, width: 2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: kFormsGray),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: kFormsGray,
+                            ),
+                          ),
+                        ),
+
+                        //decrição
+
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(vertical: textPadding2),
+                            child: Text(
+                              "Descrição".toUpperCase(),
+                              style: TextStyle(
+                                fontSize: (size.height + size.width) / 150,
+                                color: KTextcolorLight,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: TextFormField(
+                            controller: controllerDescricao,
+                            maxLines: maxLines,
+                            textInputAction: TextInputAction.next,
+                            cursorColor: KPrimaryColor,
+                            onChanged: (val) {
+                              setState(() {
+                                descricao = val;
+                              });
+                            },
+                            validator: (val) {
+                              if (val!.length < 10) {
+                                return "Descrição muito pequena";
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: (size.height + size.width) / 160,
+                                horizontal: (size.height + size.width) / 150,
+                              ),
+                              hintText: "Coloque aqui a descrição da aula...",
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: kFormsGray, width: 2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: kFormsGray),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: kFormsGray,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                // descrição resumida
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: (size.height + size.width) / 2.6,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: textPadding2),
+                                      child: Text(
+                                        "Descrição resumida".toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize:
+                                              (size.height + size.width) / 150,
+                                          color: KTextcolorLight,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: (size.height + size.width) / 2.6,
+                                    child: TextFormField(
+                                      controller: controllerResumida,
+                                      textInputAction: TextInputAction.next,
+                                      cursorColor: KPrimaryColor,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          descricaoResumida = val;
+                                        });
+                                      },
+                                      validator: (val) {
+                                        if (val!.length < 10) {
+                                          return "Descrição resumida muito pequena";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: textFildHeight,
+                                            horizontal:
+                                                (size.height + size.width) /
+                                                    150),
+                                        hintText:
+                                            "Coloque aqui uma breve descrição da aula...",
+                                        border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        fillColor: kFormsGray,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                // Valor Total
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: (size.height + size.width) / 14,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: textPadding2),
+                                      child: Text(
+                                        "Valor Total".toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize:
+                                              (size.height + size.width) / 150,
+                                          color: KTextcolorLight,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: (size.height + size.width) / 14,
+                                    child: TextFormField(
+                                      controller: controllerValorTotal,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      cursorColor: KPrimaryColor,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          valorTotal = val;
+                                        });
+                                      },
+                                      validator: (val) {
+                                        return RegExp(r"^[0-9]").hasMatch(val!)
+                                            ? null
+                                            : "Valor deve ser numerico";
+                                      },
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: textFildHeight,
+                                            horizontal:
+                                                (size.height + size.width) /
+                                                    150),
+                                        hintText: "R\$10,00",
+                                        border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: kFormsGray),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        fillColor: kFormsGray,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: size.height + size.width) /
+                                  60,
+                          child: SizedBox(
+                            width: (size.height + size.width) / 2,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25, vertical: 15),
+                                      decoration: BoxDecoration(
+                                          color: KPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: Text(
+                                        "Voltar".toUpperCase(),
+                                        style: const TextStyle(
+                                            color: KTextcolorLight,
+                                            fontSize: 20,
+                                            fontFamily: 'OpenSans-bold',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        "/homeScreenTeacher",
+                                      );
+                                    },
+                                  ),
+                                ),
+                                //CreateCourseBotton(),
+                                MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25, vertical: 15),
+                                      decoration: BoxDecoration(
+                                          color: KPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: Text(
+                                        "Salvar".toUpperCase(),
+                                        style: const TextStyle(
+                                            color: KTextcolorLight,
+                                            fontSize: 20,
+                                            fontFamily: 'OpenSans-bold',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      formKey?.currentState!.save();
+                                      formKey?.currentState!.validate();
+                                      print(categoria);
+                                      print(quantidadeAulas);
+                                      print(duracaoAulas);
+
+                                      // ScaffoldMessenger.of(context).showSnackBar(
+                                      //   SnackBar(
+                                      //     duration: const Duration(seconds: 2),
+                                      //     content: CustomSnackbar(
+                                      //         textoMensagem: "Aula cadastrada",
+                                      //         corPrimaria: Colors.lightGreen,
+                                      //         corSecundaria: const Color.fromARGB(
+                                      //             255, 112, 158, 60)),
+                                      //     behavior: SnackBarBehavior.floating,
+                                      //     backgroundColor: Colors.transparent,
+                                      //     elevation: 0,
+                                      //   ),
+                                      // );
+                                      updateClass();
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
-
-                  // Titulo
-
                   SizedBox(
-                    width: (size.height + size.width) / 2,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: textPadding2),
-                      child: Text(
-                        "Título".toUpperCase(),
-                        style: TextStyle(
-                          fontSize: (size.height + size.width) / 150,
-                          color: KTextcolorLight,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: (size.height + size.width) / 2,
-                    child: TextFormField(
-                      // controller: controladorIitulo,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                      cursorColor: KPrimaryColor,
-                      onChanged: (val) {
-                        setState(() {
-                          titulo = val;
-                        });
-                      },
-                      validator: (val) {
-                        if (val!.length < 6) {
-                          return "O Titulo deve ser preenchido";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: textFildHeight,
-                            horizontal: (size.height + size.width) / 150),
-                        hintText: "Título da sua aula",
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: kFormsGray, width: 2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: kFormsGray),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        fillColor: kFormsGray,
-                      ),
-                    ),
-                  ),
-
-                  //decrição
-
-                  SizedBox(
-                    width: (size.height + size.width) / 2,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: textPadding2),
-                      child: Text(
-                        "Descrição".toUpperCase(),
-                        style: TextStyle(
-                          fontSize: (size.height + size.width) / 150,
-                          color: KTextcolorLight,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: (size.height + size.width) / 2,
-                    child: TextFormField(
-                      // controller: controladorDescricao,
-                      maxLines: maxLines,
-                      textInputAction: TextInputAction.next,
-                      cursorColor: KPrimaryColor,
-                      onChanged: (val) {
-                        setState(() {
-                          descricao = val;
-                        });
-                      },
-                      validator: (val) {
-                        if (val!.length < 10) {
-                          return "Descrição muito pequena";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: (size.height + size.width) / 160,
-                          horizontal: (size.height + size.width) / 150,
-                        ),
-                        hintText: "Coloque aqui a descrição da aula...",
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: kFormsGray, width: 2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: kFormsGray),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        fillColor: kFormsGray,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: (size.height + size.width) / 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          // descrição resumida
-                          children: <Widget>[
-                            SizedBox(
-                              width: (size.height + size.width) / 2.6,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: textPadding2),
-                                child: Text(
-                                  "Descrição resumida".toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: (size.height + size.width) / 150,
-                                    color: KTextcolorLight,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: (size.height + size.width) / 2.6,
-                              child: TextFormField(
-                                textInputAction: TextInputAction.next,
-                                cursorColor: KPrimaryColor,
-                                onChanged: (val) {
-                                  setState(() {
-                                    descricaoResumida = val;
-                                  });
-                                },
-                                validator: (val) {
-                                  if (val!.length < 10) {
-                                    return "Descrição resumida muito pequena";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: textFildHeight,
-                                      horizontal:
-                                          (size.height + size.width) / 150),
-                                  hintText:
-                                      "Coloque aqui uma breve descrição da aula...",
-                                  border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: kFormsGray, width: 2),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: kFormsGray),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  fillColor: kFormsGray,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          // Valor Total
-                          children: <Widget>[
-                            SizedBox(
-                              width: (size.height + size.width) / 14,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: textPadding2),
-                                child: Text(
-                                  "Valor Total".toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: (size.height + size.width) / 150,
-                                    color: KTextcolorLight,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: (size.height + size.width) / 14,
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                textInputAction: TextInputAction.next,
-                                cursorColor: KPrimaryColor,
-                                onChanged: (val) {
-                                  setState(() {
-                                    valorTotal = val;
-                                  });
-                                },
-                                validator: (val) {
-                                  return RegExp(r"^[0-9]").hasMatch(val!)
-                                      ? null
-                                      : "Valor deve ser numerico";
-                                },
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: textFildHeight,
-                                      horizontal:
-                                          (size.height + size.width) / 150),
-                                  hintText: "R\$10,00",
-                                  border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: kFormsGray, width: 2),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: kFormsGray),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  fillColor: kFormsGray,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                    height: (size.height + size.width) / 4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        LogoImage(width: (size.height + size.width) / 28)
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: size.height + size.width) / 60,
-                    child: SizedBox(
-                      width: (size.height + size.width) / 2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 25, vertical: 15),
-                                decoration: BoxDecoration(
-                                    color: KPrimaryColor,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Text(
-                                  "Voltar".toUpperCase(),
-                                  style: const TextStyle(
-                                      color: KTextcolorLight,
-                                      fontSize: 20,
-                                      fontFamily: 'OpenSans-bold',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  "/homeScreenTeacher",
-                                );
-                              },
-                            ),
-                          ),
-                          //CreateCourseBotton(),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 25, vertical: 15),
-                                decoration: BoxDecoration(
-                                    color: KPrimaryColor,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Text(
-                                  "Salvar".toUpperCase(),
-                                  style: const TextStyle(
-                                      color: KTextcolorLight,
-                                      fontSize: 20,
-                                      fontFamily: 'OpenSans-bold',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              onTap: () {
-                                formKey?.currentState!.save();
-                                formKey?.currentState!.validate();
-                                print(categoria);
-                                print(quantidadeAulas);
-                                print(duracaoAulas);
-
-                                // ScaffoldMessenger.of(context).showSnackBar(
-                                //   SnackBar(
-                                //     duration: const Duration(seconds: 2),
-                                //     content: CustomSnackbar(
-                                //         textoMensagem: "Aula cadastrada",
-                                //         corPrimaria: Colors.lightGreen,
-                                //         corSecundaria: const Color.fromARGB(
-                                //             255, 112, 158, 60)),
-                                //     behavior: SnackBarBehavior.floating,
-                                //     backgroundColor: Colors.transparent,
-                                //     elevation: 0,
-                                //   ),
-                                // );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
-              height: (size.height + size.width) / 4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  LogoImage(width: (size.height + size.width) / 28)
-                ],
-              ),
-            )
-          ],
+          );
+  }
+
+  updateClass() async {
+    if (formKey!.currentState!.validate()) {
+      setState(() {
+        isloading = true;
+      });
+      DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+          .updateClass(
+        widget.classes.classId!,
+        titulo!,
+        descricao!,
+        descricaoResumida!,
+        duracaoAulas!,
+        quantidadeAulas!,
+        valorTotal!,
+        categoria!,
+      )
+          .whenComplete(() {
+        isloading = false;
+        Navigator.of(context).pop();
+        snackBarSuccessCadastroCurso();
+      });
+    }
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+      snackBarSuccessCadastroCurso() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: CustomSnackbar(
+          textoMensagem: "Cadastro de aula realizado",
+          corPrimaria: Colors.green,
+          corSecundaria: const Color.fromARGB(255, 64, 148, 67),
         ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
     );
   }

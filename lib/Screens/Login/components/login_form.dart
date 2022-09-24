@@ -167,9 +167,6 @@ class _LoginFormState extends State<LoginForm> {
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSF(email);
           await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
-          print(snapshot.docs[0]['fullName']);
-          print(snapshot.docs[0]['userType']);
-          print(snapshot.docs[0]['userSex']);
 
           if (snapshot.docs[0]['userType'] == "UserType.Aluno") {
             // ignore: use_build_context_synchronously

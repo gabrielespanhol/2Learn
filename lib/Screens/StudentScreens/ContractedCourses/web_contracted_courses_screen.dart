@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/default_button.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
-import 'package:flutter_web_1/Models/courses.dart';
+import 'package:flutter_web_1/Models/courses_contratados.dart';
 import 'package:flutter_web_1/Components/information_bar.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/components/course_card_studente_view.dart';
 

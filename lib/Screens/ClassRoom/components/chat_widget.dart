@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Models/teste/message_model.dart';
+import 'package:flutter_web_1/Models/FinalModels/message_model.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class ChatScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Models/teste/user_model.dart';
+import 'package:flutter_web_1/Models/FinalModels/user_model.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/class_room.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             elevation: 0,
-            primary: KPrimaryColor,
+            backgroundColor: KPrimaryColor,
             shape: StadiumBorder(),
             maximumSize: Size(double.infinity, 48),
             minimumSize: Size(double.infinity, 48),
