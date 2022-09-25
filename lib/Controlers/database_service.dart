@@ -107,9 +107,9 @@ class DatabaseServices {
     String valueClasses,
     String category,
   ) async {
-    await classCollection.doc(idClasse).set({
+    await classCollection.doc(idClasse).update({
       "className": className,
-      "classId": "",
+      "classId": idClasse,
       "description": description,
       "shortDescription": shortDescription,
       "durationClasses": durationClasses,

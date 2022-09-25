@@ -96,35 +96,6 @@ class _LoginFormState extends State<LoginForm> {
                 const SizedBox(height: defaultPadding),
                 ElevatedButton(
                   onPressed: () {
-                    // try {
-                    //   if (email == "a") {
-                    //     Navigator.pushNamed(
-                    //       context,
-                    //       "/cursosContratados",
-                    //     );
-                    //   } else if (email == "t") {
-                    //     Navigator.pushNamed(
-                    //       context,
-                    //       "/homeScreenTeacher",
-                    //     );
-                    //   } else if (email != "t" && email != "a") {
-                    //     throw Exception();
-                    //   }
-                    // } catch (e) {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //     SnackBar(
-                    //       duration: const Duration(seconds: 2),
-                    //       content: CustomSnackbar(
-                    //         textoMensagem: "Email invalido. Tente novamente",
-                    //       ),
-                    //       behavior: SnackBarBehavior.floating,
-                    //       backgroundColor: Colors.transparent,
-                    //       elevation: 0,
-                    //     ),
-                    //   );
-                    // }
-                    //print(email);
-                    //print(password);
                     login();
                   },
                   child: Text(

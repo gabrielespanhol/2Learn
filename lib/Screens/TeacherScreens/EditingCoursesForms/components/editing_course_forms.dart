@@ -6,6 +6,7 @@ import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/editing_courses_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class EditingCoursesForms extends StatefulWidget {
@@ -22,13 +23,12 @@ void initState() {
   initState();
 }
 
-String? categoria,
-    quantidadeAulas,
-    duracaoAulas,
-    titulo,
-    descricao,
-    descricaoResumida,
-    valorTotal;
+String? category, numberClasses, durationClasses;
+
+TextEditingController controllerclassName = TextEditingController();
+TextEditingController controllerdescription = TextEditingController();
+TextEditingController controllershortDescription = TextEditingController();
+TextEditingController controllervalueClasses = TextEditingController();
 
 List<DropdownMenuItem<String>> get dropdownItemsCategorias {
   List<DropdownMenuItem<String>> menuItemsCategorias = [
@@ -102,17 +102,17 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
 
   @override
   Widget build(BuildContext context) {
-    categoria = widget.classes.category;
-    quantidadeAulas = widget.classes.numberClasses;
-    duracaoAulas = widget.classes.durationClasses;
+    category = widget.classes.category;
+    numberClasses = widget.classes.numberClasses;
+    durationClasses = widget.classes.durationClasses;
 
-    TextEditingController controllerTitulo =
+    controllerclassName =
         TextEditingController(text: '${widget.classes.className}');
-    TextEditingController controllerDescricao =
+    controllerdescription =
         TextEditingController(text: '${widget.classes.description}');
-    TextEditingController controllerResumida =
+    controllershortDescription =
         TextEditingController(text: '${widget.classes.shortDescription}');
-    TextEditingController controllerValorTotal =
+    controllervalueClasses =
         TextEditingController(text: '${widget.classes.valueClasses}');
 
     const maxLines = 5;
@@ -188,13 +188,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                         ),
                                         fillColor: kFormsGray,
                                       ),
-                                      value: categoria,
+                                      value: category,
                                       onSaved: (value) {
-                                        categoria = value;
+                                        category = value;
                                       },
                                       onChanged: (String? value) => {
                                         setState(() {
-                                          categoria = value;
+                                          category = value;
                                         })
                                       },
                                       validator: (value) {
@@ -256,13 +256,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                           ),
                                           fillColor: kFormsGray,
                                         ),
-                                        value: quantidadeAulas,
+                                        value: numberClasses,
                                         onSaved: (value) {
-                                          quantidadeAulas = value;
+                                          numberClasses = value;
                                         },
                                         onChanged: (String? value) => {
                                           setState(() {
-                                            quantidadeAulas = value;
+                                            numberClasses = value;
                                           })
                                         },
                                         validator: (value) {
@@ -320,13 +320,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                         ),
                                         fillColor: kFormsGray,
                                       ),
-                                      value: duracaoAulas,
+                                      value: durationClasses,
                                       onSaved: (value) {
-                                        duracaoAulas = value;
+                                        durationClasses = value;
                                       },
                                       onChanged: (String? value) => {
                                         setState(() {
-                                          duracaoAulas = value;
+                                          durationClasses = value;
                                         })
                                       },
                                       validator: (value) {
@@ -345,7 +345,7 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                           ),
                         ),
 
-                        // Titulo
+                        // className
 
                         SizedBox(
                           width: (size.height + size.width) / 2,
@@ -365,13 +365,14 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                         SizedBox(
                           width: (size.height + size.width) / 2,
                           child: TextFormField(
-                            controller: controllerTitulo,
+                            controller: controllerclassName,
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
                             cursorColor: KPrimaryColor,
                             onChanged: (val) {
                               setState(() {
-                                titulo = val;
+                                controllerclassName =
+                                    val as TextEditingController;
                               });
                             },
                             validator: (val) {
@@ -420,13 +421,14 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                         SizedBox(
                           width: (size.height + size.width) / 2,
                           child: TextFormField(
-                            controller: controllerDescricao,
+                            controller: controllerdescription,
                             maxLines: maxLines,
                             textInputAction: TextInputAction.next,
                             cursorColor: KPrimaryColor,
                             onChanged: (val) {
                               setState(() {
-                                descricao = val;
+                                controllerdescription =
+                                    val as TextEditingController;
                               });
                             },
                             validator: (val) {
@@ -483,12 +485,13 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                   SizedBox(
                                     width: (size.height + size.width) / 2.6,
                                     child: TextFormField(
-                                      controller: controllerResumida,
+                                      controller: controllershortDescription,
                                       textInputAction: TextInputAction.next,
                                       cursorColor: KPrimaryColor,
                                       onChanged: (val) {
                                         setState(() {
-                                          descricaoResumida = val;
+                                          controllershortDescription =
+                                              val as TextEditingController;
                                         });
                                       },
                                       validator: (val) {
@@ -546,13 +549,14 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                   SizedBox(
                                     width: (size.height + size.width) / 14,
                                     child: TextFormField(
-                                      controller: controllerValorTotal,
+                                      controller: controllervalueClasses,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
                                       cursorColor: KPrimaryColor,
                                       onChanged: (val) {
                                         setState(() {
-                                          valorTotal = val;
+                                          controllervalueClasses =
+                                              val as TextEditingController;
                                         });
                                       },
                                       validator: (val) {
@@ -647,23 +651,7 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                     onTap: () {
                                       formKey?.currentState!.save();
                                       formKey?.currentState!.validate();
-                                      print(categoria);
-                                      print(quantidadeAulas);
-                                      print(duracaoAulas);
 
-                                      // ScaffoldMessenger.of(context).showSnackBar(
-                                      //   SnackBar(
-                                      //     duration: const Duration(seconds: 2),
-                                      //     content: CustomSnackbar(
-                                      //         textoMensagem: "Aula cadastrada",
-                                      //         corPrimaria: Colors.lightGreen,
-                                      //         corSecundaria: const Color.fromARGB(
-                                      //             255, 112, 158, 60)),
-                                      //     behavior: SnackBarBehavior.floating,
-                                      //     backgroundColor: Colors.transparent,
-                                      //     elevation: 0,
-                                      //   ),
-                                      // );
                                       updateClass();
                                     },
                                   ),
@@ -698,29 +686,36 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
       DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
           .updateClass(
         widget.classes.classId!,
-        titulo!,
-        descricao!,
-        descricaoResumida!,
-        duracaoAulas!,
-        quantidadeAulas!,
-        valorTotal!,
-        categoria!,
+        controllerclassName.text,
+        controllerdescription.text,
+        controllershortDescription.text,
+        durationClasses!,
+        numberClasses!,
+        controllervalueClasses.text,
+        category!,
       )
           .whenComplete(() {
         isloading = false;
-        Navigator.of(context).pop();
-        snackBarSuccessCadastroCurso();
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => const EditingCourses()),
+        // );
+        Navigator.pushNamed(
+          context,
+          "/homeScreenTeacher",
+        );
+        snackBarSuccessCadastroCursoAtualizado();
       });
     }
   }
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
-      snackBarSuccessCadastroCurso() {
+      snackBarSuccessCadastroCursoAtualizado() {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 2),
         content: CustomSnackbar(
-          textoMensagem: "Cadastro de aula realizado",
+          textoMensagem: "Cadastro de aula Atualizado",
           corPrimaria: Colors.green,
           corSecundaria: const Color.fromARGB(255, 64, 148, 67),
         ),
