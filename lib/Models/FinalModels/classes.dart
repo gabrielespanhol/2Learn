@@ -9,6 +9,7 @@ class Classes {
   String? tutorId;
   String? tutorName;
   String? valueClasses;
+  String? profilePicTeacher;
 
   Classes(
       {this.category,
@@ -20,7 +21,8 @@ class Classes {
       this.shortDescription,
       this.tutorId,
       this.tutorName,
-      this.valueClasses});
+      this.valueClasses,
+      this.profilePicTeacher});
 
   Classes.fromJson(Map<String, dynamic> json) {
     category = json['category'];
@@ -33,6 +35,7 @@ class Classes {
     tutorId = json['tutorId'];
     tutorName = json['tutorName'];
     valueClasses = json['valueClasses'];
+    profilePicTeacher = json['profilePicTeacher'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +50,7 @@ class Classes {
     data['tutorId'] = tutorId;
     data['tutorName'] = tutorName;
     data['valueClasses'] = valueClasses;
+    data['profilePicTeacher'] = profilePicTeacher;
     return data;
   }
 }

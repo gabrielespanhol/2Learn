@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/Models/teachers.dart';
 import 'package:flutter_web_1/constant.dart';
 
 // ignore: must_be_immutable
 class CourseCardView extends StatelessWidget {
-  final Teachers teacher;
+  final Classes classes;
   String? category;
   Color? color;
 
-  CourseCardView({Key? key, required this.teacher}) : super(key: key);
+  CourseCardView({Key? key, required this.classes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var caminhoFoto = teacher.caminhoFoto;
-    var valorCurso = teacher.valorCurso.toString();
+    var caminhoFoto = classes.profilePicTeacher;
+    var valorCurso = classes.valueClasses;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -54,7 +55,7 @@ class CourseCardView extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          teacher.nomeTutor.toString(),
+                          classes.tutorName.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 130,
                             color: Colors.white,
@@ -80,7 +81,7 @@ class CourseCardView extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            teacher.nomeCurso.toString().toUpperCase(),
+                            classes.className.toString().toUpperCase(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 120,
@@ -98,9 +99,7 @@ class CourseCardView extends StatelessWidget {
                           height: (size.height + size.width) / 70,
                           width: (size.height + size.width) / 9.4,
                           child: Text(
-                            teacher.descricaoCursoResumida
-                                .toString()
-                                .toUpperCase(),
+                            classes.shortDescription.toString().toUpperCase(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 230,
@@ -167,7 +166,7 @@ class CourseCardView extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/detalhesCursos",
-            arguments: teacher,
+            arguments: classes,
           ),
         },
       ),

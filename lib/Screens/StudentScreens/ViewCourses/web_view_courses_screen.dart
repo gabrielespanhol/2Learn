@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/auth_service.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Controlers/helper_function.dart';
+import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/Models/teachers.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/components/course_card_view.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -22,11 +27,30 @@ class _WebViewCoursesState extends State<WebViewCourses> {
   bool firstSearch = true;
   late String query = "";
 
-  late List<Teachers> filterList;
+  late List<Classes> filterList;
 
   @override
-  // ignore: must_call_super
-  void initState() {}
+  void initState() {
+    super.initState();
+    gettingClasses();
+  }
+
+  List<Classes> ClassesLists = [];
+  String userName = "";
+
+  AuthService authService = AuthService();
+
+  //  pegar classes pela categoria
+  gettingClasses() async {
+    await DatabaseServices()
+        .gettingClassesCategory(widget.category.toLowerCase())
+        .then((snapshot) {
+      setState(() {
+        // retorna litsa de classes
+        ClassesLists = snapshot;
+      });
+    });
+  }
 
   _WebViewCoursesState() {
     //Register a closure to be called when the object changes.
@@ -47,11 +71,11 @@ class _WebViewCoursesState extends State<WebViewCourses> {
   }
 
   Widget _performSearch() {
-    filterList = <Teachers>[];
-    for (int i = 0; i < TeachersList.length; i++) {
-      var item = TeachersList[i];
+    filterList = <Classes>[];
+    for (int i = 0; i < ClassesLists.length; i++) {
+      var item = ClassesLists[i];
 
-      if (item.nomeCurso!.toLowerCase().contains(query.toLowerCase())) {
+      if (item.className!.toLowerCase().contains(query.toLowerCase())) {
         filterList.add(item);
       }
     }
@@ -75,7 +99,7 @@ class _WebViewCoursesState extends State<WebViewCourses> {
                 horizontal: (size.height + size.width) / 30,
                 vertical: (size.height + size.width) / 95,
               ),
-              child: CourseCardView(teacher: filterList[index]));
+              child: CourseCardView(classes: filterList[index]));
         },
       ),
     );
@@ -91,178 +115,176 @@ class _WebViewCoursesState extends State<WebViewCourses> {
           crossAxisCount: 2,
           mainAxisExtent: (size.height + size.width) / 11,
         ),
-        itemCount: TeachersList.length,
+        itemCount: ClassesLists.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: (size.height + size.width) / 30,
                 vertical: (size.height + size.width) / 95,
               ),
-              child: CourseCardView(teacher: TeachersList[index]));
+              child: CourseCardView(classes: ClassesLists[index]));
         },
       ),
     );
   }
 
   // ignore: non_constant_identifier_names
-  List<Teachers> TeachersList = [
-    Teachers(
-      nomeTutor: "Isabella",
-      sobrenomeTutor: "Oliveira Queiroz Espanhol",
-      profissaoTutor: "Cientista de Dados - Itaú Unibanco",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "Bella",
-      nomeCurso: "MACHINE LEARNING",
-      descricaoCursoResumida:
-          "Aqui vou te ensinar sobre os principais algoritmos.",
-      valorCurso: 150,
-      categoria: "category",
-      numeroAulas: 4,
-      tempoAula: 50,
-    ),
-    Teachers(
-        nomeTutor: "Gabriel",
-        sobrenomeTutor: "Espanhol",
-        profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
-        formacaoAcademica: "Sistemas de informações - FIAP",
-        caminhoFoto: "gabriel",
-        nomeCurso: "ARQUITETURA DE DADOS",
-        descricaoCursoResumida:
-            "Vou ensinar sobre as arquiteturas mais utilizadas.",
-        valorCurso: 125,
-        categoria: "category",
-        numeroAulas: 5,
-        tempoAula: 40,
-        descricaoCurso:
-            "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
-        descricaoTutor:
-            "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
-    Teachers(
-      nomeTutor: "Leonado",
-      sobrenomeTutor: "Mesquita",
-      profissaoTutor: "Desenvolvedor - Loggi",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "leo1",
-      nomeCurso: "ERP",
-      descricaoCursoResumida:
-          "Olá, você vai aprender os principais benefícios.",
-      valorCurso: 100,
-      tempoAula: 35,
-      categoria: "category",
-      numeroAulas: 7,
-    ),
-    Teachers(
-      nomeTutor: "Leonardo",
-      sobrenomeTutor: "Jordão",
-      profissaoTutor: "Desenvolvedor - FIAP",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "leo2",
-      nomeCurso: "PYTHON BÁSICO",
-      descricaoCursoResumida:
-          "onsigo te mostrar o quão fácil é aprender esse tema",
-      valorCurso: 80,
-      tempoAula: 30,
-      categoria: "category",
-      numeroAulas: 3,
-    ),
-    Teachers(
-      nomeTutor: "Patrick",
-      sobrenomeTutor: "Aruda",
-      profissaoTutor: "Desenvolvedor - Pupily",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "patrick",
-      nomeCurso: "TRATAMENTO DE DADOS",
-      descricaoCursoResumida:
-          "A ementa segue a linha das principais técnicas utilizadas.",
-      valorCurso: 50,
-      categoria: "category",
-      numeroAulas: 2,
-      tempoAula: 40,
-    ),
+  // List<Classes> ClassesLists = [
+  // Teachers(
+  //   nomeTutor: "Isabella",
+  //   sobrenomeTutor: "Oliveira Queiroz Espanhol",
+  //   profissaoTutor: "Cientista de Dados - Itaú Unibanco",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "Bella",
+  //   nomeCurso: "MACHINE LEARNING",
+  //   descricaoCursoResumida:
+  //       "Aqui vou te ensinar sobre os principais algoritmos.",
+  //   valorCurso: 150,
+  //   categoria: "category",
+  //   numeroAulas: 4,
+  //   tempoAula: 50,
+  // ),
+  // Teachers(
+  //     nomeTutor: "Gabriel",
+  //     sobrenomeTutor: "Espanhol",
+  //     profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
+  //     formacaoAcademica: "Sistemas de informações - FIAP",
+  //     caminhoFoto: "gabriel",
+  //     nomeCurso: "ARQUITETURA DE DADOS",
+  //     descricaoCursoResumida:
+  //         "Vou ensinar sobre as arquiteturas mais utilizadas.",
+  //     valorCurso: 125,
+  //     categoria: "category",
+  //     numeroAulas: 5,
+  //     tempoAula: 40,
+  //     descricaoCurso:
+  //         "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
+  //     descricaoTutor:
+  //         "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
+  // Teachers(
+  //   nomeTutor: "Leonado",
+  //   sobrenomeTutor: "Mesquita",
+  //   profissaoTutor: "Desenvolvedor - Loggi",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "leo1",
+  //   nomeCurso: "ERP",
+  //   descricaoCursoResumida:
+  //       "Olá, você vai aprender os principais benefícios.",
+  //   valorCurso: 100,
+  //   tempoAula: 35,
+  //   categoria: "category",
+  //   numeroAulas: 7,
+  // ),
+  // Teachers(
+  //   nomeTutor: "Leonardo",
+  //   sobrenomeTutor: "Jordão",
+  //   profissaoTutor: "Desenvolvedor - FIAP",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "leo2",
+  //   nomeCurso: "PYTHON BÁSICO",
+  //   descricaoCursoResumida:
+  //       "onsigo te mostrar o quão fácil é aprender esse tema",
+  //   valorCurso: 80,
+  //   tempoAula: 30,
+  //   categoria: "category",
+  //   numeroAulas: 3,
+  // ),
+  // Teachers(
+  //   nomeTutor: "Patrick",
+  //   sobrenomeTutor: "Aruda",
+  //   profissaoTutor: "Desenvolvedor - Pupily",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "patrick",
+  //   nomeCurso: "TRATAMENTO DE DADOS",
+  //   descricaoCursoResumida:
+  //       "A ementa segue a linha das principais técnicas utilizadas.",
+  //   valorCurso: 50,
+  //   categoria: "category",
+  //   numeroAulas: 2,
+  //   tempoAula: 40,
+  // ),
 
-    ///
-    ///
-    ///
-    Teachers(
-      nomeTutor: "Isabella",
-      sobrenomeTutor: "Oliveira Queiroz Espanhol",
-      profissaoTutor: "Cientista de Dados - Itaú Unibanco",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "Bella",
-      nomeCurso: "MACHINE LEARNING",
-      descricaoCursoResumida:
-          "Aqui vou te ensinar sobre os principais algoritmos.",
-      valorCurso: 150,
-      categoria: "category",
-      numeroAulas: 4,
-      tempoAula: 50,
-    ),
-    Teachers(
-        nomeTutor: "Gabriel",
-        sobrenomeTutor: "Espanhol",
-        profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
-        formacaoAcademica: "Sistemas de informações - FIAP",
-        caminhoFoto: "gabriel",
-        nomeCurso: "ARQUITETURA DE DADOS",
-        descricaoCursoResumida:
-            "Vou ensinar sobre as arquiteturas mais utilizadas.",
-        valorCurso: 125,
-        categoria: "category",
-        numeroAulas: 5,
-        tempoAula: 40,
-        descricaoCurso:
-            "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
-        descricaoTutor:
-            "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
-    Teachers(
-      nomeTutor: "Leonado",
-      sobrenomeTutor: "Mesquita",
-      profissaoTutor: "Desenvolvedor - Loggi",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "leo1",
-      nomeCurso: "ERP",
-      descricaoCursoResumida:
-          "Olá, você vai aprender os principais benefícios.",
-      valorCurso: 100,
-      tempoAula: 35,
-      categoria: "category",
-      numeroAulas: 7,
-    ),
-    Teachers(
-      nomeTutor: "Leonardo",
-      sobrenomeTutor: "Jordão",
-      profissaoTutor: "Desenvolvedor - FIAP",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "leo2",
-      nomeCurso: "PYTHON BÁSICO",
-      descricaoCursoResumida:
-          "onsigo te mostrar o quão fácil é aprender esse tema",
-      valorCurso: 80,
-      tempoAula: 30,
-      categoria: "category",
-      numeroAulas: 3,
-    ),
-    Teachers(
-      nomeTutor: "Patrick",
-      sobrenomeTutor: "Aruda",
-      profissaoTutor: "Desenvolvedor - Pupily",
-      formacaoAcademica: "Sistemas de informações - FIAP",
-      caminhoFoto: "patrick",
-      nomeCurso: "TRATAMENTO DE DADOS",
-      descricaoCursoResumida:
-          "A ementa segue a linha das principais técnicas utilizadas.",
-      valorCurso: 50,
-      categoria: "category",
-      numeroAulas: 2,
-      tempoAula: 40,
-    ),
-  ];
+  // ///
+  // ///
+  // ///
+  // Teachers(
+  //   nomeTutor: "Isabella",
+  //   sobrenomeTutor: "Oliveira Queiroz Espanhol",
+  //   profissaoTutor: "Cientista de Dados - Itaú Unibanco",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "Bella",
+  //   nomeCurso: "MACHINE LEARNING",
+  //   descricaoCursoResumida:
+  //       "Aqui vou te ensinar sobre os principais algoritmos.",
+  //   valorCurso: 150,
+  //   categoria: "category",
+  //   numeroAulas: 4,
+  //   tempoAula: 50,
+  // ),
+  // Teachers(
+  //     nomeTutor: "Gabriel",
+  //     sobrenomeTutor: "Espanhol",
+  //     profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
+  //     formacaoAcademica: "Sistemas de informações - FIAP",
+  //     caminhoFoto: "gabriel",
+  //     nomeCurso: "ARQUITETURA DE DADOS",
+  //     descricaoCursoResumida:
+  //         "Vou ensinar sobre as arquiteturas mais utilizadas.",
+  //     valorCurso: 125,
+  //     categoria: "category",
+  //     numeroAulas: 5,
+  //     tempoAula: 40,
+  //     descricaoCurso:
+  //         "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
+  //     descricaoTutor:
+  //         "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
+  // Teachers(
+  //   nomeTutor: "Leonado",
+  //   sobrenomeTutor: "Mesquita",
+  //   profissaoTutor: "Desenvolvedor - Loggi",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "leo1",
+  //   nomeCurso: "ERP",
+  //   descricaoCursoResumida:
+  //       "Olá, você vai aprender os principais benefícios.",
+  //   valorCurso: 100,
+  //   tempoAula: 35,
+  //   categoria: "category",
+  //   numeroAulas: 7,
+  // ),
+  // Teachers(
+  //   nomeTutor: "Leonardo",
+  //   sobrenomeTutor: "Jordão",
+  //   profissaoTutor: "Desenvolvedor - FIAP",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "leo2",
+  //   nomeCurso: "PYTHON BÁSICO",
+  //   descricaoCursoResumida:
+  //       "onsigo te mostrar o quão fácil é aprender esse tema",
+  //   valorCurso: 80,
+  //   tempoAula: 30,
+  //   categoria: "category",
+  //   numeroAulas: 3,
+  // ),
+  // Teachers(
+  //   nomeTutor: "Patrick",
+  //   sobrenomeTutor: "Aruda",
+  //   profissaoTutor: "Desenvolvedor - Pupily",
+  //   formacaoAcademica: "Sistemas de informações - FIAP",
+  //   caminhoFoto: "patrick",
+  //   nomeCurso: "TRATAMENTO DE DADOS",
+  //   descricaoCursoResumida:
+  //       "A ementa segue a linha das principais técnicas utilizadas.",
+  //   valorCurso: 50,
+  //   categoria: "category",
+  //   numeroAulas: 2,
+  //   tempoAula: 40,
+  // ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    // ignore: non_constant_identifier_names
 
     return Column(
       children: [

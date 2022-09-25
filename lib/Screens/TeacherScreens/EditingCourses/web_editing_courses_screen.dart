@@ -5,8 +5,6 @@ import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/helper_function.dart';
-import 'package:flutter_web_1/Models/FinalModels/classes.dart';
-import 'package:flutter_web_1/Models/courses_contratados.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/components/card_editing_courses_view.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 
@@ -21,9 +19,6 @@ class WebEditingCourses extends StatefulWidget {
 
 class _WebEditingCoursesState extends State<WebEditingCourses> {
   String userName = "";
-  Stream? classes;
-  Stream? classes2;
-  QuerySnapshot? snapshot;
   List listClasses = [];
   AuthService authService = AuthService();
 

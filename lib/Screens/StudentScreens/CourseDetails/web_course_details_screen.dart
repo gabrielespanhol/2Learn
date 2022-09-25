@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
-import 'package:flutter_web_1/Models/teachers.dart';
+import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/details_icon.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/request_course_botton.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -9,23 +9,25 @@ import '../Components/menu_student_search.dart';
 
 // ignore: must_be_immutable
 class WebCourseDetails extends StatelessWidget {
-  Teachers teachers = Teachers();
+  Classes classes = Classes();
   WebCourseDetails({
     Key? key,
-    required this.teachers,
+    required this.classes,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var caminhoFoto = teachers.caminhoFoto;
-    var valorCurso = teachers.valorCurso.toString();
-    var numeroAulas = teachers.numeroAulas.toString();
-    var tempoAula = teachers.tempoAula.toString();
+    var caminhoFoto = classes.profilePicTeacher;
+    var valorCurso = classes.valueClasses.toString();
+    var numeroAulas = classes.numberClasses.toString();
+    var tempoAula = classes.durationClasses.toString();
 
     return Column(
       children: [
-        MenuStudentSearch(title: teachers.categoria.toString()),
+        MenuStudentSearch(
+          title: classes.category.toString(),
+        ),
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: (size.height + size.width) / 40),
@@ -109,7 +111,7 @@ class WebCourseDetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          teachers.nomeTutor.toString(),
+                          classes.tutorName.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -127,7 +129,7 @@ class WebCourseDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          teachers.sobrenomeTutor.toString(),
+                          classes.tutorName.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -138,7 +140,7 @@ class WebCourseDetails extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      teachers.profissaoTutor.toString(),
+                      " classes..toString(),",
                       style: TextStyle(
                         fontSize: (size.height + size.width) / 140,
                         color: KTextcolor,
@@ -158,7 +160,7 @@ class WebCourseDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          teachers.formacaoAcademica.toString(),
+                          "teachers.formacaoAcademica.toString()",
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -173,7 +175,7 @@ class WebCourseDetails extends StatelessWidget {
                           width: (size.height + size.width) / 6,
                           child: Text(
                             textAlign: TextAlign.justify,
-                            teachers.descricaoTutor.toString(),
+                            "teachers.descricaoTutor.toString()",
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
                               color: KTextcolor,
@@ -208,7 +210,7 @@ class WebCourseDetails extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          teachers.nomeCurso.toString(),
+                          "teachers.nomeCurso.toString()",
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -224,7 +226,7 @@ class WebCourseDetails extends StatelessWidget {
                           width: (size.height + size.width) / 4,
                           child: Text(
                             textAlign: TextAlign.justify,
-                            teachers.descricaoCurso.toString(),
+                            "teachers.descricaoCurso.toString()",
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
                               color: KTextcolor,

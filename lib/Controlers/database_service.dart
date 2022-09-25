@@ -58,6 +58,30 @@ class DatabaseServices {
     }
   }
 
+  // METODO QUE PEGA AS CLASSES PELA CATEGORIA -- USAR COMO BASE PARA OUTRAS QUERYS
+  Future gettingClassesCategory(String category) async {
+    try {
+      QuerySnapshot snapshot =
+          await classCollection.where("category", isEqualTo: category).get();
+      return snapshot.docs
+          .map((json) => Classes(
+                category: json['category'],
+                classId: json['classId'],
+                className: json['className'],
+                description: json['description'],
+                durationClasses: json['durationClasses'],
+                numberClasses: json['numberClasses'],
+                shortDescription: json['shortDescription'],
+                tutorId: json['tutorId'],
+                tutorName: json['tutorName'],
+                valueClasses: json['valueClasses'],
+              ))
+          .toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   // criando a aula
   Future createClass(
     String userName,
