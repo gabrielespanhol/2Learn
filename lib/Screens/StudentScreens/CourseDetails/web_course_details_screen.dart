@@ -226,7 +226,7 @@ class WebCourseDetails extends StatelessWidget {
                           width: (size.height + size.width) / 4,
                           child: Text(
                             textAlign: TextAlign.justify,
-                            "teachers.descricaoCurso.toString()",
+                            classes.description.toString(),
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
                               color: KTextcolor,

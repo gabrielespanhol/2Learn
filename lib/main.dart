@@ -11,7 +11,7 @@ import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/view_courses_sc
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/web_editing_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/editing_courses_forms_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/home_teacher_screen.dart';
-import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/components/personal_informations_editing.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/personal_informations_editing_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/register_courses_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/view_classes_screen.dart';
 import 'package:flutter_web_1/Screens/Welcome/welcome_screen.dart';
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         '/visualizaraulasedicao': (context) => WebEditingCourses(),
         '/editaraulas': (context) => EditingCoursesForms(),
         '/aula': (context) => ClassRoom(),
-        '/teste': (context) => PersonalInformationsEditingForms(),
+        '/informacoesPessoais': (context) => PersonalInformationsEditing(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

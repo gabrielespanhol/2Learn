@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -130,32 +132,38 @@ class _LoginFormState extends State<LoginForm> {
           .then((value) async {
         if (value == true) {
           // saving the preference state
-          QuerySnapshot snapshot = await DatabaseServices(
-                  uid: FirebaseAuth.instance.currentUser!.uid)
-              .gettingUserData(email);
-          // saving the values to our shared preferences
+          try {
+            QuerySnapshot snapshot = await DatabaseServices(
+                    uid: FirebaseAuth.instance.currentUser!.uid)
+                .gettingUserData(email);
+            // saving the values to our shared preferences
 
-          await HelperFunctions.saveUserLoggedInStatus(true);
-          await HelperFunctions.saveUserEmailSF(email);
-          await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
+            await HelperFunctions.saveUserLoggedInStatus(true);
+            await HelperFunctions.saveUserEmailSF(email);
+            await HelperFunctions.saveUserNameSF(snapshot.docs[0]['name']);
 
-          if (snapshot.docs[0]['userType'] == "UserType.Aluno") {
-            // ignore: use_build_context_synchronously
-            Navigator.pushNamed(
-              context,
-              "/cursosContratados",
-            );
-          } else {
-            // ignore: use_build_context_synchronously
-            Navigator.pushNamed(
-              context,
-              "/homeScreenTeacher",
-            );
+            if (snapshot.docs[0]['userType'] == "UserType.Aluno") {
+              // ignore: use_build_context_synchronously
+              Navigator.pushNamed(
+                context,
+                "/cursosContratados",
+              );
+            } else {
+              // ignore: use_build_context_synchronously
+              Navigator.pushNamed(
+                context,
+                "/homeScreenTeacher",
+              );
+            }
+            setState(() {
+              isloading = false;
+            });
+          } catch (e) {
+            snackBarErrorloginFirebaseOuQualquerOutraCoisa();
+            setState(() {
+              isloading = false;
+            });
           }
-
-          setState(() {
-            isloading = false;
-          });
         } else {
           snackBarErrorlogin();
           setState(() {
@@ -173,6 +181,21 @@ class _LoginFormState extends State<LoginForm> {
         duration: const Duration(seconds: 3),
         content: CustomSnackbar(
           textoMensagem: "Email ou senha invalidos. Tente novamente",
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+      snackBarErrorloginFirebaseOuQualquerOutraCoisa() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: CustomSnackbar(
+          textoMensagem: "Erro no sistema de login",
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,

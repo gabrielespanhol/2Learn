@@ -72,13 +72,21 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
                   ),
                 ),
                 DefaultButtonTeacher(
-                    text: "Informações Pessoais", press: "/homeScreenTeacher"),
+                  text: "Informações Pessoais",
+                  press: "/informacoesPessoais",
+                ),
                 DefaultButtonTeacher(
-                    text: "Cadastrar novas aulas", press: "/CadastrarCurso"),
+                  text: "Cadastrar novas aulas",
+                  press: "/CadastrarCurso",
+                ),
                 DefaultButtonTeacher(
-                    text: "Aulas Contratadas", press: "/visualizaraulas"),
+                  text: "Aulas Contratadas",
+                  press: "/visualizaraulas",
+                ),
                 DefaultButtonTeacher(
-                    text: "Edição de aulas", press: "/visualizaraulasedicao")
+                  text: "Edição de aulas",
+                  press: "/visualizaraulasedicao",
+                )
               ],
             ),
             Column(

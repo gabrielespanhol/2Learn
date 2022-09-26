@@ -14,9 +14,9 @@ class DatabaseServices {
 
   // updating the userdate
   Future savingUserData(
-      String fullname, String email, String userType, String userSex) async {
+      String name, String email, String userType, String userSex) async {
     return await userCollection.doc(uid).set({
-      "fullName": fullname,
+      "name": name,
       "email": email,
       "userType": userType,
       "userSex": userSex,
@@ -32,6 +32,24 @@ class DatabaseServices {
     QuerySnapshot snapshot =
         await userCollection.where("email", isEqualTo: email).get();
     return snapshot;
+  }
+
+  getUserData() async {
+    return userCollection.doc(uid).get();
+  }
+
+  Future updatingUserData(
+    String name,
+    String lastName,
+    String academicFormation,
+    String personalDescription,
+  ) async {
+    return await userCollection.doc(uid).update({
+      "name": name,
+      "lastName": lastName,
+      "academicFormation": academicFormation,
+      "personalDescription": personalDescription,
+    });
   }
 
   // METODO QUE PEGA AS CLASSES PELO ID DO TUTOR -- USAR COMO BASE PARA OUTRAS QUERYS
