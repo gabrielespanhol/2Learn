@@ -1,11 +1,11 @@
 // ignore_for_file: avoid_print
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class PersonalInformationsEditingForms extends StatefulWidget {
@@ -36,20 +36,22 @@ class _PersonalInformationsEditingFormsState
     gettingUserData();
   }
 
-  Stream? userData;
+  List<Users> userDataList = [];
   gettingUserData() async {
-    await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
-        .getUserData()
-        .then((snapshot) {
-      setState(() {
-        userData = snapshot;
-      });
-    });
-
     try {
-      // tentar manipular os dados que rebeno no userData
-      // ou
-      // criar model user para armazenar os dados do tutor, criar também a clase para pegar os dados e devolver o tutor
+      await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+          .getUserData(FirebaseAuth.instance.currentUser!.uid)
+          .then((snapshot) {
+        setState(() {
+          userDataList = snapshot;
+          controllerName.text = userDataList[0].name.toString();
+          controllerLastName.text = userDataList[0].lastName.toString();
+          controllerAcademicFormation.text =
+              userDataList[0].academicFormation.toString();
+          controllerPersonalDescripition.text =
+              userDataList[0].personalDescription.toString();
+        });
+      });
     } catch (e) {
       return null;
     }
@@ -374,11 +376,6 @@ class _PersonalInformationsEditingFormsState
                                       ),
                                     ),
                                     onTap: () {
-                                      print(controllerName.text);
-                                      print(controllerLastName.text);
-                                      print(controllerAcademicFormation.text);
-                                      print(
-                                          controllerPersonalDescripition.text);
                                       updataTutor();
                                     },
                                   ),
@@ -410,7 +407,11 @@ class _PersonalInformationsEditingFormsState
       )
           .whenComplete(() {
         isloading = false;
-        Navigator.of(context).pop();
+        // Navigator.pushNamed(
+        //   context,
+        //   "/homeScreenTeacher",
+        // );
+        Navigator.pop(context);
         snackBarSuccessCadastroCurso();
       });
     }

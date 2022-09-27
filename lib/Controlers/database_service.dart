@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 
 class DatabaseServices {
   final String? uid;
@@ -13,16 +14,20 @@ class DatabaseServices {
   final classCollection = FirebaseFirestore.instance.collection("classes");
 
   // updating the userdate
-  Future savingUserData(
-      String name, String email, String userType, String userSex) async {
+  Future savingUserData(String name, String email, String userType,
+      String userSex, String cpf) async {
     return await userCollection.doc(uid).set({
       "name": name,
       "email": email,
       "userType": userType,
       "userSex": userSex,
+      "cpf": cpf,
       "classes": [],
-      "profilePic": "",
-      "uid": uid
+      "profilePic": " ",
+      "uid": uid,
+      "lastName": " ",
+      "academicFormation": " ",
+      "personalDescription": " ",
     });
   }
 
@@ -34,8 +39,28 @@ class DatabaseServices {
     return snapshot;
   }
 
-  getUserData() async {
-    return userCollection.doc(uid).get();
+  getUserData(String userID) async {
+    try {
+      QuerySnapshot snapshot =
+          await userCollection.where("uid", isEqualTo: userID).get();
+
+      return snapshot.docs
+          .map((json) => Users(
+                academicFormation: json['academicFormation'],
+                email: json['email'],
+                cpf: json['cpf'],
+                lastName: json['lastName'],
+                name: json['name'],
+                personalDescription: json['personalDescription'],
+                profilePic: json['profilePic'],
+                uid: json['uid'],
+                userSex: json['userSex'],
+                userType: json['userType'],
+              ))
+          .toList();
+    } catch (e) {
+      return [];
+    }
   }
 
   Future updatingUserData(

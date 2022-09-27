@@ -373,7 +373,13 @@ class _SignUpFormState extends State<SignUpForm> {
       });
       await authService
           .registerUserWithEmailandPassword(
-              name, email, password, userType.toString(), userSex.toString())
+        name,
+        email,
+        password,
+        userType.toString(),
+        userSex.toString(),
+        cpf,
+      )
           .then((value) async {
         if (value == true) {
           // saving the preference state
@@ -383,6 +389,7 @@ class _SignUpFormState extends State<SignUpForm> {
           await HelperFunctions.saveUserNameSF(name);
           await HelperFunctions.saveuserTypeKey(userType.toString());
           await HelperFunctions.saveSexlKey(userSex.toString());
+          await HelperFunctions.saveCPFlKey(cpf);
           setState(() {
             isloading = false;
           });

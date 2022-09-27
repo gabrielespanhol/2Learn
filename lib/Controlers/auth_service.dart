@@ -33,6 +33,7 @@ class AuthService {
     String password,
     String userType,
     String userSex,
+    String cpf,
   ) async {
     try {
       User user = (await firebaseAuth.createUserWithEmailAndPassword(
@@ -46,6 +47,7 @@ class AuthService {
           email,
           userType,
           userSex,
+          cpf,
         );
 
         return true;

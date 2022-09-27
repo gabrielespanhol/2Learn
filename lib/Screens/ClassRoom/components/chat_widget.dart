@@ -29,30 +29,6 @@ List<Message> messages = [
     isLiked: false,
     unread: true,
   ),
-  // Message(
-  //   sender: james,
-  //   text: 'How\'s the doggo?',
-  //   isLiked: false,
-  //   unread: true,
-  // ),
-  // Message(
-  //   sender: james,
-  //   text: 'All the food',
-  //   isLiked: true,
-  //   unread: true,
-  // ),
-  // Message(
-  //   sender: currentUser,
-  //   text: 'Nice! What kind of food did you eat?',
-  //   isLiked: false,
-  //   unread: true,
-  // ),
-  // Message(
-  //   sender: james,
-  //   text: 'I ate so much food today.',
-  //   isLiked: false,
-  //   unread: true,
-  // ),
 ];
 
 class _ChatScreenState extends State<ChatScreen> {
