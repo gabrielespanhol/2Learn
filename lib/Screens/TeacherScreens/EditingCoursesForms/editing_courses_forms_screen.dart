@@ -5,6 +5,7 @@ import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/mobile_
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/web_editing_courses_forms_screen.dart';
 import 'package:flutter_web_1/responsive.dart';
 
+// ignore: must_be_immutable
 class EditingCoursesForms extends StatelessWidget {
   Classes? classes;
   EditingCoursesForms({Key? key, this.classes}) : super(key: key);

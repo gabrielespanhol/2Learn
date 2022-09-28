@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/storage.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
-import 'package:flutter_web_1/Models/teachers.dart';
 import 'package:flutter_web_1/constant.dart';
 
 // ignore: must_be_immutable
@@ -10,7 +11,7 @@ class CourseCardView extends StatelessWidget {
   Color? color;
 
   CourseCardView({Key? key, required this.classes}) : super(key: key);
-
+  Storage storage = Storage();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,12 +43,35 @@ class CourseCardView extends StatelessWidget {
                         Container(
                           height: (size.height + size.width) / 22,
                           width: (size.height + size.width) / 22,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            image: DecorationImage(
-                              image:
-                                  AssetImage("assets/tutores/$caminhoFoto.png"),
-                            ),
+                          child: FutureBuilder(
+                            future:
+                                storage.downloadURL("${classes.tutorId}.png"),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<String> snapshot) {
+                              if (snapshot.connectionState ==
+                                      ConnectionState.done &&
+                                  snapshot.hasData) {
+                                return SizedBox(
+                                  width: (size.height + size.width) / 28,
+                                  height: (size.height + size.width) / 28,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(200),
+                                    child: Image.network(
+                                      snapshot.data!,
+                                    ),
+                                  ),
+                                );
+                              }
+                              if (snapshot.connectionState ==
+                                      ConnectionState.waiting &&
+                                  !snapshot.hasData) {
+                                return const CircularProgressIndicator();
+                              }
+                              return PutSvgImage(
+                                image: "assets/icons/logonImage.svg",
+                                width: (size.height + size.width) / 50,
+                              );
+                            },
                           ),
                         ),
                       ],

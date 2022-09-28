@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
@@ -53,7 +54,7 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
     return Column(
       children: [
         MenuTeacher(
-          caminhofoto: "Bella.png",
+          caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
           textoMenu: "SEJA BEM-VINDA DE VOLTA,  $userName",
         ),
         Row(

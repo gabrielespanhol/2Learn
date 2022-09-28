@@ -6,7 +6,6 @@ import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
-import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/editing_courses_screen.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class EditingCoursesForms extends StatefulWidget {

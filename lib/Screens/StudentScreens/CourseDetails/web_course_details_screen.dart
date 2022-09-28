@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Controlers/storage.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/details_icon.dart';
@@ -23,6 +25,7 @@ class WebCourseDetails extends StatefulWidget {
 }
 
 class _WebCourseDetailsState extends State<WebCourseDetails> {
+  Storage storage = Storage();
   @override
   void initState() {
     super.initState();
@@ -129,12 +132,41 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                     Container(
                       height: (size.height + size.width) / 15,
                       width: (size.height + size.width) / 15,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(200),
-                        image: DecorationImage(
-                            image:
-                                AssetImage("assets/tutores/$caminhoFoto.png"),
-                            fit: BoxFit.cover),
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(200),
+                      //   image: DecorationImage(
+                      //       image:
+                      //           AssetImage("assets/tutores/$caminhoFoto.png"),
+                      //       fit: BoxFit.cover),
+                      // ),
+                      child: FutureBuilder(
+                        future: storage.downloadURL("${tutor.uid}.png"),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String> snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return SizedBox(
+                              width: (size.height + size.width) / 28,
+                              height: (size.height + size.width) / 28,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(200),
+                                child: Image.network(
+                                  snapshot.data!,
+                                ),
+                              ),
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                                  ConnectionState.waiting &&
+                              !snapshot.hasData) {
+                            return const CircularProgressIndicator();
+                          }
+                          return PutSvgImage(
+                            image: "assets/icons/logonImage.svg",
+                            width: (size.height + size.width) / 50,
+                          );
+                        },
                       ),
                     ),
                     Row(

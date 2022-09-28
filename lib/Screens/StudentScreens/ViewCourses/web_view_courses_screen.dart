@@ -1,12 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
-import 'package:flutter_web_1/Controlers/helper_function.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
-import 'package:flutter_web_1/Models/teachers.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/components/course_card_view.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -35,7 +32,7 @@ class _WebViewCoursesState extends State<WebViewCourses> {
     gettingClasses();
   }
 
-  List<Classes> ClassesLists = [];
+  List<Classes> classesLists = [];
   String userName = "";
 
   AuthService authService = AuthService();
@@ -63,7 +60,7 @@ class _WebViewCoursesState extends State<WebViewCourses> {
         .then((snapshot) {
       setState(() {
         // retorna litsa de classes
-        ClassesLists = snapshot;
+        classesLists = snapshot;
       });
     });
   }
@@ -88,8 +85,8 @@ class _WebViewCoursesState extends State<WebViewCourses> {
 
   Widget _performSearch() {
     filterList = <Classes>[];
-    for (int i = 0; i < ClassesLists.length; i++) {
-      var item = ClassesLists[i];
+    for (int i = 0; i < classesLists.length; i++) {
+      var item = classesLists[i];
 
       if (item.className!.toLowerCase().contains(query.toLowerCase())) {
         filterList.add(item);
@@ -131,21 +128,21 @@ class _WebViewCoursesState extends State<WebViewCourses> {
           crossAxisCount: 2,
           mainAxisExtent: (size.height + size.width) / 11,
         ),
-        itemCount: ClassesLists.length,
+        itemCount: classesLists.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: (size.height + size.width) / 30,
                 vertical: (size.height + size.width) / 95,
               ),
-              child: CourseCardView(classes: ClassesLists[index]));
+              child: CourseCardView(classes: classesLists[index]));
         },
       ),
     );
   }
 
   // ignore: non_constant_identifier_names
-  // List<Classes> ClassesLists = [
+  // List<Classes> classesLists = [
   // Teachers(
   //   nomeTutor: "Isabella",
   //   sobrenomeTutor: "Oliveira Queiroz Espanhol",

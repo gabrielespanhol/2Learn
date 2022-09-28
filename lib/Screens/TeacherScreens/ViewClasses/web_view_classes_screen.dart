@@ -1,9 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
-import 'package:flutter_web_1/Controlers/auth_service.dart';
-import 'package:flutter_web_1/Controlers/database_service.dart';
-import 'package:flutter_web_1/Controlers/helper_function.dart';
 import 'package:flutter_web_1/Models/courses_contratados.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/components/course_card_teacher_view.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';

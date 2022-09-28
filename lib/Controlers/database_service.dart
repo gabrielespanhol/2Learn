@@ -23,7 +23,7 @@ class DatabaseServices {
       "userSex": userSex,
       "cpf": cpf,
       "classes": [],
-      "profilePic": " ",
+      "profilePic": "${uid}.png",
       "uid": uid,
       "lastName": " ",
       "academicFormation": " ",

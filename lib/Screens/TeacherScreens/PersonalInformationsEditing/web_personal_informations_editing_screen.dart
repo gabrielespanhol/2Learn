@@ -18,7 +18,7 @@ class WebPersonalInformationsEditing extends StatelessWidget {
           caminhofoto: "logo.png",
           textoMenu: "Edição de dados pessoais",
         ),
-        ImageEditing(),
+        const ImageEditing(),
         const PersonalInformationsEditingForms(),
         SizedBox(
           height: (size.height + size.width) / 100,

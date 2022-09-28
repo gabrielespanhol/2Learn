@@ -197,6 +197,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                         } else {
                                           category = value;
                                         }
+                                        return null;
                                       },
                                       items: dropdownItemsCategorias,
                                     ),
@@ -262,6 +263,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                           } else {
                                             numberClasses = value;
                                           }
+                                          return null;
                                         },
                                         items: dropdownItemsAulas,
                                       ),
@@ -323,6 +325,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                         } else {
                                           durationClasses = value;
                                         }
+                                        return null;
                                       },
                                       items: dropdownItemsTempoAula,
                                     ),
@@ -365,7 +368,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                             validator: (val) {
                               if (val!.length < 10) {
                                 return "O className deve ser preenchido";
-                              } else if (val!.length > 30) {
+                              } else if (val.length > 30) {
                                 return "O nome da aula está muito grande";
                               } else {
                                 return null;

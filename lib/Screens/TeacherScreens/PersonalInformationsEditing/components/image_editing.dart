@@ -1,15 +1,25 @@
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/storage.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class ImageEditing extends StatefulWidget {
   const ImageEditing({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ImageEditingState createState() => _ImageEditingState();
 }
 
 class _ImageEditingState extends State<ImageEditing> {
   String nivel = "o";
+  PlatformFile? pickedFile;
+  Storage storage = Storage();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,11 +66,39 @@ class _ImageEditingState extends State<ImageEditing> {
               child: Container(
                 width: (size.height + size.width) / 14.5,
                 height: (size.height + size.width) / 14.5,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/tutores/Bella.png"),
-                    fit: BoxFit.fill,
-                  ),
+                // decoration: const BoxDecoration(
+                //   image: DecorationImage(
+                //     image: AssetImage("assets/tutores/Bella.png"),
+                //     fit: BoxFit.fill,
+                //   ),
+                // ),
+                child: FutureBuilder(
+                  future: storage.downloadURL(
+                      '${FirebaseAuth.instance.currentUser!.uid}.png'),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      return SizedBox(
+                        width: (size.height + size.width) / 28,
+                        height: (size.height + size.width) / 28,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
+                          child: Image.network(
+                            snapshot.data!,
+                          ),
+                        ),
+                      );
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting &&
+                        !snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    }
+                    return PutSvgImage(
+                      image: "assets/icons/logonImage.svg",
+                      width: (size.height + size.width) / 50,
+                    );
+                  },
                 ),
               ),
             ),
@@ -92,7 +130,9 @@ class _ImageEditingState extends State<ImageEditing> {
                   ),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                storage.uploadImage();
+              },
             ),
           ),
         ),

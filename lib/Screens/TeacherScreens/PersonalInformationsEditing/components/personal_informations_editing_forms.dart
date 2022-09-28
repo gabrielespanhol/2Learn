@@ -121,7 +121,7 @@ class _PersonalInformationsEditingFormsState
                                       });
                                     },
                                     validator: (val) {
-                                      if (val!.length < 1) {
+                                      if (val!.isEmpty) {
                                         return "O nome deve ser preenchido";
                                       } else {
                                         return null;
@@ -181,7 +181,7 @@ class _PersonalInformationsEditingFormsState
                                       });
                                     },
                                     validator: (val) {
-                                      if (val!.length < 1) {
+                                      if (val!.isEmpty) {
                                         return "Seu sobrenome deve ser preenchido";
                                       } else {
                                         return null;
@@ -242,7 +242,7 @@ class _PersonalInformationsEditingFormsState
                               });
                             },
                             validator: (val) {
-                              if (val!.length < 1) {
+                              if (val!.isEmpty) {
                                 return "A Profissão deve ser preenchida";
                               } else {
                                 return null;
@@ -296,7 +296,7 @@ class _PersonalInformationsEditingFormsState
                               });
                             },
                             validator: (val) {
-                              if (val!.length < 1) {
+                              if (val!.isEmpty) {
                                 return "A formação academica deve ser preenchida";
                               } else {
                                 return null;

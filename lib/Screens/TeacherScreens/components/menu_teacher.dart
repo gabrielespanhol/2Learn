@@ -38,31 +38,32 @@ class MenuTeacher extends StatelessWidget {
           Column(
             children: <Widget>[
               FutureBuilder(
-                  future: storage.downloadURL("$caminhofoto"),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done &&
-                        snapshot.hasData) {
-                      return SizedBox(
-                        width: (size.height + size.width) / 28,
-                        height: (size.height + size.width) / 28,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: Image.network(
-                            snapshot.data!,
-                          ),
+                future: storage.downloadURL("$caminhofoto"),
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return SizedBox(
+                      width: (size.height + size.width) / 28,
+                      height: (size.height + size.width) / 28,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(200),
+                        child: Image.network(
+                          snapshot.data!,
                         ),
-                      );
-                    }
-                    if (snapshot.connectionState == ConnectionState.waiting &&
-                        !snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    }
-                    return PutSvgImage(
-                      image: "assets/icons/logonImage.svg",
-                      width: (size.height + size.width) / 50,
+                      ),
                     );
-                  })
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting &&
+                      !snapshot.hasData) {
+                    return const CircularProgressIndicator();
+                  }
+                  return PutSvgImage(
+                    image: "assets/icons/logonImage.svg",
+                    width: (size.height + size.width) / 50,
+                  );
+                },
+              ),
             ],
           )
         ],
