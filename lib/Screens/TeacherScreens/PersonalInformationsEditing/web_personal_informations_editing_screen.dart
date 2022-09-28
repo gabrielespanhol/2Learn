@@ -11,7 +11,7 @@ class WebPersonalInformationsEditing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         MenuTeacher(
@@ -20,6 +20,9 @@ class WebPersonalInformationsEditing extends StatelessWidget {
         ),
         ImageEditing(),
         const PersonalInformationsEditingForms(),
+        SizedBox(
+          height: (size.height + size.width) / 100,
+        ),
       ],
     );
   }

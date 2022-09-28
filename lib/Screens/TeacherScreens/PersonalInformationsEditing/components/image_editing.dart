@@ -9,7 +9,7 @@ class ImageEditing extends StatefulWidget {
 }
 
 class _ImageEditingState extends State<ImageEditing> {
-  String nivel = "b";
+  String nivel = "o";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -67,24 +67,29 @@ class _ImageEditingState extends State<ImageEditing> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: (size.height + size.width) / 80),
+          padding: EdgeInsets.only(
+              bottom: (size.height + size.width) / 100,
+              top: (size.height + size.width) / 100),
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               child: Container(
-                height: (size.height + size.width) / 60,
-                width: (size.height + size.width) / 14,
+                height: (size.height + size.width) / 80,
+                width: (size.height + size.width) / 29,
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 217, 217, 217),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text(
-                  "Editar imagem",
-                  style: TextStyle(
+                child: Center(
+                  child: Text(
+                    "EDITAR FOTO",
+                    style: TextStyle(
                       color: KTextcolorLight,
-                      fontSize: 18,
-                      fontFamily: 'OpenSans-bold',
-                      fontWeight: FontWeight.bold),
+                      fontSize: (size.height + size.width) / 230,
+                      fontFamily: 'OpenSans-regular',
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
               ),
               onTap: () {},
