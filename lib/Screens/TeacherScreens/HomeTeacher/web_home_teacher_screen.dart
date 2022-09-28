@@ -3,6 +3,7 @@ import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/helper_function.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/components/default_button.dart';
+import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/personal_informations_editing_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -73,20 +74,38 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
                 ),
                 DefaultButtonTeacher(
                   text: "Informações Pessoais",
-                  press: "/informacoesPessoais",
+                  press: () async {
+                    // Navigator.pushNamed(context, "/informacoesPessoais"),
+                    final result1 = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const PersonalInformationsEditing(),
+                      ),
+                    );
+                    setState(() {
+                      userName = result1;
+                    });
+                  },
                 ),
                 DefaultButtonTeacher(
                   text: "Cadastrar novas aulas",
-                  press: "/CadastrarCurso",
+                  press: () => {
+                    Navigator.pushNamed(context, "/CadastrarCurso"),
+                  },
                 ),
                 DefaultButtonTeacher(
                   text: "Aulas Contratadas",
-                  press: "/visualizaraulas",
+                  press: () => {
+                    Navigator.pushNamed(context, "/visualizaraulas"),
+                  },
                 ),
                 DefaultButtonTeacher(
                   text: "Edição de aulas",
-                  press: "/visualizaraulasedicao",
-                )
+                  press: () => {
+                    Navigator.pushNamed(context, "/visualizaraulasedicao"),
+                  },
+                ),
               ],
             ),
             Column(

@@ -28,6 +28,7 @@ class DatabaseServices {
       "lastName": " ",
       "academicFormation": " ",
       "personalDescription": " ",
+      "profession": " ",
     });
   }
 
@@ -56,6 +57,7 @@ class DatabaseServices {
                 uid: json['uid'],
                 userSex: json['userSex'],
                 userType: json['userType'],
+                profession: json['profession'],
               ))
           .toList();
     } catch (e) {
@@ -68,13 +70,42 @@ class DatabaseServices {
     String lastName,
     String academicFormation,
     String personalDescription,
+    String profession,
   ) async {
-    return await userCollection.doc(uid).update({
+    await userCollection.doc(uid).update({
       "name": name,
       "lastName": lastName,
       "academicFormation": academicFormation,
       "personalDescription": personalDescription,
+      "profession": profession,
     });
+
+    try {
+      QuerySnapshot snapshot1 =
+          await classCollection.where("tutorId", isEqualTo: uid).get();
+      List<Classes> classeslist = snapshot1.docs
+          .map((json) => Classes(
+                category: json['category'],
+                classId: json['classId'],
+                className: json['className'],
+                description: json['description'],
+                durationClasses: json['durationClasses'],
+                numberClasses: json['numberClasses'],
+                shortDescription: json['shortDescription'],
+                tutorId: json['tutorId'],
+                tutorName: json['tutorName'],
+                valueClasses: json['valueClasses'],
+              ))
+          .toList();
+
+      for (int i = 0; i < classeslist.length; i++) {
+        await classCollection.doc(classeslist[i].classId).update({
+          "tutorName": name,
+        });
+      }
+    } catch (e) {
+      null;
+    }
   }
 
   // METODO QUE PEGA AS CLASSES PELO ID DO TUTOR -- USAR COMO BASE PARA OUTRAS QUERYS

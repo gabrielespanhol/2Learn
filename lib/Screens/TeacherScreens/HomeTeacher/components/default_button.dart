@@ -4,7 +4,7 @@ import 'package:flutter_web_1/constant.dart';
 // ignore: must_be_immutable
 class DefaultButtonTeacher extends StatelessWidget {
   final String text;
-  final String press;
+  final Function press;
   double? fontSize;
 
   DefaultButtonTeacher({
@@ -44,10 +44,7 @@ class DefaultButtonTeacher extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              press,
-            );
+            press();
           },
         ),
       ),

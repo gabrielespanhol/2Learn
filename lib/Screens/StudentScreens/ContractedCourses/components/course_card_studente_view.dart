@@ -67,13 +67,17 @@ class CourseCardStudent extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text(
-                                course.nomeCurso.toString().toUpperCase(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: (size.height + size.width) / 150,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                              SizedBox(
+                                width: (size.height + size.width) / 15,
+                                height: (size.height + size.width) / 70,
+                                child: Text(
+                                  course.nomeCurso.toString().toUpperCase(),
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: (size.height + size.width) / 150,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],

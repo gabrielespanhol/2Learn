@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/web_menu_bar.dart';
 import 'package:flutter_web_1/Screens/Signup/components/socal_sign_up.dart';
+import 'package:flutter_web_1/constant.dart';
 import 'components/login_form.dart';
 import 'components/login_screen_top_image.dart';
 
@@ -33,12 +34,24 @@ class WebLoginScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 150),
                 child: Column(
-                  children: const [
+                  children: [
+                    Text(
+                      'É bom te ver novamente!',
+                      style: TextStyle(
+                        fontSize: (size.height + size.width) / 90,
+                        color: KTextcolorLight,
+                        // fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(
+                      height: (size.height + size.width) / 40,
+                    ),
+                    const SizedBox(
                       width: 450,
                       child: LoginForm(),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 450,
                       child: SocalSignUp(),
                     )

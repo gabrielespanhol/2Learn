@@ -40,10 +40,26 @@ class _WebViewCoursesState extends State<WebViewCourses> {
 
   AuthService authService = AuthService();
 
+  String removerAcentosEspacos(String str) {
+    var comAcento =
+        'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+    var semAcento =
+        'AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+
+    for (int i = 0; i < comAcento.length; i++) {
+      str = str.replaceAll(comAcento[i], semAcento[i]);
+    }
+
+    str = str.replaceAll(" ", "");
+
+    return str;
+  }
+
   //  pegar classes pela categoria
   gettingClasses() async {
     await DatabaseServices()
-        .gettingClassesCategory(widget.category.toLowerCase())
+        .gettingClassesCategory(
+            removerAcentosEspacos(widget.category.toLowerCase()))
         .then((snapshot) {
       setState(() {
         // retorna litsa de classes

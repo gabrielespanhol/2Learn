@@ -75,12 +75,12 @@ class CourseCardView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    SizedBox(
-                      height: (size.height + size.width) / 90,
-                      width: (size.height + size.width) / 9.4,
-                      child: Row(
-                        children: <Widget>[
-                          Text(
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: (size.height + size.width) / 9.4,
+                          height: (size.height + size.width) / 40,
+                          child: Text(
                             classes.className.toString().toUpperCase(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
@@ -90,13 +90,13 @@ class CourseCardView extends StatelessWidget {
                               fontFamily: 'OpenSans-bold',
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Row(
                       children: <Widget>[
                         SizedBox(
-                          height: (size.height + size.width) / 70,
+                          height: (size.height + size.width) / 63,
                           width: (size.height + size.width) / 9.4,
                           child: Text(
                             classes.shortDescription.toString().toUpperCase(),

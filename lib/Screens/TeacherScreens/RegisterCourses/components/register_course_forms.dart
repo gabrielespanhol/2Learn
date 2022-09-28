@@ -363,8 +363,10 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                               });
                             },
                             validator: (val) {
-                              if (val!.length < 1) {
+                              if (val!.length < 10) {
                                 return "O className deve ser preenchido";
+                              } else if (val!.length > 30) {
+                                return "O nome da aula está muito grande";
                               } else {
                                 return null;
                               }
@@ -481,6 +483,8 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                       validator: (val) {
                                         if (val!.length < 10) {
                                           return "Descrição resumida muito pequena";
+                                        } else if (val.length > 89) {
+                                          return "Descrição resumida muito grande";
                                         } else {
                                           return null;
                                         }

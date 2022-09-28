@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/details_icon.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/CourseDetails/components/request_course_botton.dart';
 import 'package:flutter_web_1/constant.dart';
@@ -8,7 +11,7 @@ import 'package:flutter_web_1/constant.dart';
 import '../Components/menu_student_search.dart';
 
 // ignore: must_be_immutable
-class WebCourseDetails extends StatelessWidget {
+class WebCourseDetails extends StatefulWidget {
   Classes classes = Classes();
   WebCourseDetails({
     Key? key,
@@ -16,17 +19,44 @@ class WebCourseDetails extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<WebCourseDetails> createState() => _WebCourseDetailsState();
+}
+
+class _WebCourseDetailsState extends State<WebCourseDetails> {
+  @override
+  void initState() {
+    super.initState();
+    gettingUserData();
+  }
+
+  List<Users> userDataList = [];
+  Users tutor = Users();
+  gettingUserData() async {
+    try {
+      await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+          .getUserData(widget.classes.tutorId.toString())
+          .then((snapshot) {
+        setState(() {
+          tutor = snapshot[0];
+        });
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var caminhoFoto = classes.profilePicTeacher;
-    var valorCurso = classes.valueClasses.toString();
-    var numeroAulas = classes.numberClasses.toString();
-    var tempoAula = classes.durationClasses.toString();
+    var caminhoFoto = widget.classes.profilePicTeacher;
+    var valorCurso = widget.classes.valueClasses.toString();
+    var numeroAulas = widget.classes.numberClasses.toString();
+    var tempoAula = widget.classes.durationClasses.toString();
 
     return Column(
       children: [
         MenuStudentSearch(
-          title: classes.category.toString(),
+          title: widget.classes.category.toString(),
         ),
         Padding(
           padding:
@@ -111,7 +141,7 @@ class WebCourseDetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          classes.tutorName.toString(),
+                          tutor.name.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -129,7 +159,7 @@ class WebCourseDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          classes.tutorName.toString(),
+                          tutor.lastName.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -140,7 +170,7 @@ class WebCourseDetails extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      " classes..toString(),",
+                      tutor.profession.toString(),
                       style: TextStyle(
                         fontSize: (size.height + size.width) / 140,
                         color: KTextcolor,
@@ -160,7 +190,7 @@ class WebCourseDetails extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "teachers.formacaoAcademica.toString()",
+                          tutor.academicFormation.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -174,8 +204,8 @@ class WebCourseDetails extends StatelessWidget {
                         SizedBox(
                           width: (size.height + size.width) / 6,
                           child: Text(
+                            tutor.personalDescription.toString(),
                             textAlign: TextAlign.justify,
-                            "teachers.descricaoTutor.toString()",
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
                               color: KTextcolor,
@@ -210,7 +240,7 @@ class WebCourseDetails extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "teachers.nomeCurso.toString()",
+                          widget.classes.className.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 140,
                             color: KTextcolor,
@@ -226,7 +256,7 @@ class WebCourseDetails extends StatelessWidget {
                           width: (size.height + size.width) / 4,
                           child: Text(
                             textAlign: TextAlign.justify,
-                            classes.description.toString(),
+                            widget.classes.description.toString(),
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 140,
                               color: KTextcolor,

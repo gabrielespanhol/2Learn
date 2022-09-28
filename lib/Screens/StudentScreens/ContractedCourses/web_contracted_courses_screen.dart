@@ -30,7 +30,7 @@ class WebContractedCourses extends StatelessWidget {
       ),
       Courses(
         id: 1,
-        nomeCurso: "NUMPY P/MACHINE LEARNING",
+        nomeCurso: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
         aulaRealizada: 5,
         nomeTutor: "Isabella",
         nomeAluno: "Isadora",

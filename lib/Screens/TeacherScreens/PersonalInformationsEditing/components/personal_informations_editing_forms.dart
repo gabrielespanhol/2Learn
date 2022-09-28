@@ -27,6 +27,7 @@ class _PersonalInformationsEditingFormsState
   TextEditingController controllerAcademicFormation = TextEditingController();
   TextEditingController controllerPersonalDescripition =
       TextEditingController();
+  TextEditingController controllerProfession = TextEditingController();
 
   AuthService authService = AuthService();
 
@@ -50,6 +51,7 @@ class _PersonalInformationsEditingFormsState
               userDataList[0].academicFormation.toString();
           controllerPersonalDescripition.text =
               userDataList[0].personalDescription.toString();
+          controllerProfession.text = userDataList[0].profession.toString();
         });
       });
     } catch (e) {
@@ -210,6 +212,60 @@ class _PersonalInformationsEditingFormsState
                           ],
                         ),
 
+                        // Profissão
+
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(vertical: textPadding2),
+                            child: Text(
+                              "Profissão".toUpperCase(),
+                              style: TextStyle(
+                                fontSize: (size.height + size.width) / 150,
+                                color: KTextcolorLight,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: (size.height + size.width) / 2,
+                          child: TextFormField(
+                            controller: controllerProfession,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            cursorColor: KPrimaryColor,
+                            onChanged: (val) {
+                              setState(() {
+                                // controllerAcademicFormation.text = val;
+                              });
+                            },
+                            validator: (val) {
+                              if (val!.length < 1) {
+                                return "A Profissão deve ser preenchida";
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: textFildHeight,
+                                  horizontal: (size.height + size.width) / 150),
+                              hintText: "Coloque aqui sua profissão",
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: kFormsGray, width: 2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: kFormsGray),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              fillColor: kFormsGray,
+                            ),
+                          ),
+                        ),
                         // formação academica
 
                         SizedBox(
@@ -352,7 +408,7 @@ class _PersonalInformationsEditingFormsState
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      Navigator.of(context).pop();
                                     },
                                   ),
                                 ),
@@ -404,6 +460,7 @@ class _PersonalInformationsEditingFormsState
         controllerLastName.text,
         controllerAcademicFormation.text,
         controllerPersonalDescripition.text,
+        controllerProfession.text,
       )
           .whenComplete(() {
         isloading = false;
@@ -411,7 +468,8 @@ class _PersonalInformationsEditingFormsState
         //   context,
         //   "/homeScreenTeacher",
         // );
-        Navigator.pop(context);
+        // Navigator.pop(context);
+        Navigator.pop(context, controllerName.text);
         snackBarSuccessCadastroCurso();
       });
     }
