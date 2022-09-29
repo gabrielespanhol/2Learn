@@ -1,23 +1,56 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/storage.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/constant.dart';
 
 // ignore: must_be_immutable
-class CourseCardView extends StatelessWidget {
+class CourseCardView extends StatefulWidget {
   final Classes classes;
-  String? category;
-  Color? color;
 
   CourseCardView({Key? key, required this.classes}) : super(key: key);
+
+  @override
+  State<CourseCardView> createState() => _CourseCardViewState();
+}
+
+class _CourseCardViewState extends State<CourseCardView> {
+  String? category;
+
+  Color? color;
+
   Storage storage = Storage();
+
+  @override
+  void initState() {
+    super.initState();
+    gettingUserData();
+  }
+
+  List<Users> userDataList = [];
+  Users tutor = Users();
+  gettingUserData() async {
+    try {
+      await DatabaseServices()
+          .getUserData(widget.classes.tutorId.toString())
+          .then((snapshot) {
+        setState(() {
+          tutor = snapshot[0];
+        });
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var caminhoFoto = classes.profilePicTeacher;
-    var valorCurso = classes.valueClasses;
-
+    var valorCurso = widget.classes.valueClasses;
+    String nivel = "o";
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -43,35 +76,87 @@ class CourseCardView extends StatelessWidget {
                         Container(
                           height: (size.height + size.width) / 22,
                           width: (size.height + size.width) / 22,
-                          child: FutureBuilder(
-                            future:
-                                storage.downloadURL("${classes.tutorId}.png"),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<String> snapshot) {
-                              if (snapshot.connectionState ==
-                                      ConnectionState.done &&
-                                  snapshot.hasData) {
-                                return SizedBox(
-                                  width: (size.height + size.width) / 28,
-                                  height: (size.height + size.width) / 28,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(200),
-                                    child: Image.network(
-                                      snapshot.data!,
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: [
+                              if (tutor.level == "b")
+                                Container(
+                                  width: (size.height + size.width) / 22,
+                                  height: (size.height + size.width) / 22,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/bronze.png"),
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
-                                );
-                              }
-                              if (snapshot.connectionState ==
-                                      ConnectionState.waiting &&
-                                  !snapshot.hasData) {
-                                return const CircularProgressIndicator();
-                              }
-                              return PutSvgImage(
-                                image: "assets/icons/logonImage.svg",
-                                width: (size.height + size.width) / 50,
-                              );
-                            },
+                                ),
+                              if (tutor.level == "p")
+                                Container(
+                                  width: (size.height + size.width) / 22,
+                                  height: (size.height + size.width) / 22,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/prata.png"),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              if (tutor.level == "o")
+                                Container(
+                                  width: (size.height + size.width) / 22,
+                                  height: (size.height + size.width) / 22,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/ouro.png"),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                    (size.height + size.width)),
+                                child: Container(
+                                  width: (size.height + size.width) / 25,
+                                  height: (size.height + size.width) / 25,
+                                  child: FutureBuilder(
+                                    future: storage.downloadURL(
+                                        '${widget.classes.tutorId}.png'),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<String> snapshot) {
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.done &&
+                                          snapshot.hasData) {
+                                        return SizedBox(
+                                          width:
+                                              (size.height + size.width) / 28,
+                                          height:
+                                              (size.height + size.width) / 28,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(200),
+                                            child: Image.network(
+                                              snapshot.data!,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.waiting &&
+                                          !snapshot.hasData) {
+                                        return const CircularProgressIndicator();
+                                      }
+                                      return PutSvgImage(
+                                        image: "assets/icons/logonImage.svg",
+                                        width: (size.height + size.width) / 50,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -79,7 +164,7 @@ class CourseCardView extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          classes.tutorName.toString(),
+                          widget.classes.tutorName.toString(),
                           style: TextStyle(
                             fontSize: (size.height + size.width) / 130,
                             color: Colors.white,
@@ -105,7 +190,7 @@ class CourseCardView extends StatelessWidget {
                           width: (size.height + size.width) / 9.4,
                           height: (size.height + size.width) / 40,
                           child: Text(
-                            classes.className.toString().toUpperCase(),
+                            widget.classes.className.toString().toUpperCase(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 120,
@@ -123,7 +208,9 @@ class CourseCardView extends StatelessWidget {
                           height: (size.height + size.width) / 63,
                           width: (size.height + size.width) / 9.4,
                           child: Text(
-                            classes.shortDescription.toString().toUpperCase(),
+                            widget.classes.shortDescription
+                                .toString()
+                                .toUpperCase(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: (size.height + size.width) / 230,
@@ -190,7 +277,7 @@ class CourseCardView extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/detalhesCursos",
-            arguments: classes,
+            arguments: widget.classes,
           ),
         },
       ),

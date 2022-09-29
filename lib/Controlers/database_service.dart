@@ -23,8 +23,9 @@ class DatabaseServices {
       "userSex": userSex,
       "cpf": cpf,
       "classes": [],
-      "profilePic": "${uid}.png",
+      "profilePic": "$uid.png",
       "uid": uid,
+      "level": "b",
       "lastName": " ",
       "academicFormation": " ",
       "personalDescription": " ",
@@ -58,6 +59,7 @@ class DatabaseServices {
                 userSex: json['userSex'],
                 userType: json['userType'],
                 profession: json['profession'],
+                level: json['level'],
               ))
           .toList();
     } catch (e) {

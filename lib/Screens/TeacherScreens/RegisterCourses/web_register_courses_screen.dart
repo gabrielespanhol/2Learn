@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/RegisterCourses/components/register_course_forms.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
@@ -13,7 +14,7 @@ class WebRegisterCourses extends StatelessWidget {
     return Column(
       children: [
         MenuTeacher(
-          caminhofoto: "Bella.png",
+          caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
           textoMenu: "CADASTRO DE AULA",
         ),
         const RegisterCourseForms(),

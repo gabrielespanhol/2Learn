@@ -9,21 +9,22 @@ class Users {
   String? uid;
   String? userSex;
   String? userType;
+  String? level;
   String? profession;
 
-  Users({
-    this.academicFormation,
-    this.email,
-    this.cpf,
-    this.lastName,
-    this.name,
-    this.personalDescription,
-    this.profilePic,
-    this.uid,
-    this.userSex,
-    this.userType,
-    this.profession,
-  });
+  Users(
+      {this.academicFormation,
+      this.email,
+      this.cpf,
+      this.lastName,
+      this.name,
+      this.personalDescription,
+      this.profilePic,
+      this.uid,
+      this.userSex,
+      this.userType,
+      this.level,
+      this.profession});
 
   Users.fromJson(Map<String, dynamic> json) {
     academicFormation = json['academicFormation'];
@@ -36,6 +37,7 @@ class Users {
     uid = json['uid'];
     userSex = json['userSex'];
     userType = json['userType'];
+    level = json['level'];
     profession = json['profession'];
   }
 
@@ -51,6 +53,7 @@ class Users {
     data['uid'] = uid;
     data['userSex'] = userSex;
     data['userType'] = userType;
+    data['level'] = level;
     data['profession'] = profession;
     return data;
   }

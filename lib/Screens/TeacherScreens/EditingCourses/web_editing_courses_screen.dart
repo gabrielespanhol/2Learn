@@ -52,7 +52,7 @@ class _WebEditingCoursesState extends State<WebEditingCourses> {
     return Column(
       children: [
         MenuTeacher(
-          caminhofoto: "Bella.png",
+          caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
           textoMenu: "EDIÇÃO DE AULA",
         ),
         SizedBox(

@@ -55,6 +55,7 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
     var valorCurso = widget.classes.valueClasses.toString();
     var numeroAulas = widget.classes.numberClasses.toString();
     var tempoAula = widget.classes.durationClasses.toString();
+    String nivel = "o";
 
     return Column(
       children: [
@@ -139,34 +140,81 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                       //           AssetImage("assets/tutores/$caminhoFoto.png"),
                       //       fit: BoxFit.cover),
                       // ),
-                      child: FutureBuilder(
-                        future: storage.downloadURL("${tutor.uid}.png"),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<String> snapshot) {
-                          if (snapshot.connectionState ==
-                                  ConnectionState.done &&
-                              snapshot.hasData) {
-                            return SizedBox(
-                              width: (size.height + size.width) / 28,
-                              height: (size.height + size.width) / 28,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(200),
-                                child: Image.network(
-                                  snapshot.data!,
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          if (tutor.level == "b")
+                            Container(
+                              width: (size.height + size.width) / 15,
+                              height: (size.height + size.width) / 15,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/bronze.png"),
+                                  fit: BoxFit.fill,
                                 ),
                               ),
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                                  ConnectionState.waiting &&
-                              !snapshot.hasData) {
-                            return const CircularProgressIndicator();
-                          }
-                          return PutSvgImage(
-                            image: "assets/icons/logonImage.svg",
-                            width: (size.height + size.width) / 50,
-                          );
-                        },
+                            ),
+                          if (tutor.level == "p")
+                            Container(
+                              width: (size.height + size.width) / 15,
+                              height: (size.height + size.width) / 15,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/prata.png"),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          if (tutor.level == "o")
+                            Container(
+                              width: (size.height + size.width) / 15,
+                              height: (size.height + size.width) / 15,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/ouro.png"),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                (size.height + size.width)),
+                            child: Container(
+                              width: (size.height + size.width) / 17,
+                              height: (size.height + size.width) / 17,
+                              child: FutureBuilder(
+                                future: storage.downloadURL("${tutor.uid}.png"),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<String> snapshot) {
+                                  if (snapshot.connectionState ==
+                                          ConnectionState.done &&
+                                      snapshot.hasData) {
+                                    return SizedBox(
+                                      width: (size.height + size.width) / 28,
+                                      height: (size.height + size.width) / 28,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(200),
+                                        child: Image.network(
+                                          snapshot.data!,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  if (snapshot.connectionState ==
+                                          ConnectionState.waiting &&
+                                      !snapshot.hasData) {
+                                    return const CircularProgressIndicator();
+                                  }
+                                  return PutSvgImage(
+                                    image: "assets/icons/logonImage.svg",
+                                    width: (size.height + size.width) / 50,
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Row(

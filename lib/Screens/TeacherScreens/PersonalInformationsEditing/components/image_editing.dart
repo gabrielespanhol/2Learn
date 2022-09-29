@@ -4,7 +4,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/storage.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/constant.dart';
 
 class ImageEditing extends StatefulWidget {
@@ -21,6 +23,28 @@ class _ImageEditingState extends State<ImageEditing> {
   Storage storage = Storage();
 
   @override
+  void initState() {
+    super.initState();
+    gettingUserData();
+  }
+
+  List<Users> userDataList = [];
+  Users tutor = Users();
+  gettingUserData() async {
+    try {
+      await DatabaseServices()
+          .getUserData(FirebaseAuth.instance.currentUser!.uid)
+          .then((snapshot) {
+        setState(() {
+          tutor = snapshot[0];
+        });
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(
@@ -28,7 +52,7 @@ class _ImageEditingState extends State<ImageEditing> {
         Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            if (nivel == "b")
+            if (tutor.level == "b")
               Container(
                 width: (size.height + size.width) / 13,
                 height: (size.height + size.width) / 13,
@@ -39,7 +63,7 @@ class _ImageEditingState extends State<ImageEditing> {
                   ),
                 ),
               ),
-            if (nivel == "p")
+            if (tutor.level == "p")
               Container(
                 width: (size.height + size.width) / 13,
                 height: (size.height + size.width) / 13,
@@ -50,7 +74,7 @@ class _ImageEditingState extends State<ImageEditing> {
                   ),
                 ),
               ),
-            if (nivel == "o")
+            if (tutor.level == "o")
               Container(
                 width: (size.height + size.width) / 13,
                 height: (size.height + size.width) / 13,
@@ -66,12 +90,6 @@ class _ImageEditingState extends State<ImageEditing> {
               child: Container(
                 width: (size.height + size.width) / 14.5,
                 height: (size.height + size.width) / 14.5,
-                // decoration: const BoxDecoration(
-                //   image: DecorationImage(
-                //     image: AssetImage("assets/tutores/Bella.png"),
-                //     fit: BoxFit.fill,
-                //   ),
-                // ),
                 child: FutureBuilder(
                   future: storage.downloadURL(
                       '${FirebaseAuth.instance.currentUser!.uid}.png'),

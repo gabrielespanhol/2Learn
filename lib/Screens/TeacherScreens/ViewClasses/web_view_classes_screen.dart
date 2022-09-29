@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Models/courses_contratados.dart';
@@ -73,7 +74,7 @@ class _WebViewClassesState extends State<WebViewClasses> {
     return Column(
       children: [
         MenuTeacher(
-          caminhofoto: "Bella.png",
+          caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
           textoMenu: "VISUALIZAÇÃO DE AULAS",
         ),
         SizedBox(
