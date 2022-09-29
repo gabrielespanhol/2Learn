@@ -47,7 +47,7 @@ dependencies:
   firebase_auth: ^3.9.0
   cloud_firestore: ^3.4.8
   shared_preferences: ^2.0.15
-  cached_network_image: ^3.2.1
+  clean_calendar: ^0.6.1
 
 dev_dependencies:
   flutter_test:

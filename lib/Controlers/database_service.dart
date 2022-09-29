@@ -9,9 +9,9 @@ class DatabaseServices {
 
   // reference for our collections
   final userCollection = FirebaseFirestore.instance.collection("users");
-  // final CollectionReference groupCollection =
-  //     FirebaseFirestore.instance.collection("groups");
   final classCollection = FirebaseFirestore.instance.collection("classes");
+  final classContractedCollection =
+      FirebaseFirestore.instance.collection("contractedClasses");
 
   // updating the userdate
   Future savingUserData(String name, String email, String userType,
@@ -32,6 +32,10 @@ class DatabaseServices {
       "profession": " ",
     });
   }
+
+  /*
+  USER 
+  */
 
   // getting user data
 
@@ -66,6 +70,8 @@ class DatabaseServices {
       return [];
     }
   }
+
+  // atualiza dados do tutor
 
   Future updatingUserData(
     String name,
@@ -134,7 +140,7 @@ class DatabaseServices {
     }
   }
 
-  // METODO QUE PEGA AS CLASSES PELA CATEGORIA -- USAR COMO BASE PARA OUTRAS QUERYS
+  // METODO QUE PEGA AS CLASSES PELA CATEGORIA
   Future gettingClassesCategory(String category) async {
     try {
       QuerySnapshot snapshot =
@@ -158,7 +164,12 @@ class DatabaseServices {
     }
   }
 
+  /*
+         AULAS 
+  */
+
   // criando a aula
+
   Future createClass(
     String userName,
     String id,
@@ -197,6 +208,8 @@ class DatabaseServices {
     });
   }
 
+  // Atualiza os dados da aula
+
   Future updateClass(
     String idClasse,
     String className,
@@ -216,6 +229,20 @@ class DatabaseServices {
       "numberClasses": numberClasses,
       "valueClasses": valueClasses,
       "category": category,
+    });
+  }
+
+  /*
+    AULAS CONTRATADAS
+  */
+
+  // CRIA AULA
+
+  Future createContractedClasses(
+    List meetings,
+  ) async {
+    return await classContractedCollection.add({
+      "meetings": meetings,
     });
   }
 }
