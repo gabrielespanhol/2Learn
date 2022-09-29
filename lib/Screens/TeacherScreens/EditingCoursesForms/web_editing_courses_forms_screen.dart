@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/components/editing_course_forms.dart';
@@ -14,8 +15,8 @@ class WebEditingCoursesForms extends StatelessWidget {
     return Column(
       children: [
         MenuTeacher(
-          caminhofoto: "Bella.png",
-          textoMenu: "EDIÇÃO DE AULA ${classes.className}",
+          caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
+          textoMenu: "EDIÇÃO DE AULA",
         ),
         EditingCoursesForms(
           classes: classes,
