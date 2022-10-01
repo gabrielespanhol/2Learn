@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
-import 'package:flutter_web_1/Models/courses_contratados.dart';
+import 'package:flutter_web_1/Controlers/auth_service.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
+import 'package:flutter_web_1/Models/FinalModels/contracted_classes.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/ViewClasses/components/course_card_teacher_view.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 
@@ -15,61 +17,30 @@ class WebViewClasses extends StatefulWidget {
 }
 
 class _WebViewClassesState extends State<WebViewClasses> {
+  List<ContractedClasses> listClasses = [];
+  AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    gettingUserData();
+  }
+
+  gettingUserData() async {
+//  pegar classes pelo id do tutor -- usar como base para outros metotos de pa
+    await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+        .gettingClassesContractedTutor(FirebaseAuth.instance.currentUser!.uid)
+        .then((snapshot) {
+      setState(() {
+        // retorna litsa de cursos
+        listClasses = snapshot;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    // ignore: non_constant_identifier_names
-    List<Courses> CourseCategoryList = [
-      Courses(
-        id: 1,
-        nomeCurso: "Porcentagem Basica",
-        aulaRealizada: 2,
-        nomeTutor: "Douglas",
-        nomeAluno: "Thiago",
-        sexoAluno: "M",
-        sexoTutor: "M",
-        tipoCurso: "math",
-        totalAulas: 3,
-        proximoEncontro: "2° Feira",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "NUMPY P/MACHINE LEARNING",
-        aulaRealizada: 5,
-        nomeTutor: "Isabella",
-        nomeAluno: "Isadora",
-        sexoAluno: "F",
-        sexoTutor: "F",
-        tipoCurso: "machinelearning",
-        totalAulas: 6,
-        proximoEncontro: "Amanhã",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "Python basico",
-        aulaRealizada: 5,
-        nomeTutor: "Leonardo",
-        nomeAluno: "Pedro",
-        sexoAluno: "M",
-        sexoTutor: "M",
-        tipoCurso: "machinelearning",
-        totalAulas: 6,
-        proximoEncontro: "3° Feira",
-      ),
-      Courses(
-        id: 1,
-        nomeCurso: "Arquitetura de dados",
-        aulaRealizada: 1,
-        nomeTutor: "Gabriel",
-        nomeAluno: "Felipe",
-        sexoAluno: "M",
-        sexoTutor: "M",
-        tipoCurso: "machinelearning",
-        totalAulas: 5,
-        proximoEncontro: "6° Feira",
-      ),
-    ];
 
     return Column(
       children: [
@@ -85,13 +56,13 @@ class _WebViewClassesState extends State<WebViewClasses> {
               crossAxisCount: 4,
               mainAxisExtent: (size.height + size.width) / 5,
             ),
-            itemCount: CourseCategoryList.length,
+            itemCount: listClasses.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: (size.height + size.width) / 60,
                 ),
-                child: CourseCardTeacher(course: CourseCategoryList[index]),
+                child: CourseCardTeacher(course: listClasses[index]),
               );
             },
           ),

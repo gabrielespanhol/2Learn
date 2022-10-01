@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
-import 'package:flutter_web_1/Models/courses_contratados.dart';
+import 'package:flutter_web_1/Models/FinalModels/contracted_classes.dart';
+
 import 'package:flutter_web_1/constant.dart';
 
 class CourseCardStudent extends StatelessWidget {
-  final Courses course;
+  final ContractedClasses course;
 
   const CourseCardStudent({Key? key, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var porcentagemCursoAndamento = course.aulaRealizada! / course.totalAulas!;
+    var porcentagemCursoAndamento =
+        int.parse(course.givenClasses!) / int.parse(course.numbersClasses!);
     var porcentagemCursoAndamentoToString =
         (porcentagemCursoAndamento * 100).round();
-    var tipoCurso = course.tipoCurso!;
-    var totalAulas = course.totalAulas!;
-    var proximoEncontro = course.proximoEncontro!;
-    var sexo = course.sexoTutor.toString();
-    if (sexo == "M") {
+    var tipoCurso = course.classesCategory!;
+    var totalAulas = course.numbersClasses!;
+    var proximoEncontro = "ARUMAR";
+    var sexo = course.tutorSex.toString();
+    if (sexo == "UserSex.M") {
       sexo = "Tutor: ";
-    } else if (sexo == "F") {
+    } else if (sexo == "UserSex.F") {
       sexo = "Tutora: ";
     } else {
       sexo = "Tutur(a): ";
@@ -71,7 +73,7 @@ class CourseCardStudent extends StatelessWidget {
                                 width: (size.height + size.width) / 15,
                                 height: (size.height + size.width) / 70,
                                 child: Text(
-                                  course.nomeCurso.toString().toUpperCase(),
+                                  course.classesName.toString().toUpperCase(),
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(
                                     fontSize: (size.height + size.width) / 150,
@@ -130,7 +132,7 @@ class CourseCardStudent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              course.nomeTutor.toString(),
+                              course.tutorName.toString(),
                               style: TextStyle(
                                 fontSize: (size.height + size.width) / 150,
                                 color: Colors.white,
@@ -164,7 +166,7 @@ class CourseCardStudent extends StatelessWidget {
                     padding:
                         EdgeInsets.only(top: (size.height + size.width) / 280),
                     child: Text(
-                      'Próximo encontro: $proximoEncontro',
+                      '',
                       style: TextStyle(
                         fontSize: (size.height + size.width) / 160,
                         color: KTextcolorLight,
@@ -181,7 +183,7 @@ class CourseCardStudent extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/aula",
-            arguments: course.nomeCurso.toString(),
+            arguments: course.classesName.toString(),
           ),
         },
       ),

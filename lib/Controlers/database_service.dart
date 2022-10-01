@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/FinalModels/contracted_classes.dart';
 import 'package:flutter_web_1/Models/FinalModels/user.dart';
 
 class DatabaseServices {
@@ -265,5 +266,57 @@ class DatabaseServices {
       "tutorSex": tutorSex,
       "tutorID": tutorID,
     });
+  }
+
+  // METODO QUE PEGA AS CLASSES CONTRATADAS PELO ID DO ALUNO
+  Future gettingClassesContractedAluno(String alunoID) async {
+    try {
+      QuerySnapshot snapshot = await classContractedCollection
+          .where("alunoID", isEqualTo: alunoID)
+          .get();
+      return snapshot.docs
+          .map((json) => ContractedClasses(
+                givenClasses: json['givenClasses'],
+                classesName: json['classesName'],
+                numbersClasses: json['numbersClasses'],
+                classesCategory: json['classesCategory'],
+                meetings: json['meetings'],
+                alunoID: json['alunoID'],
+                alunoSex: json['alunoSex'],
+                alunoName: json['alunoName'],
+                tutorName: json['tutorName'],
+                tutorSex: json['tutorSex'],
+                tutorID: json['tutorID'],
+              ))
+          .toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future gettingClassesContractedTutor(String tutorID) async {
+    try {
+      QuerySnapshot snapshot = await classContractedCollection
+          .where("tutorID", isEqualTo: tutorID)
+          .get();
+      return snapshot.docs
+          .map((json) => ContractedClasses(
+                givenClasses: json['givenClasses'],
+                classesName: json['classesName'],
+                numbersClasses: json['numbersClasses'],
+                classesCategory: json['classesCategory'],
+                meetings: json['meetings'],
+                alunoID: json['alunoID'],
+                alunoSex: json['alunoSex'],
+                alunoName: json['alunoName'],
+                tutorName: json['tutorName'],
+                tutorSex: json['tutorSex'],
+                tutorID: json['tutorID'],
+              ))
+          .toList();
+    } catch (e) {
+      print(e);
+      return [];
+    }
   }
 }

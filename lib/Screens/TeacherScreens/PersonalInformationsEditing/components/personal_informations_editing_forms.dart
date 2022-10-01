@@ -408,7 +408,7 @@ class _PersonalInformationsEditingFormsState
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.pop(context, "");
                                     },
                                   ),
                                 ),

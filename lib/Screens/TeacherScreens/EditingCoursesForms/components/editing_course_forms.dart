@@ -620,10 +620,7 @@ class _EditingCoursesFormsState extends State<EditingCoursesForms> {
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        "/homeScreenTeacher",
-                                      );
+                                      Navigator.pop(context, "");
                                     },
                                   ),
                                 ),

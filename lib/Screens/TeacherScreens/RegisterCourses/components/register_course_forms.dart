@@ -610,10 +610,7 @@ class _RegisterCourseFormsState extends State<RegisterCourseForms> {
                                       ),
                                     ),
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        "/homeScreenTeacher",
-                                      );
+                                      Navigator.pop(context, "");
                                     },
                                   ),
                                 ),
