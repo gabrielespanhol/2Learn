@@ -67,6 +67,7 @@ class DatabaseServices {
               ))
           .toList();
     } catch (e) {
+      print("Erro ao pegar dados do usuario");
       return [];
     }
   }
@@ -239,10 +240,30 @@ class DatabaseServices {
   // CRIA AULA
 
   Future createContractedClasses(
+    String givenClasses,
+    String classesName,
+    String numbersClasses,
+    String classesCategory,
     List meetings,
+    String alunoID,
+    String alunoSex,
+    String alunoName,
+    String tutorName,
+    String tutorSex,
+    String tutorID,
   ) async {
     return await classContractedCollection.add({
+      "givenClasses": givenClasses,
+      "classesName": classesName,
+      "numbersClasses": numbersClasses,
+      "classesCategory": classesCategory,
       "meetings": meetings,
+      "alunoID": alunoID,
+      "alunoSex": alunoSex,
+      "alunoName": alunoName,
+      "tutorName": tutorName,
+      "tutorSex": tutorSex,
+      "tutorID": tutorID,
     });
   }
 }

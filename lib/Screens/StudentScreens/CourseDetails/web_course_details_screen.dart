@@ -1,3 +1,4 @@
+import 'package:clean_calendar/clean_calendar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
@@ -26,21 +27,51 @@ class WebCourseDetails extends StatefulWidget {
 
 class _WebCourseDetailsState extends State<WebCourseDetails> {
   Storage storage = Storage();
+
+  late int numeroAulass;
+
+  List<DateTime> listDataTutor = [
+    DateTime(2022, 9, 5),
+    DateTime(2022, 9, 6),
+  ];
+
+  List<DateTime> listdataAluno = [];
+
+  String givenClasses = "0";
+
+  Users tutor = Users();
+  Users aluno = Users();
+
   @override
   void initState() {
     super.initState();
-    gettingUserData();
+    gettingUserDataTutor();
+    gettingUserDataAluno();
+    numeroAulass = int.parse(widget.classes.numberClasses!);
   }
 
-  List<Users> userDataList = [];
-  Users tutor = Users();
-  gettingUserData() async {
+  gettingUserDataTutor() async {
     try {
       await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
           .getUserData(widget.classes.tutorId.toString())
           .then((snapshot) {
         setState(() {
           tutor = snapshot[0];
+        });
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  gettingUserDataAluno() async {
+    try {
+      await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+          .getUserData(FirebaseAuth.instance.currentUser!.uid)
+          .then((snapshot) {
+        setState(() {
+          print(FirebaseAuth.instance.currentUser!.uid);
+          aluno = snapshot[0];
         });
       });
     } catch (e) {
@@ -397,7 +428,26 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const RequestCourseBotton(),
+                        InkWell(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 15),
+                            decoration: BoxDecoration(
+                                color: KPrimaryColor,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Text(
+                              "Solicitar".toUpperCase(),
+                              style: const TextStyle(
+                                  color: KTextcolorLight,
+                                  fontSize: 20,
+                                  fontFamily: 'OpenSans-bold',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          onTap: () async {
+                            await showInformationDialog(context);
+                          },
+                        ),
                         LogoImage(width: (size.height + size.width) / 25),
                       ],
                     ),
@@ -409,5 +459,127 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
         )
       ],
     );
+  }
+
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: SizedBox(
+                width: 400,
+                height: 330,
+                child: Column(
+                  children: [
+                    CleanCalendar(
+                      monthsSymbol: const Months(
+                          january: "Janeiro",
+                          february: "Fevereiro",
+                          march: "Março",
+                          april: "Abril",
+                          may: "Maio",
+                          june: "Junho",
+                          july: "Julho",
+                          august: "Agosto",
+                          september: "Setembro",
+                          october: "Outubro",
+                          november: "Novembro",
+                          december: "Dezembro"),
+
+                      weekdaysSymbol: const Weekdays(
+                          sunday: "D",
+                          monday: "S",
+                          tuesday: "T",
+                          wednesday: "Q",
+                          thursday: "Q",
+                          friday: "S",
+                          saturday: "S"),
+
+                      enableDenseViewForDates:
+                          true, // <- Set false to allow button boundary to expand.
+                      enableDenseSplashForDates:
+                          false, // <- Set true to minimise tap target.
+                      //datePickerCalendarView: ,
+
+                      dateSelectionMode: DatePickerSelectionMode.single,
+
+                      onSelectedDates: (List<DateTime> selectedDates) {
+                        // Called every time dates are selected or deselected.
+
+                        // limta o numero de dias selecionados
+                        if (listdataAluno.length >= numeroAulass) {
+                          setState(() {});
+                        } else {
+                          setState(() {
+                            listdataAluno.add(selectedDates[0]);
+                          });
+                        }
+                      },
+                      selectedDates: listDataTutor + listdataAluno,
+                    ),
+                  ],
+                ),
+              ),
+              title: const Text('AGENDAR AULA'),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () => {
+                    setState(() {
+                      listdataAluno.clear();
+                    }),
+                  },
+                  child: const Text("Limpar"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        listdataAluno.clear();
+                        Navigator.of(context).pop();
+                      }),
+                    },
+                    child: const Text("Cancelar"),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => {
+                    if (listdataAluno.length == numeroAulass)
+                      {
+                        setState(() {}),
+                        DatabaseServices()
+                            .createContractedClasses(
+                          givenClasses,
+                          widget.classes.className!,
+                          widget.classes.numberClasses!,
+                          widget.classes.category!,
+                          listdataAluno,
+                          aluno.uid!,
+                          aluno.userSex!,
+                          aluno.name!,
+                          tutor.name!,
+                          tutor.userSex!,
+                          tutor.uid!,
+                        )
+                            .whenComplete(() {
+                          setState(() {
+                            listdataAluno.clear();
+                            Navigator.of(context).pop();
+                          });
+                        }),
+                        print("AULA ENVIADA")
+                      }
+                    else
+                      {
+                        print("AULA NÂO FOI ENVIADA"),
+                      }
+                  },
+                  child: const Text("Enviar"),
+                ),
+              ],
+            );
+          });
+        });
   }
 }
