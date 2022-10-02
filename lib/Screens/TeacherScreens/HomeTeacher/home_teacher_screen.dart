@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/background.dart';
+import 'package:flutter_web_1/Screens/Components/background.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/mobile_home_teacher_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/web_home_teacher_screen.dart';
 import 'package:flutter_web_1/responsive.dart';

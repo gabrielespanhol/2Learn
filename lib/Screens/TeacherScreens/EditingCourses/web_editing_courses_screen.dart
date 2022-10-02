@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/Components/empty_screen.dart';
+import 'package:flutter_web_1/Screens/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/helper_function.dart';
@@ -55,25 +56,33 @@ class _WebEditingCoursesState extends State<WebEditingCourses> {
           caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
           textoMenu: "EDIÇÃO DE AULA",
         ),
-        SizedBox(
-          width: (size.height + size.width) / 1.7,
-          height: (size.height + size.width) / 4.3,
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisExtent: (size.height + size.width) / 5,
+        if (listClasses.length > 0)
+          SizedBox(
+            width: (size.height + size.width) / 1.7,
+            height: (size.height + size.width) / 4.3,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisExtent: (size.height + size.width) / 5,
+              ),
+              itemCount: listClasses.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: (size.height + size.width) / 60,
+                  ),
+                  child: CardEditingCourses(course: listClasses[index]),
+                );
+              },
             ),
-            itemCount: listClasses.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: (size.height + size.width) / 60,
-                ),
-                child: CardEditingCourses(course: listClasses[index]),
-              );
-            },
           ),
-        ),
+        if (listClasses.isEmpty)
+          SizedBox(
+              width: (size.height + size.width) / 1.7,
+              height: (size.height + size.width) / 4.3,
+              child: const EmptyScreen(
+                  texto:
+                      "Você ainda não cadrastrou nenhuma aula, assim que cadastrar elas apareceram aqui para adição.")),
         Padding(
           padding: EdgeInsets.only(
             left: (size.height + size.width) / 30,

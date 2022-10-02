@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/put_sgv_image.dart';
-import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Screens/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Models/classes.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCourses/components/pencil.dart';
 import 'package:flutter_web_1/constant.dart';
 

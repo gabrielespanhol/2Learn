@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/background.dart';
+import 'package:flutter_web_1/Screens/Components/background.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/mobile_personal_informations_editing_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/web_personal_informations_editing_screen.dart';
 import 'package:flutter_web_1/responsive.dart';

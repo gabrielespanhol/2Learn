@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_web_1/Components/copyright_bottom.dart';
-import 'package:flutter_web_1/Components/web_menu_bar.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/Components/copyright_bottom.dart';
+import 'package:flutter_web_1/Screens/Components/web_menu_bar.dart';
+import 'package:flutter_web_1/Screens/Components/logo_image.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_us_text.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/benefits/about_benefits.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_student.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/about_teacher.dart';
 import 'package:flutter_web_1/Screens/Welcome/components/benefits/card_benefits.dart';
-import '../../Components/default_button.dart';
+import '../Components/default_button.dart';
 import 'components/login_signup_btn.dart';
 import 'components/welcome_image.dart';
 

@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/default_button.dart';
-import 'package:flutter_web_1/Components/web_menu_item.dart';
+import 'package:flutter_web_1/Screens/Components/default_button.dart';
+import 'package:flutter_web_1/Screens/Components/web_menu_item.dart';
 
 class CustomMenuBar extends StatelessWidget {
   const CustomMenuBar({Key? key}) : super(key: key);

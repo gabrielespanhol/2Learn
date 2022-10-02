@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/put_sgv_image.dart';
-import 'package:flutter_web_1/Models/FinalModels/contracted_classes.dart';
+import 'package:flutter_web_1/Screens/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Models/contracted_classes.dart';
 
 import 'package:flutter_web_1/constant.dart';
 

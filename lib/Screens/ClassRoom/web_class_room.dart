@@ -2,7 +2,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Screens/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/components/chat_widget.dart';
 
 class WebClassRoom extends StatefulWidget {

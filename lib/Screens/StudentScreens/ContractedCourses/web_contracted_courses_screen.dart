@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/default_button.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/Components/default_button.dart';
+import 'package:flutter_web_1/Screens/Components/empty_screen.dart';
+import 'package:flutter_web_1/Screens/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
-import 'package:flutter_web_1/Components/information_bar.dart';
-import 'package:flutter_web_1/Models/FinalModels/contracted_classes.dart';
+import 'package:flutter_web_1/Screens/Components/information_bar.dart';
+import 'package:flutter_web_1/Models/contracted_classes.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ContractedCourses/components/course_card_studente_view.dart';
 
 class WebContractedCourses extends StatefulWidget {
@@ -46,25 +47,30 @@ class _WebContractedCoursesState extends State<WebContractedCourses> {
     return Column(
       children: [
         const InformationBar(title: "Suas Aulas"),
-        SizedBox(
-          width: (size.height + size.width) / 1.7,
-          height: (size.height + size.width) / 4.0,
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisExtent: (size.height + size.width) / 5,
+        if (listClasses.length > 0)
+          SizedBox(
+            width: (size.height + size.width) / 1.7,
+            height: (size.height + size.width) / 4.0,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisExtent: (size.height + size.width) / 5,
+              ),
+              itemCount: listClasses.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: (size.height + size.width) / 60,
+                  ),
+                  child: CourseCardStudent(course: listClasses[index]),
+                );
+              },
             ),
-            itemCount: listClasses.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: (size.height + size.width) / 60,
-                ),
-                child: CourseCardStudent(course: listClasses[index]),
-              );
-            },
           ),
-        ),
+        if (listClasses.isEmpty)
+          const EmptyScreen(
+              texto:
+                  "Não temos aulas agendadas, clique em 'Pesquisar aulas' para começar a sua jornada"),
         Padding(
           padding: EdgeInsets.only(
             left: (size.height + size.width) / 30,
@@ -76,7 +82,7 @@ class _WebContractedCoursesState extends State<WebContractedCourses> {
             children: <Widget>[
               const LogoImage(width: 90),
               DefaultButton(
-                text: "OUTROS TEMAS",
+                text: "Pesquisar aulas",
                 press: "/pesquisaCursosCategoria",
               )
             ],

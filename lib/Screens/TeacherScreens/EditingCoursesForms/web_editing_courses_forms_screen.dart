@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/classes.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/EditingCoursesForms/components/editing_course_forms.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/constant.dart';
 
-import '../../../Components/default_button.dart';
+import '../../Components/default_button.dart';
 
 class AboutUsText extends StatelessWidget {
   const AboutUsText({Key? key}) : super(key: key);

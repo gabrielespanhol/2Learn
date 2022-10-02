@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Screens/1teste/teste_alert.dart';
 import 'package:flutter_web_1/Screens/ClassRoom/class_room.dart';
 import 'package:flutter_web_1/Screens/Login/login_screen.dart';
 import 'package:flutter_web_1/Screens/Signup/signup_screen.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/editaraulas': (context) => EditingCoursesForms(),
         '/aula': (context) => ClassRoom(),
         '/informacoesPessoais': (context) => PersonalInformationsEditing(),
+        '/teste': (context) => TesteAlert(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

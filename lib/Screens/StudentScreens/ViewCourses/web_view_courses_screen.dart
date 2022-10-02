@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
-import 'package:flutter_web_1/Components/put_sgv_image.dart';
+import 'package:flutter_web_1/Screens/Components/empty_screen.dart';
+import 'package:flutter_web_1/Screens/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
-import 'package:flutter_web_1/Models/FinalModels/classes.dart';
+import 'package:flutter_web_1/Models/classes.dart';
 import 'package:flutter_web_1/Screens/StudentScreens/ViewCourses/components/course_card_view.dart';
 import 'package:flutter_web_1/constant.dart';
 
@@ -150,160 +151,6 @@ class _WebViewCoursesState extends State<WebViewCourses> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  // List<Classes> classesLists = [
-  // Teachers(
-  //   nomeTutor: "Isabella",
-  //   sobrenomeTutor: "Oliveira Queiroz Espanhol",
-  //   profissaoTutor: "Cientista de Dados - Itaú Unibanco",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "Bella",
-  //   nomeCurso: "MACHINE LEARNING",
-  //   descricaoCursoResumida:
-  //       "Aqui vou te ensinar sobre os principais algoritmos.",
-  //   valorCurso: 150,
-  //   categoria: "category",
-  //   numeroAulas: 4,
-  //   tempoAula: 50,
-  // ),
-  // Teachers(
-  //     nomeTutor: "Gabriel",
-  //     sobrenomeTutor: "Espanhol",
-  //     profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
-  //     formacaoAcademica: "Sistemas de informações - FIAP",
-  //     caminhoFoto: "gabriel",
-  //     nomeCurso: "ARQUITETURA DE DADOS",
-  //     descricaoCursoResumida:
-  //         "Vou ensinar sobre as arquiteturas mais utilizadas.",
-  //     valorCurso: 125,
-  //     categoria: "category",
-  //     numeroAulas: 5,
-  //     tempoAula: 40,
-  //     descricaoCurso:
-  //         "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
-  //     descricaoTutor:
-  //         "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
-  // Teachers(
-  //   nomeTutor: "Leonado",
-  //   sobrenomeTutor: "Mesquita",
-  //   profissaoTutor: "Desenvolvedor - Loggi",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "leo1",
-  //   nomeCurso: "ERP",
-  //   descricaoCursoResumida:
-  //       "Olá, você vai aprender os principais benefícios.",
-  //   valorCurso: 100,
-  //   tempoAula: 35,
-  //   categoria: "category",
-  //   numeroAulas: 7,
-  // ),
-  // Teachers(
-  //   nomeTutor: "Leonardo",
-  //   sobrenomeTutor: "Jordão",
-  //   profissaoTutor: "Desenvolvedor - FIAP",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "leo2",
-  //   nomeCurso: "PYTHON BÁSICO",
-  //   descricaoCursoResumida:
-  //       "onsigo te mostrar o quão fácil é aprender esse tema",
-  //   valorCurso: 80,
-  //   tempoAula: 30,
-  //   categoria: "category",
-  //   numeroAulas: 3,
-  // ),
-  // Teachers(
-  //   nomeTutor: "Patrick",
-  //   sobrenomeTutor: "Aruda",
-  //   profissaoTutor: "Desenvolvedor - Pupily",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "patrick",
-  //   nomeCurso: "TRATAMENTO DE DADOS",
-  //   descricaoCursoResumida:
-  //       "A ementa segue a linha das principais técnicas utilizadas.",
-  //   valorCurso: 50,
-  //   categoria: "category",
-  //   numeroAulas: 2,
-  //   tempoAula: 40,
-  // ),
-
-  // ///
-  // ///
-  // ///
-  // Teachers(
-  //   nomeTutor: "Isabella",
-  //   sobrenomeTutor: "Oliveira Queiroz Espanhol",
-  //   profissaoTutor: "Cientista de Dados - Itaú Unibanco",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "Bella",
-  //   nomeCurso: "MACHINE LEARNING",
-  //   descricaoCursoResumida:
-  //       "Aqui vou te ensinar sobre os principais algoritmos.",
-  //   valorCurso: 150,
-  //   categoria: "category",
-  //   numeroAulas: 4,
-  //   tempoAula: 50,
-  // ),
-  // Teachers(
-  //     nomeTutor: "Gabriel",
-  //     sobrenomeTutor: "Espanhol",
-  //     profissaoTutor: "Arquiteto de Dados - Itaú Unibanco",
-  //     formacaoAcademica: "Sistemas de informações - FIAP",
-  //     caminhoFoto: "gabriel",
-  //     nomeCurso: "ARQUITETURA DE DADOS",
-  //     descricaoCursoResumida:
-  //         "Vou ensinar sobre as arquiteturas mais utilizadas.",
-  //     valorCurso: 125,
-  //     categoria: "category",
-  //     numeroAulas: 5,
-  //     tempoAula: 40,
-  //     descricaoCurso:
-  //         "Sou Arquiteto de dados, meu objetivo é ensinar sobre as principais arquiteturas como: Data Mesh, Data Lake e Data Warehouse e sobre tecnicas de modelagem de banco de dados, relacionais,  noSQL e dimencionais. passando por modelagem conceitual, logica e fisica ",
-  //     descricaoTutor:
-  //         "Arquiteto de Dado com enfoque em administração de dados e Arquitetura de dados e sistemas. Atuação na orientação a equipe de desenvolvimento na utilização da técnica de modelagem de dados e padrões de nomenclatura, no uso de ferramentas case para elaboração de modelo de dados. Validação de modelos de dados elaborados pelos analistas de sistema analisando as regras de negócio dos sistemas bancários."),
-  // Teachers(
-  //   nomeTutor: "Leonado",
-  //   sobrenomeTutor: "Mesquita",
-  //   profissaoTutor: "Desenvolvedor - Loggi",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "leo1",
-  //   nomeCurso: "ERP",
-  //   descricaoCursoResumida:
-  //       "Olá, você vai aprender os principais benefícios.",
-  //   valorCurso: 100,
-  //   tempoAula: 35,
-  //   categoria: "category",
-  //   numeroAulas: 7,
-  // ),
-  // Teachers(
-  //   nomeTutor: "Leonardo",
-  //   sobrenomeTutor: "Jordão",
-  //   profissaoTutor: "Desenvolvedor - FIAP",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "leo2",
-  //   nomeCurso: "PYTHON BÁSICO",
-  //   descricaoCursoResumida:
-  //       "onsigo te mostrar o quão fácil é aprender esse tema",
-  //   valorCurso: 80,
-  //   tempoAula: 30,
-  //   categoria: "category",
-  //   numeroAulas: 3,
-  // ),
-  // Teachers(
-  //   nomeTutor: "Patrick",
-  //   sobrenomeTutor: "Aruda",
-  //   profissaoTutor: "Desenvolvedor - Pupily",
-  //   formacaoAcademica: "Sistemas de informações - FIAP",
-  //   caminhoFoto: "patrick",
-  //   nomeCurso: "TRATAMENTO DE DADOS",
-  //   descricaoCursoResumida:
-  //       "A ementa segue a linha das principais técnicas utilizadas.",
-  //   valorCurso: 50,
-  //   categoria: "category",
-  //   numeroAulas: 2,
-  //   tempoAula: 40,
-  // ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -388,11 +235,15 @@ class _WebViewCoursesState extends State<WebViewCourses> {
             ],
           ),
         ),
-        SizedBox(
-          width: (size.height + size.width) / 1.7,
-          height: (size.height + size.width) / 4,
-          child: firstSearch ? _createListView() : _performSearch(),
-        ),
+        if (classesLists.length > 0)
+          SizedBox(
+            width: (size.height + size.width) / 1.7,
+            height: (size.height + size.width) / 4,
+            child: firstSearch ? _createListView() : _performSearch(),
+          ),
+        if (classesLists.isEmpty)
+          const EmptyScreen(
+              texto: "Não foram encontradas aulas dessa categoria."),
         Padding(
           padding: const EdgeInsets.only(right: 70, top: 10, bottom: 20),
           child: Row(

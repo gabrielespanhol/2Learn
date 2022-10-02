@@ -2,8 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_1/Components/custom_snackbar.dart';
-import 'package:flutter_web_1/Components/logo_image.dart';
+import 'package:flutter_web_1/Screens/Components/custom_snackbar.dart';
+import 'package:flutter_web_1/Screens/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/helper_function.dart';
