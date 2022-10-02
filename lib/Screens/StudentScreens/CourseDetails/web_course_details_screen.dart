@@ -32,8 +32,12 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
   late int numeroAulass;
 
   List<DateTime> listDataTutor = [
-    DateTime(2022, 9, 5),
-    DateTime(2022, 9, 6),
+    DateTime(2022, 10, 2),
+    DateTime(2022, 10, 30),
+    DateTime(2022, 10, 9),
+    DateTime(2022, 10, 23),
+    DateTime(2022, 10, 16),
+    DateTime(2022, 10, 6),
   ];
 
   List<DateTime> listdataAluno = [];
@@ -472,6 +476,7 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                 child: Column(
                   children: [
                     CleanCalendar(
+                      startDateOfCalendar: DateTime(2022, 10, 2),
                       monthsSymbol: const Months(
                           january: "Janeiro",
                           february: "Fevereiro",
@@ -544,6 +549,7 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                 ),
                 ElevatedButton(
                   onPressed: () => {
+                    print(listdataAluno),
                     if (listdataAluno.length == numeroAulass)
                       {
                         setState(() {}),
@@ -564,9 +570,13 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                             .whenComplete(() {
                           setState(() {
                             listdataAluno.clear();
-                            Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
                           });
                         }),
+                        Navigator.pushNamed(
+                          context,
+                          "/cursosContratados",
+                        ),
                         snackBarSuccessContrataCurso(),
                       }
                     else

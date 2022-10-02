@@ -54,15 +54,24 @@ class _WebViewCoursesState extends State<WebViewCourses> {
 
   //  pegar classes pela categoria
   gettingClasses() async {
-    await DatabaseServices()
-        .gettingClassesCategory(
-            removerAcentosEspacos(widget.category.toLowerCase()))
-        .then((snapshot) {
-      setState(() {
-        // retorna litsa de classes
-        classesLists = snapshot;
+    if (widget.category.toLowerCase() == "geral") {
+      await DatabaseServices().gettingClassesCategoryAll().then((snapshot) {
+        setState(() {
+          // retorna litsa de classes
+          classesLists = snapshot;
+        });
       });
-    });
+    } else {
+      await DatabaseServices()
+          .gettingClassesCategory(
+              removerAcentosEspacos(widget.category.toLowerCase()))
+          .then((snapshot) {
+        setState(() {
+          // retorna litsa de classes
+          classesLists = snapshot;
+        });
+      });
+    }
   }
 
   _WebViewCoursesState() {

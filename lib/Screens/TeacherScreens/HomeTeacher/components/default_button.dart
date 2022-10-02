@@ -36,7 +36,7 @@ class DefaultButtonTeacher extends StatelessWidget {
                   text.toUpperCase(),
                   style: TextStyle(
                       color: KTextcolorLight,
-                      fontSize: fontSize,
+                      fontSize: (size.height + size.width) / 190,
                       fontFamily: 'OpenSans-bold',
                       fontWeight: FontWeight.bold),
                 ),

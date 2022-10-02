@@ -12,7 +12,8 @@ class CourseCardcategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color? color;
-    if (courseCategory.nomeCategoria.toString() == "outros") {
+    if (courseCategory.nomeCategoria.toString() == "outros" ||
+        courseCategory.nomeCategoria.toString().toLowerCase() == "geral") {
       color = KPrimaryColor;
     }
 

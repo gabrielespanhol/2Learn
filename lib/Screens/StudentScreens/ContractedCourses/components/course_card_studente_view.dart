@@ -18,7 +18,9 @@ class CourseCardStudent extends StatelessWidget {
         (porcentagemCursoAndamento * 100).round();
     var tipoCurso = course.classesCategory!;
     var totalAulas = course.numbersClasses!;
-    var proximoEncontro = "ARUMAR";
+    var proximoEncontro =
+        "${course.meetings![int.parse(course.givenClasses!)].toDate().day}/${course.meetings![0].toDate().month}/${course.meetings![0].toDate().year}";
+
     var sexo = course.tutorSex.toString();
     if (sexo == "UserSex.M") {
       sexo = "Tutor: ";
@@ -166,7 +168,7 @@ class CourseCardStudent extends StatelessWidget {
                     padding:
                         EdgeInsets.only(top: (size.height + size.width) / 280),
                     child: Text(
-                      '',
+                      'Dia do proximo encontro: $proximoEncontro',
                       style: TextStyle(
                         fontSize: (size.height + size.width) / 160,
                         color: KTextcolorLight,

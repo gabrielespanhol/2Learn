@@ -166,6 +166,29 @@ class DatabaseServices {
     }
   }
 
+  // METODO QUE PEGA AS CLASSES DE TODAS CATEGORIAS
+  Future gettingClassesCategoryAll() async {
+    try {
+      QuerySnapshot snapshot = await classCollection.get();
+      return snapshot.docs
+          .map((json) => Classes(
+                category: json['category'],
+                classId: json['classId'],
+                className: json['className'],
+                description: json['description'],
+                durationClasses: json['durationClasses'],
+                numberClasses: json['numberClasses'],
+                shortDescription: json['shortDescription'],
+                tutorId: json['tutorId'],
+                tutorName: json['tutorName'],
+                valueClasses: json['valueClasses'],
+              ))
+          .toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   /*
          AULAS 
   */

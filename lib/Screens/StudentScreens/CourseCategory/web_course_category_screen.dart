@@ -45,6 +45,7 @@ class _WebCoursesCategoryState extends State<WebCoursesCategory> {
   }
 
   List<CourseCategory> listaCategorias = [
+    CourseCategory(nomeCategoria: "Geral"),
     CourseCategory(nomeCategoria: "tecnologia"),
     CourseCategory(nomeCategoria: "machine learning"),
     CourseCategory(nomeCategoria: "matemática"),
