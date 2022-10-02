@@ -1,6 +1,7 @@
 import 'package:clean_calendar/clean_calendar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_1/Components/custom_snackbar.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Components/put_sgv_image.dart';
 import 'package:flutter_web_1/Controlers/database_service.dart';
@@ -82,11 +83,9 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var caminhoFoto = widget.classes.profilePicTeacher;
     var valorCurso = widget.classes.valueClasses.toString();
     var numeroAulas = widget.classes.numberClasses.toString();
     var tempoAula = widget.classes.durationClasses.toString();
-    String nivel = "o";
 
     return Column(
       children: [
@@ -568,11 +567,11 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
                             Navigator.of(context).pop();
                           });
                         }),
-                        print("AULA ENVIADA")
+                        snackBarSuccessContrataCurso(),
                       }
                     else
                       {
-                        print("AULA NÂO FOI ENVIADA"),
+                        snackBarErroCurso(),
                       }
                   },
                   child: const Text("Enviar"),
@@ -581,5 +580,38 @@ class _WebCourseDetailsState extends State<WebCourseDetails> {
             );
           });
         });
+  }
+
+  snackBarSuccessContrataCurso() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: CustomSnackbar(
+          textoMensagem: "Aula contrada com sucesso",
+          corPrimaria: Colors.green,
+          corSecundaria: const Color.fromARGB(255, 64, 148, 67),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
+  }
+
+  snackBarErroCurso() {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: CustomSnackbar(
+          textoMensagem:
+              "Selecione mais ${numeroAulass - listdataAluno.length} dias",
+          corPrimaria: Colors.red,
+          corSecundaria: Color.fromARGB(255, 150, 30, 22),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
   }
 }

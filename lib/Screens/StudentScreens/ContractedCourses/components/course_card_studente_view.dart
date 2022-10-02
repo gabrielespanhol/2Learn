@@ -25,7 +25,7 @@ class CourseCardStudent extends StatelessWidget {
     } else if (sexo == "UserSex.F") {
       sexo = "Tutora: ";
     } else {
-      sexo = "Tutur(a): ";
+      sexo = "Tutor(a): ";
     }
 
     return MouseRegion(

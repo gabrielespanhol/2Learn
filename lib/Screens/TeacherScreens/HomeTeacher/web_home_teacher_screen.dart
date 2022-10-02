@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/Components/logo_image.dart';
 import 'package:flutter_web_1/Controlers/auth_service.dart';
+import 'package:flutter_web_1/Controlers/database_service.dart';
 import 'package:flutter_web_1/Controlers/helper_function.dart';
+import 'package:flutter_web_1/Models/FinalModels/user.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/HomeTeacher/components/default_button.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/PersonalInformationsEditing/personal_informations_editing_screen.dart';
 import 'package:flutter_web_1/Screens/TeacherScreens/components/menu_teacher.dart';
@@ -21,6 +23,7 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
   String userName = "";
   String email = "";
   String userSex = "";
+  Users tutor = Users();
   AuthService authService = AuthService();
 
   @override
@@ -40,22 +43,31 @@ class _WebHomeTeacherState extends State<WebHomeTeacher> {
         userName = valueName!;
       });
     });
-    // await HelperFunctions.getUserSexFromSF().then((valueSex) {
-    //   setState(() {
-    //     //userSex = valueSex!;
-    //     print(valueSex);
-    //   });
-    // });
+    await DatabaseServices(uid: FirebaseAuth.instance.currentUser!.uid)
+        .getUserData(FirebaseAuth.instance.currentUser!.uid)
+        .then((snapshot) {
+      setState(() {
+        tutor = snapshot[0];
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    var sexo = tutor.userSex;
+    if (sexo == "UserSex.M") {
+      sexo = "BEM-VINDO";
+    } else if (sexo == "UserSex.F") {
+      sexo = "BEM-VINDA";
+    } else {
+      sexo = "BEM-VINDO(a)";
+    }
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         MenuTeacher(
           caminhofoto: "${FirebaseAuth.instance.currentUser!.uid}.png",
-          textoMenu: "SEJA BEM-VINDA DE VOLTA,  $userName",
+          textoMenu: "SEJA $sexo DE VOLTA,  $userName",
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

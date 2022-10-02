@@ -50,8 +50,6 @@ class MyApp extends StatelessWidget {
         '/editaraulas': (context) => EditingCoursesForms(),
         '/aula': (context) => ClassRoom(),
         '/informacoesPessoais': (context) => PersonalInformationsEditing(),
-        // '/teste': (context) => TesteCalendar(),
-        // '/teste1': (context) => TesteAlert(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
